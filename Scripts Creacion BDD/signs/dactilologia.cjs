@@ -254,3 +254,185 @@ var data = {
 var documentRef = doc(collectionRef, id.toString());
 
 setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'O',
+  description: 'Decimoquinta letra del alfabeto, vocal redonda y abierta.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fo.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'P',
+  description: 'Decimosexta letra del alfabeto, símbolo de potencia y presión.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fp.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Q',
+  description: 'Decimoséptima letra del alfabeto, rara en español y común en inglés.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fq.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'R',
+  description: 'Decimoctava letra del alfabeto, sonido vibrante y fuerte en español.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fr.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'RR',
+  description: 'Consonante doble en español, representa un sonido vibrante múltiple.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Frr.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'S',
+  description: 'Decimonovena letra del alfabeto, usada para representar pluralidad.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fs.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'T',
+  description: 'Vigésima letra del alfabeto, utilizada para simbolizar tiempo.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Ft.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'U',
+  description: 'Vigésimo primera letra del alfabeto, vocal cerrada y redondeada.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fu.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'V',
+  description: 'Vigésima segunda letra del alfabeto, símbolo de velocidad en física.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fv.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'W',
+  description: 'Vigésima tercera letra del alfabeto, usada en inglés y en acrónimos.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fw.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'X',
+  description: 'Vigésima cuarta letra del alfabeto, símbolo de incógnita y multiplicación.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fx.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Y',
+  description: 'Vigésima quinta letra del alfabeto, a menudo asociada con la unión y la continuidad.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fy.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Z',
+  description: 'Vigésima sexta letra del alfabeto, comúnmente asociada con el final y el sueño.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/dactologia%2Fz.png?alt=media&token=c74d4907-0d87-46da-925c-5c705de96fc3',
+  idCategorie: 1
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
