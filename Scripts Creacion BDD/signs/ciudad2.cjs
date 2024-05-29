@@ -23,7 +23,7 @@ var data = {
   id: id,
   name: 'Ambulancia',
   description: 'Vehículo para transporte médico de emergencia.',
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fambulancia.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2FmediosDeTransporte%2Fambulancia.png?alt=media&token=08dd60d6-92d9-44e8-8774-846a23ac3f46',
   idCategorie: 24
 };
 
@@ -37,7 +37,7 @@ var data = {
   id: id,
   name: 'Autobus',
   description: 'Vehículo grande para transporte público.',
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fautobus.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2FmediosDeTransporte%2Fautobus.png?alt=media&token=08dd60d6-92d9-44e8-8774-846a23ac3f46',
   idCategorie: 24
 };
 
@@ -51,7 +51,7 @@ var data = {
   id: id,
   name: 'Barca',
   description: 'Embarcación pequeña para navegación.',
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fbarca.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2FmediosDeTransporte%2Fbarca.png?alt=media&token=08dd60d6-92d9-44e8-8774-846a23ac3f46',
   idCategorie: 24
 };
 
@@ -65,7 +65,7 @@ var data = {
   id: id,
   name: 'Bicicleta',
   description: 'Vehículo de dos ruedas impulsado por pedales.',
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fbicicleta.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2FmediosDeTransporte%2Fbicicleta.png?alt=media&token=08dd60d6-92d9-44e8-8774-846a23ac3f46',
   idCategorie: 24
 };
 
@@ -79,7 +79,7 @@ var data = {
   id: id,
   name: 'Camion',
   description: 'Vehículo grande para transporte de carga.',
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fcamion.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2FmediosDeTransporte%2Fcamion.png?alt=media&token=08dd60d6-92d9-44e8-8774-846a23ac3f46',
   idCategorie: 24
 };
 
@@ -93,7 +93,7 @@ var data = {
   id: id,
   name: 'Coche',
   description: 'Vehículo para transporte personal.',
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fcoche.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2FmediosDeTransporte%2Fcoche.png?alt=media&token=08dd60d6-92d9-44e8-8774-846a23ac3f46',
   idCategorie: 24
 };
 
@@ -107,7 +107,7 @@ var data = {
   id: id,
   name: 'Moto',
   description: 'Vehículo de dos ruedas motorizado.',
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fmoto.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2FmediosDeTransporte%2Fmoto.png?alt=media&token=08dd60d6-92d9-44e8-8774-846a23ac3f46',
   idCategorie: 24
 };
 
@@ -121,7 +121,7 @@ var data = {
   id: id,
   name: 'Transporte',
   description: 'Movilización de personas o cosas de un lugar a otro.',
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Ftransporte.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2FmediosDeTransporte%2Ftransporte.png?alt=media&token=08dd60d6-92d9-44e8-8774-846a23ac3f46',
   idCategorie: 24
 };
 
@@ -135,7 +135,7 @@ var data = {
   id: id,
   name: 'Vehiculo',
   description: 'Medio de transporte sobre ruedas o en agua.',
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fvehiculo.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2FmediosDeTransporte%2Fvehiculo.png?alt=media&token=08dd60d6-92d9-44e8-8774-846a23ac3f46',
   idCategorie: 24
 };
 
