@@ -30,3 +30,59 @@ var data = {
 var documentRef = doc(collectionRef, id.toString());
 
 setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Invierno',
+  description: 'Cambio constante, clima y ambiente.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/calendario%2Festaciones%2Finvierno.png?alt=media&token=67566b47-1030-4527-a303-b72025ee39a5',
+  idCategorie: 29
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Otoño',
+  description: 'Cambio constante, clima y ambiente.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/calendario%2Festaciones%2Fotono.png?alt=media&token=67566b47-1030-4527-a303-b72025ee39a5',
+  idCategorie: 29
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Primavera',
+  description: 'Cambio constante, clima y ambiente.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/calendario%2Festaciones%2Fprimavera.png?alt=media&token=67566b47-1030-4527-a303-b72025ee39a5',
+  idCategorie: 29
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Verano',
+  description: 'Cambio constante, clima y ambiente.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/calendario%2Festaciones%2Fverano.png?alt=media&token=67566b47-1030-4527-a303-b72025ee39a5',
+  idCategorie: 29
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
