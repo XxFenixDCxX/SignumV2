@@ -24,7 +24,7 @@ var data = {
   name: 'Ropa',
   description: 'Prendas textiles utilizadas para vestirse y proteger el cuerpo humano.',
   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ropa%2Fropa.png?alt=media&token=e010e69a-7e72-4d5f-860b-70c41083ab06',
-  idCategorie: 8
+  idCategorie: 9
 };
 
 var documentRef = doc(collectionRef, id.toString());
