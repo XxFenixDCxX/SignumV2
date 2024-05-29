@@ -36,7 +36,7 @@ id++;
 var data = {
   id: id,
   name: 'Autobus',
-  description: 'Vehículo para transporte médico de emergencia.',
+  description: 'Vehículo grande para transporte público.',
   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fautobus.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
   idCategorie: 24
 };
@@ -50,7 +50,7 @@ id++;
 var data = {
   id: id,
   name: 'Barca',
-  description: 'Vehículo para transporte médico de emergencia.',
+  description: 'Embarcación pequeña para navegación.',
   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fbarca.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
   idCategorie: 24
 };
@@ -64,7 +64,7 @@ id++;
 var data = {
   id: id,
   name: 'Bicicleta',
-  description: 'Vehículo para transporte médico de emergencia.',
+  description: 'Vehículo de dos ruedas impulsado por pedales.',
   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fbicicleta.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
   idCategorie: 24
 };
@@ -78,7 +78,7 @@ id++;
 var data = {
   id: id,
   name: 'Camion',
-  description: 'Vehículo para transporte médico de emergencia.',
+  description: 'Vehículo grande para transporte de carga.',
   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fcamion.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
   idCategorie: 24
 };
@@ -92,7 +92,7 @@ id++;
 var data = {
   id: id,
   name: 'Coche',
-  description: 'Vehículo para transporte médico de emergencia.',
+  description: 'Vehículo para transporte personal.',
   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fcoche.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
   idCategorie: 24
 };
@@ -106,7 +106,7 @@ id++;
 var data = {
   id: id,
   name: 'Moto',
-  description: 'Vehículo para transporte médico de emergencia.',
+  description: 'Vehículo de dos ruedas motorizado.',
   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fmoto.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
   idCategorie: 24
 };
@@ -120,7 +120,7 @@ id++;
 var data = {
   id: id,
   name: 'Transporte',
-  description: 'Vehículo para transporte médico de emergencia.',
+  description: 'Movilización de personas o cosas de un lugar a otro.',
   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Ftransporte.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
   idCategorie: 24
 };
@@ -134,7 +134,7 @@ id++;
 var data = {
   id: id,
   name: 'Vehiculo',
-  description: 'Vehículo para transporte médico de emergencia.',
+  description: 'Medio de transporte sobre ruedas o en agua.',
   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/ciudad%2Fciudad%2Fvehiculo.png?alt=media&token=b39715a7-7e61-48b4-b2bb-6f307c282a72',
   idCategorie: 24
 };
