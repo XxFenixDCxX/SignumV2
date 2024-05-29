@@ -30,3 +30,73 @@ var data = {
 var documentRef = doc(collectionRef, id.toString());
 
 setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Gusto',
+  description: 'Sentido del sabor, detecta sabores.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/cuerpo%2Fsentidos%2Fgusto.png?alt=media&token=49c4a23a-3a5c-4aa9-8783-bb7cc1e40f9f',
+  idCategorie: 12
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Oido',
+  description: 'Sentido auditivo, percibe sonidos.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/cuerpo%2Fsentidos%2Foido.png?alt=media&token=49c4a23a-3a5c-4aa9-8783-bb7cc1e40f9f',
+  idCategorie: 12
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Olfato',
+  description: 'Sentido del olfato, detecta olores.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/cuerpo%2Fsentidos%2Folfato.png?alt=media&token=49c4a23a-3a5c-4aa9-8783-bb7cc1e40f9f',
+  idCategorie: 12
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Tacto',
+  description: 'Sentido del tacto, percibe texturas.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/cuerpo%2Fsentidos%2Ftacto.png?alt=media&token=49c4a23a-3a5c-4aa9-8783-bb7cc1e40f9f',
+  idCategorie: 12
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
+
+id++;
+
+var data = {
+  id: id,
+  name: 'Vista',
+  description: 'Sentido de la visión, percibe luz.',
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/signumv2.appspot.com/o/cuerpo%2Fsentidos%2Fvista.png?alt=media&token=49c4a23a-3a5c-4aa9-8783-bb7cc1e40f9f',
+  idCategorie: 12
+};
+
+var documentRef = doc(collectionRef, id.toString());
+
+setDoc(documentRef, data);
