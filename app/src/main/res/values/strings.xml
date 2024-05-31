@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Signum</string>
     <string name="imageDescription">Descripcion de imagen</string>
+    <string name="login">Iniciar sesion</string>
+    <string name="register">Registrarse</string>
+    <string name="empty" />
 </resources>
