@@ -3,5 +3,12 @@
     <string name="imageDescription">Descripcion de imagen</string>
     <string name="login">Iniciar sesion</string>
     <string name="register">Registrarse</string>
+    <string name="registerUnderline"><u>REGISTRARSE</u></string>
     <string name="empty" />
+    <string name="optionRegister">O registrate clicando abajo</string>
+    <string name="email">Correo electronico</string>
+    <string name="emailSuggestion">Escribe tu correo electronico…</string>
+    <string name="password">Contraseña</string>
+    <string name="passwordSuggestion">Escribe tu contraseña…</string>
+    <string name="forgotPassword">¿Has olvidado tu contraseña?</string>
 </resources>
