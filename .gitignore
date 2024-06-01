@@ -35,3 +35,6 @@ google-services.json
 
 # Mac files
 .DS_Store
+
+#Node modules
+./Scripts\ Creacion\ BDD/node_modules/

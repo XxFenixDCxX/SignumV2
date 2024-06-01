@@ -21,9 +21,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ac824b4f-278e-4f8a-b15e-711cb45855e0" name="Changes" comment="Cambio">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="ac824b4f-278e-4f8a-b15e-711cb45855e0" name="Changes" comment="Agregado README.md" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -264,7 +262,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717186249410</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Agregado README.md">
+      <option name="closed" value="true" />
+      <created>1717225214134</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1717225214134</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -289,6 +295,7 @@
     <MESSAGE value="Integrado firebase en la aplicacion" />
     <MESSAGE value="Eliminado gitignore.txt" />
     <MESSAGE value="Cambio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cambio" />
+    <MESSAGE value="Agregado README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregado README.md" />
   </component>
 </project>
