@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         register.setOnClickListener(v -> openActivity(RegisterActivity.class));
     }
     private void openActivity(Class<?> cls) {
-        this.finish();
         Intent intent = new Intent(this, cls);
         startActivity(intent);
     }

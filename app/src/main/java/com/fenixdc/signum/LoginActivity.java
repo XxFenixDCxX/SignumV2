@@ -1,6 +1,8 @@
 package com.fenixdc.signum;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class LoginActivity extends AppCompatActivity {
+    TextView register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +23,17 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        register = findViewById(R.id.txtRegisterTextLogin);
+
+        register.setOnClickListener(v -> openActivity(RegisterActivity.class, false));
+    }
+
+    private void openActivity(Class<?> cls, boolean finish) {
+        if (finish) {
+            finish();
+        }
+        Intent intent = new Intent(this, cls);
+        startActivity(intent);
     }
 }
