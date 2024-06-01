@@ -1,3 +1,9 @@
+# Mac files
+.DS_Store
+
+#Node modules
+/Scripts Creacion BDD/node_modules/
+
 # Gradle files
 .gradle/
 build/
@@ -31,10 +37,3 @@ google-services.json
 
 # Android Profiling
 *.hprof
-
-
-# Mac files
-.DS_Store
-
-#Node modules
-.Scripts\ Creacion\ BDD/node_modules/
