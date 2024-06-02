@@ -109,7 +109,7 @@
         android:contentDescription="@string/imageDescription"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:srcCompat="@drawable/imageemail" />
+        app:srcCompat="@drawable/imaguser" />
 
     <View
         android:id="@+id/view2"

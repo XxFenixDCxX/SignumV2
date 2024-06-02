@@ -11,4 +11,10 @@
     <string name="password">Contraseña</string>
     <string name="passwordSuggestion">Escribe tu contraseña…</string>
     <string name="forgotPassword">¿Has olvidado tu contraseña?</string>
+     <string name="optionLogin">O inicia sesion clicando abajo</string>
+    <string name="loginUnderline"><u>INICIAR SESION</u></string>
+    <string name="username">Nombre de usuario</string>
+    <string name="usernameSuggestion">Escribe tu nombre de usuario…</string>
+    <string name="passwordConfirm">Confirmar contraseña</string>
+    <string name="passwordConfirmSuggestion">Escribe tu contraseña de nuevo…</string>
 </resources>
