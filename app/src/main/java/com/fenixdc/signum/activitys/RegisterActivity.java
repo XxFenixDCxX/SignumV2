@@ -90,6 +90,11 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        if (password.getText().toString().length() < 6){
+            DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorPasswordLength));
+            return;
+        }
+
         validateExistEmail();
     }
 
@@ -120,15 +125,14 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void login() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
         mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(this, task -> {
+                    String email = this.email.getText().toString();
                     if (task.isSuccessful()){
                         registerUser();
                     } else {
-                        DialogUtils.showErrorDialog(RegisterActivity.this, getString(R.string.error), getString(R.string.erroRegister));
+                            DialogUtils.showErrorDialog(RegisterActivity.this, getString(R.string.error), getString(R.string.erroRegister));
                     }
                 });
-
     }
 }

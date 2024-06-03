@@ -29,4 +29,5 @@
     <string name="successRegister">Se ha registrado correctamente</string>
     <string name="errorValidatingEmail">Error al verificar el correo electrónico</string>
     <string name="errorEmailAlreadyExists">El correo electronico ya existe</string>
+    <string name="errorPasswordLength">La contraseña es demasiado corta tiene que tener por lo menos 6 caracteres</string>
 </resources>
