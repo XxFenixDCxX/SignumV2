@@ -2,6 +2,9 @@ package com.fenixdc.signum.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,9 +14,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.utils.DialogUtils;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
     TextView register;
+    Button login;
+    EditText email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +38,48 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setUpElements() {
+        login = findViewById(R.id.btnLogin);
         register = findViewById(R.id.txtRegisterTextLogin);
+        email = findViewById(R.id.eTxtEmail);
+        password = findViewById(R.id.eTxtPassword);
     }
 
     private void setUpListeners() {
         register.setOnClickListener(v -> openActivity(RegisterActivity.class, false));
+        login.setOnClickListener(v -> validateElements());
     }
 
     private void openActivity(Class<?> cls, boolean finish) {
+        Intent intent = new Intent(this, cls);
         if (finish) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             finish();
         }
-        Intent intent = new Intent(this, cls);
         startActivity(intent);
+    }
+
+    private void validateElements() {
+        if (email.getText().toString().isEmpty() || password.getText().toString().isEmpty()) {
+            DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorEmpty));
+            return;
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email.getText().toString()).matches()){
+            DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorEmail));
+            return;
+        }
+        login();
+    }
+
+    private void login() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
+            .addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    openActivity(DictionaryActivity.class, true);
+                } else {
+                    DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
+                }
+            });
     }
 }

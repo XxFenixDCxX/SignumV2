@@ -24,7 +24,7 @@
     <string name="errorPassword">Las contraseñas no coinciden</string>
     <string name="errorEmail">El correo electronico no es valido</string>
     <string name="errorUsername">El nombre de usuario tiene que tener una longitud de 3 caracteres minimo</string>
-    <string name="erroLogin">Ha habido un error al intentar logearse</string>
+    <string name="erroLogin">Los datos introducidos no existen</string>
     <string name="erroRegister">Ha habido un error al intentar registrarse</string>
     <string name="successRegister">Se ha registrado correctamente</string>
     <string name="errorValidatingEmail">Error al verificar el correo electrónico</string>
