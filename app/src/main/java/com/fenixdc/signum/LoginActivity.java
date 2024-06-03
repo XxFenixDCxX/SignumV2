@@ -24,8 +24,15 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        register = findViewById(R.id.txtRegisterTextLogin);
+        setUpElements();
+        setUpListeners();
+    }
 
+    private void setUpElements() {
+        register = findViewById(R.id.txtRegisterTextLogin);
+    }
+
+    private void setUpListeners() {
         register.setOnClickListener(v -> openActivity(RegisterActivity.class, false));
     }
 

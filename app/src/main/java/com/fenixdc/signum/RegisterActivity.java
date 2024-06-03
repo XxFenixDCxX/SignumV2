@@ -24,8 +24,15 @@ public class RegisterActivity extends AppCompatActivity {
             return insets;
         });
 
-        login = findViewById(R.id.txtLogin);
+        setUpElements();
+        setUpListeners();
+    }
 
+    private void setUpElements() {
+        login = findViewById(R.id.txtLogin);
+    }
+
+    private void setUpListeners() {
         login.setOnClickListener(v -> openActivity(LoginActivity.class, false));
     }
 
@@ -36,4 +43,6 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(this, cls);
         startActivity(intent);
     }
+
+
 }

@@ -24,13 +24,20 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        setUpElements();
+        setUpListeners();
+    }
+
+    private void setUpElements() {
         login = findViewById(R.id.btnLogin);
         register = findViewById(R.id.btnRegister);
+    }
 
+    private void setUpListeners() {
         login.setOnClickListener(v -> openActivity(LoginActivity.class));
-
         register.setOnClickListener(v -> openActivity(RegisterActivity.class));
     }
+
     private void openActivity(Class<?> cls) {
         Intent intent = new Intent(this, cls);
         startActivity(intent);
