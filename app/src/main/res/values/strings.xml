@@ -20,4 +20,11 @@
     <string name="success">Éxito</string>
     <string name="warning">Advertencia</string>
     <string name="error">Error</string>
+    <string name="errorEmpty">Todos los campos son obligatorios no pueden estar vacios</string>
+    <string name="errorPassword">Las contraseñas no coinciden</string>
+    <string name="errorEmail">El correo electronico no es valido</string>
+    <string name="errorUsername">El nombre de usuario tiene que tener una longitud de 3 caracteres minimo</string>
+    <string name="erroLogin">Ha habido un error al intentar logearse</string>
+    <string name="erroRegister">Ha habido un error al intentar registrarse</string>
+    <string name="successRegister">Se ha registrado correctamente</string>
 </resources>

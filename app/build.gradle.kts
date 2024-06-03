@@ -39,6 +39,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     //noinspection UseTomlInstead
     implementation("com.google.firebase:firebase-analytics")
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
