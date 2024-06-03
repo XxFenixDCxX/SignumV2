@@ -27,4 +27,6 @@
     <string name="erroLogin">Ha habido un error al intentar logearse</string>
     <string name="erroRegister">Ha habido un error al intentar registrarse</string>
     <string name="successRegister">Se ha registrado correctamente</string>
+    <string name="errorValidatingEmail">Error al verificar el correo electrónico</string>
+    <string name="errorEmailAlreadyExists">El correo electronico ya existe</string>
 </resources>

@@ -16,11 +16,19 @@ import androidx.core.view.WindowInsetsCompat;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.utils.DialogUtils;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView login;
     EditText username, email, password, confirmPassword;
     Button register;
+    CollectionReference usersCollection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setUpElements() {
+        usersCollection = FirebaseFirestore.getInstance().collection("users");
         login = findViewById(R.id.txtLogin);
         email = findViewById(R.id.eTxtEmailRegister);
         username = findViewById(R.id.eTxtUsername);
@@ -48,7 +57,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void setUpListeners() {
         login.setOnClickListener(v -> openActivity(LoginActivity.class, false));
-        register.setOnClickListener(v -> login());
+        register.setOnClickListener(v -> validateElements());
     }
 
     private void openActivity(Class<?> cls, boolean finish) {
@@ -59,7 +68,8 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void login() {
+    private void validateElements() {
+
         if (email.getText().toString().isEmpty() || username.getText().toString().isEmpty() || password.getText().toString().isEmpty() || confirmPassword.getText().toString().isEmpty()){
             DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorEmpty));
             return;
@@ -80,12 +90,41 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        validateExistEmail();
+    }
+
+    private void validateExistEmail() {
+        usersCollection.whereEqualTo("email", email.getText().toString())
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    List<?> users = queryDocumentSnapshots.getDocuments();
+                    if (!users.isEmpty()){
+                        DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorEmailAlreadyExists));
+                    } else {
+                        login();
+                    }
+                });
+    }
+
+    private void registerUser() {
+        DocumentReference document = usersCollection.document(email.getText().toString());
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("username", username.getText().toString());
+        data.put("email", email.getText().toString());
+
+        document.set(data)
+                .addOnSuccessListener(aVoid -> DialogUtils.showSuccessDialog(RegisterActivity.this, getString(R.string.success), getString(R.string.successRegister)))
+                .addOnFailureListener(e -> DialogUtils.showErrorDialog(RegisterActivity.this, getString(R.string.error), getString(R.string.erroRegister)));
+    }
+
+    private void login() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()){
-                        DialogUtils.showSuccessDialog(RegisterActivity.this, getString(R.string.success), getString(R.string.successRegister));
+                        registerUser();
                     } else {
                         DialogUtils.showErrorDialog(RegisterActivity.this, getString(R.string.error), getString(R.string.erroRegister));
                     }
