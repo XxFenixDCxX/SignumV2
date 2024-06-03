@@ -119,7 +119,10 @@ public class RegisterActivity extends AppCompatActivity {
         data.put("email", email.getText().toString());
 
         document.set(data)
-                .addOnSuccessListener(aVoid -> DialogUtils.showSuccessDialog(RegisterActivity.this, getString(R.string.success), getString(R.string.successRegister)))
+                .addOnSuccessListener(aVoid -> {
+                    DialogUtils.showSuccessDialog(RegisterActivity.this, getString(R.string.success), getString(R.string.successRegister));
+                    openActivity(DictionaryActivity.class, true);
+                })
                 .addOnFailureListener(e -> DialogUtils.showErrorDialog(RegisterActivity.this, getString(R.string.error), getString(R.string.erroRegister)));
     }
 
