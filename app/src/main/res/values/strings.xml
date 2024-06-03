@@ -30,4 +30,7 @@
     <string name="errorValidatingEmail">Error al verificar el correo electrónico</string>
     <string name="errorEmailAlreadyExists">El correo electronico ya existe</string>
     <string name="errorPasswordLength">La contraseña es demasiado corta tiene que tener por lo menos 6 caracteres</string>
+    <string name="errorEmailEmpty">El correo electronico no puede estar vacio</string>
+    <string name="successResetEmail">Se ha enviado un correo electronico para restablecer la contraseña</string>
+    <string name="errorResetEmail">Error al enviar el correo electronico para restablecer la contraseña</string>
 </resources>

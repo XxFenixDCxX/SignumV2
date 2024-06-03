@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -18,9 +19,10 @@ import com.fenixdc.signum.utils.DialogUtils;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView register;
+    TextView register, forgotPassword;
     Button login;
     EditText email, password;
+    ImageView google, facebook, twitter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +44,16 @@ public class LoginActivity extends AppCompatActivity {
         register = findViewById(R.id.txtRegisterTextLogin);
         email = findViewById(R.id.eTxtEmail);
         password = findViewById(R.id.eTxtPassword);
+        forgotPassword = findViewById(R.id.txtForgottPassword);
+        google = findViewById(R.id.imgGoogle);
+        facebook = findViewById(R.id.imgFacebook);
+        twitter = findViewById(R.id.imgTwitter);
     }
 
     private void setUpListeners() {
         register.setOnClickListener(v -> openActivity(RegisterActivity.class, false));
         login.setOnClickListener(v -> validateElements());
+        forgotPassword.setOnClickListener(v -> sendResetEmail());
     }
 
     private void openActivity(Class<?> cls, boolean finish) {
@@ -79,6 +86,23 @@ public class LoginActivity extends AppCompatActivity {
                     openActivity(DictionaryActivity.class, true);
                 } else {
                     DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
+                }
+            });
+    }
+
+    private void sendResetEmail(){
+        if (email.getText().toString().isEmpty()) {
+            DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorEmailEmpty));
+            return;
+        }
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        mAuth.sendPasswordResetEmail(email.getText().toString())
+            .addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DialogUtils.showSuccessDialog(this, getString(R.string.success), getString(R.string.successResetEmail));
+                } else {
+                    DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorResetEmail));
                 }
             });
     }
