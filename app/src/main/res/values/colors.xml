@@ -5,4 +5,8 @@
     <color name="secondaryButton">#624B21</color>
     <color name="primaryButton">#847D4B</color>
     <color name="suggestionColor">#99FFFFFF</color>
+    <color name="colorSuccess">#FF00FF00</color>
+    <color name="colorNeutral">#b8b6b0</color>
+    <color name="colorWarning">#FFA500</color>
+    <color name="colorError">#FF0000</color>
 </resources>

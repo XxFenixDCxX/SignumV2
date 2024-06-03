@@ -17,4 +17,7 @@
     <string name="usernameSuggestion">Escribe tu nombre de usuario…</string>
     <string name="passwordConfirm">Confirmar contraseña</string>
     <string name="passwordConfirmSuggestion">Escribe tu contraseña de nuevo…</string>
+    <string name="success">Éxito</string>
+    <string name="warning">Advertencia</string>
+    <string name="error">Error</string>
 </resources>

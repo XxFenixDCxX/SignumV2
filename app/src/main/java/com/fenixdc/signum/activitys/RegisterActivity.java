@@ -1,8 +1,8 @@
-package com.fenixdc.signum;
+package com.fenixdc.signum.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,14 +10,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class MainActivity extends AppCompatActivity {
-    Button login, register;
+import com.fenixdc.signum.R;
+
+public class RegisterActivity extends AppCompatActivity {
+    TextView login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -29,17 +31,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpElements() {
-        login = findViewById(R.id.btnLogin);
-        register = findViewById(R.id.btnRegister);
+        login = findViewById(R.id.txtLogin);
     }
 
     private void setUpListeners() {
-        login.setOnClickListener(v -> openActivity(LoginActivity.class));
-        register.setOnClickListener(v -> openActivity(RegisterActivity.class));
+        login.setOnClickListener(v -> openActivity(LoginActivity.class, false));
     }
 
-    private void openActivity(Class<?> cls) {
+    private void openActivity(Class<?> cls, boolean finish) {
+        if (finish) {
+            finish();
+        }
         Intent intent = new Intent(this, cls);
         startActivity(intent);
     }
+
+
 }

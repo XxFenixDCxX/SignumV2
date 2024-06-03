@@ -1,4 +1,4 @@
-package com.fenixdc.signum;
+package com.fenixdc.signum.activitys;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,14 +10,16 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class RegisterActivity extends AppCompatActivity {
-    TextView login;
+import com.fenixdc.signum.R;
+
+public class LoginActivity extends AppCompatActivity {
+    TextView register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -29,11 +31,11 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setUpElements() {
-        login = findViewById(R.id.txtLogin);
+        register = findViewById(R.id.txtRegisterTextLogin);
     }
 
     private void setUpListeners() {
-        login.setOnClickListener(v -> openActivity(LoginActivity.class, false));
+        register.setOnClickListener(v -> openActivity(RegisterActivity.class, false));
     }
 
     private void openActivity(Class<?> cls, boolean finish) {
@@ -43,6 +45,4 @@ public class RegisterActivity extends AppCompatActivity {
         Intent intent = new Intent(this, cls);
         startActivity(intent);
     }
-
-
 }
