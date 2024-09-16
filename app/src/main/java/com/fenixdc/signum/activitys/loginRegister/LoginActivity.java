@@ -17,6 +17,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.DictionaryActivity;
 import com.fenixdc.signum.utils.DialogUtils;
+import com.fenixdc.signum.utils.GeneralUtils;
+import com.fenixdc.signum.utils.UserUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -27,12 +29,6 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     static final int RC_SIGN_IN = 9001;
@@ -70,19 +66,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void setUpListeners() {
-        register.setOnClickListener(v -> openActivity(RegisterActivity.class, false));
+        register.setOnClickListener(v -> GeneralUtils.openActivity(this, RegisterActivity.class, false));
         login.setOnClickListener(v -> validateElements());
         forgotPassword.setOnClickListener(v -> sendResetEmail());
         google.setOnClickListener(v -> googleLogin());
-    }
-
-    private void openActivity(Class<?> cls, boolean finish) {
-        Intent intent = new Intent(this, cls);
-        if (finish) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            finish();
-        }
-        startActivity(intent);
     }
 
     private void validateElements() {
@@ -103,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    openActivity(DictionaryActivity.class, true);
+                    GeneralUtils.openActivity(this, DictionaryActivity.class, true);
                 } else {
                     DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
                 }
@@ -161,30 +148,14 @@ public class LoginActivity extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
-                        registerUser();
+                        if(user == null || user.getEmail() == null || user.getDisplayName() == null){
+                            DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
+                            return;
+                        }
+                        UserUtils.registerUser(this, user.getDisplayName(), user.getEmail());
                     } else {
                         DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
                     }
                 });
-    }
-
-
-    private void registerUser() {
-        CollectionReference usersCollection = FirebaseFirestore.getInstance().collection("users");
-        if(mAuth.getCurrentUser() == null || mAuth.getCurrentUser().getEmail() == null || mAuth.getCurrentUser().getDisplayName() == null){
-            DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
-            return;
-        }
-        String email = mAuth.getCurrentUser().getEmail();
-        String username = mAuth.getCurrentUser().getDisplayName();
-        DocumentReference document = usersCollection.document(email);
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("username", username);
-        data.put("email", email);
-
-        document.set(data)
-                .addOnSuccessListener(aVoid -> openActivity(DictionaryActivity.class, true))
-                .addOnFailureListener(e -> DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin)));
     }
 }

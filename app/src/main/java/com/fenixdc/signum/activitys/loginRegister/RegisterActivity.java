@@ -1,6 +1,5 @@
 package com.fenixdc.signum.activitys.loginRegister;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.Button;
@@ -16,6 +15,8 @@ import androidx.core.view.WindowInsetsCompat;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.DictionaryActivity;
 import com.fenixdc.signum.utils.DialogUtils;
+import com.fenixdc.signum.utils.GeneralUtils;
+import com.fenixdc.signum.utils.UserUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -57,17 +58,8 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setUpListeners() {
-        login.setOnClickListener(v -> openActivity(LoginActivity.class, false));
+        login.setOnClickListener(v -> GeneralUtils.openActivity(this, LoginActivity.class));
         register.setOnClickListener(v -> validateElements());
-    }
-
-    private void openActivity(Class<?> cls, boolean finish) {
-        Intent intent = new Intent(this, cls);
-        if (finish) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            finish();
-        }
-        startActivity(intent);
     }
 
     private void validateElements() {
@@ -113,28 +105,13 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
-    private void registerUser() {
-        DocumentReference document = usersCollection.document(email.getText().toString());
-
-        Map<String, Object> data = new HashMap<>();
-        data.put("username", username.getText().toString());
-        data.put("email", email.getText().toString());
-
-        document.set(data)
-                .addOnSuccessListener(aVoid -> {
-                    DialogUtils.showSuccessDialog(RegisterActivity.this, getString(R.string.success), getString(R.string.successRegister));
-                    openActivity(DictionaryActivity.class, true);
-                })
-                .addOnFailureListener(e -> DialogUtils.showErrorDialog(RegisterActivity.this, getString(R.string.error), getString(R.string.erroRegister)));
-    }
-
     private void login() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         mAuth.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(this, task -> {
                     String email = this.email.getText().toString();
                     if (task.isSuccessful()){
-                        registerUser();
+                        UserUtils.registerUser(this, username.getText().toString(), email);
                     } else {
                             DialogUtils.showErrorDialog(RegisterActivity.this, getString(R.string.error), getString(R.string.erroRegister));
                     }

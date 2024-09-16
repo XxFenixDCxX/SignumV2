@@ -1,6 +1,5 @@
 package com.fenixdc.signum.activitys.loginRegister;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -11,6 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.utils.GeneralUtils;
 
 public class MainActivity extends AppCompatActivity {
     Button login, register;
@@ -36,12 +36,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setUpListeners() {
-        login.setOnClickListener(v -> openActivity(LoginActivity.class));
-        register.setOnClickListener(v -> openActivity(RegisterActivity.class));
-    }
-
-    private void openActivity(Class<?> cls) {
-        Intent intent = new Intent(this, cls);
-        startActivity(intent);
+        login.setOnClickListener(v -> GeneralUtils.openActivity(this, LoginActivity.class));
+        register.setOnClickListener(v -> GeneralUtils.openActivity(this, RegisterActivity.class));
     }
 }
