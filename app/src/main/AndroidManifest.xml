@@ -16,13 +16,13 @@
             android:name=".activitys.DictionaryActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.RegisterActivity"
+            android:name=".activitys.loginRegister.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.LoginActivity"
+            android:name=".activitys.loginRegister.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".activitys.MainActivity"
+            android:name=".activitys.loginRegister.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

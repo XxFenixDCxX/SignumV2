@@ -1,4 +1,4 @@
-package com.fenixdc.signum.activitys;
+package com.fenixdc.signum.activitys.loginRegister;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.fenixdc.signum.activitys;
+package com.fenixdc.signum.activitys.loginRegister;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.activitys.DictionaryActivity;
 import com.fenixdc.signum.utils.DialogUtils;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
