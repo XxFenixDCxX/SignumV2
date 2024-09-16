@@ -45,7 +45,7 @@ public class GeneralUtils {
                 FragmentTransaction transaction = fragmentManager.beginTransaction();
                 transaction.remove(loadingDialogFragment);
                 transaction.commit();
-                loadingDialogFragment = null; // Clear the reference
+                loadingDialogFragment = null;
             }
         }
     }

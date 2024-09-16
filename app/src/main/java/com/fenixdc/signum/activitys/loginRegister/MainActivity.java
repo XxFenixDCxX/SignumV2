@@ -10,9 +10,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
-import com.fenixdc.signum.activitys.DictionaryActivity;
 import com.fenixdc.signum.utils.GeneralUtils;
-import com.fenixdc.signum.utils.UserUtils;
 
 public class MainActivity extends AppCompatActivity {
     Button login, register;

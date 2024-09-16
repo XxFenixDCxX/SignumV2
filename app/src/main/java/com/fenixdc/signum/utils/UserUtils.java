@@ -2,8 +2,6 @@ package com.fenixdc.signum.utils;
 
 import static com.fenixdc.signum.utils.GeneralUtils.openActivity;
 
-import android.content.Context;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fenixdc.signum.R;

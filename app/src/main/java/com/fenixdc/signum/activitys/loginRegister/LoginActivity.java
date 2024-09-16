@@ -66,7 +66,10 @@ public class LoginActivity extends AppCompatActivity {
     private void setUpListeners() {
         register.setOnClickListener(v -> GeneralUtils.openActivity(this, RegisterActivity.class, false));
         login.setOnClickListener(v -> validateElements());
-        forgotPassword.setOnClickListener(v -> sendResetEmail());
+        forgotPassword.setOnClickListener(v ->{
+            GeneralUtils.showLoadingDialog(this);
+            sendResetEmail();
+        });
         google.setOnClickListener(v -> googleLogin());
     }
 
@@ -80,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
             DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorEmail));
             return;
         }
+
+        GeneralUtils.showLoadingDialog(this);
         login();
     }
 
@@ -88,8 +93,10 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.signInWithEmailAndPassword(email.getText().toString(), password.getText().toString())
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
+                    GeneralUtils.hideLoadingDialog(this);
                     GeneralUtils.openActivity(this, DictionaryActivity.class, true);
                 } else {
+                    GeneralUtils.hideLoadingDialog(this);
                     DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
                 }
             });
@@ -97,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void sendResetEmail(){
         if (email.getText().toString().isEmpty()) {
+            GeneralUtils.hideLoadingDialog(this);
             DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorEmailEmpty));
             return;
         }
@@ -105,8 +113,10 @@ public class LoginActivity extends AppCompatActivity {
         mAuth.sendPasswordResetEmail(email.getText().toString())
             .addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
+                    GeneralUtils.hideLoadingDialog(this);
                     DialogUtils.showSuccessDialog(this, getString(R.string.success), getString(R.string.successResetEmail));
                 } else {
+                    GeneralUtils.hideLoadingDialog(this);
                     DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorResetEmail));
                 }
             });
@@ -132,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
         if (requestCode == RC_SIGN_IN) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
+                GeneralUtils.showLoadingDialog(this);
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 firebaseAuthWithGoogle(account.getIdToken());
             } catch (ApiException e) {
@@ -147,11 +158,13 @@ public class LoginActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
                         if(user == null || user.getEmail() == null || user.getDisplayName() == null){
+                            GeneralUtils.hideLoadingDialog(this);
                             DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
                             return;
                         }
                         UserUtils.registerUser(this, user.getDisplayName(), user.getEmail());
                     } else {
+                        GeneralUtils.hideLoadingDialog(this);
                         DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
                     }
                 });
