@@ -61,8 +61,6 @@ public class LoginActivity extends AppCompatActivity {
         password = findViewById(R.id.eTxtPassword);
         forgotPassword = findViewById(R.id.txtForgottPassword);
         google = findViewById(R.id.imgGoogle);
-        facebook = findViewById(R.id.imgFacebook);
-        twitter = findViewById(R.id.imgTwitter);
     }
 
     private void setUpListeners() {
