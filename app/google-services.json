@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "233433248186-74u0fnelpcen1f59a5h6n6psh492poe8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fenixdc.signum",
+            "certificate_hash": "d854cda68852b351ba19502fdf0b7db4e6c9c7ab"
+          }
+        },
+        {
           "client_id": "233433248186-7khgo5eeed8u6p9eu1ra6umm8a0lojgn.apps.googleusercontent.com",
           "client_type": 3
         }
