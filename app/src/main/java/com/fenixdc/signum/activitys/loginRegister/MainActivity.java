@@ -27,11 +27,6 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        GeneralUtils.showLoadingDialog(this);
-
-        if (UserUtils.isLogedIn()) {
-            GeneralUtils.openActivity(this, DictionaryActivity.class, true);
-        }
 
         setUpElements();
         setUpListeners();

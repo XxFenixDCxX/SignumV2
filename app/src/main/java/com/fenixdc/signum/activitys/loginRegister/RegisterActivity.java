@@ -59,7 +59,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void validateElements() {
-
         if (email.getText().toString().isEmpty() || username.getText().toString().isEmpty() || password.getText().toString().isEmpty() || confirmPassword.getText().toString().isEmpty()){
             DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorEmpty));
             return;
@@ -84,7 +83,7 @@ public class RegisterActivity extends AppCompatActivity {
             DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorPasswordLength));
             return;
         }
-
+        GeneralUtils.showLoadingDialog(this);
         validateExistEmail();
     }
 
@@ -94,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<?> users = queryDocumentSnapshots.getDocuments();
                     if (!users.isEmpty()){
+                        GeneralUtils.hideLoadingDialog(this);
                         DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorEmailAlreadyExists));
                     } else {
                         login();
@@ -109,7 +109,8 @@ public class RegisterActivity extends AppCompatActivity {
                     if (task.isSuccessful()){
                         UserUtils.registerUser(this, username.getText().toString(), email);
                     } else {
-                            DialogUtils.showErrorDialog(RegisterActivity.this, getString(R.string.error), getString(R.string.erroRegister));
+                        GeneralUtils.hideLoadingDialog(this);
+                        DialogUtils.showErrorDialog(RegisterActivity.this, getString(R.string.error), getString(R.string.erroRegister));
                     }
                 });
     }

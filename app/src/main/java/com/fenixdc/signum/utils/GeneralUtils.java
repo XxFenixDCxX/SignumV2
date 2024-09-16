@@ -38,11 +38,15 @@ public class GeneralUtils {
     }
 
     public static void hideLoadingDialog(Context context) {
-        if (loadingDialogFragment != null && loadingDialogFragment.isAdded()) {
-            FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
-            transaction.remove(loadingDialogFragment);
-            transaction.commitAllowingStateLoss();
+        if (context instanceof AppCompatActivity) {
+            AppCompatActivity activity = (AppCompatActivity) context;
+            if (loadingDialogFragment != null && loadingDialogFragment.isAdded()) {
+                FragmentManager fragmentManager = activity.getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.remove(loadingDialogFragment);
+                transaction.commit();
+                loadingDialogFragment = null; // Clear the reference
+            }
         }
     }
 }

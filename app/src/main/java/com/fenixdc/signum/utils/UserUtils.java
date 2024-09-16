@@ -20,7 +20,8 @@ public class UserUtils {
 
     private static final CollectionReference usersCollection = FirebaseFirestore.getInstance().collection("users");
 
-    public static void registerUser(Context context, String username, String email) {
+    public static void registerUser(AppCompatActivity activity, String username, String email) {
+        GeneralUtils.showLoadingDialog(activity);
         DocumentReference document = usersCollection.document(email);
 
         Map<String, Object> data = new HashMap<>();
@@ -28,8 +29,15 @@ public class UserUtils {
         data.put("email", email);
 
         document.set(data)
-                .addOnSuccessListener(aVoid -> openActivity(context, DictionaryActivity.class, true))
-                .addOnFailureListener(e -> DialogUtils.showErrorDialog((AppCompatActivity)context, context.getString(R.string.error), context.getString(R.string.erroRegister)));
+                .addOnSuccessListener(aVoid -> {
+                    openActivity(activity, DictionaryActivity.class, true);
+                    GeneralUtils.hideLoadingDialog(activity);
+
+                })
+                .addOnFailureListener(e -> {
+                    GeneralUtils.hideLoadingDialog(activity);
+                    DialogUtils.showErrorDialog(activity, activity.getString(R.string.error), activity.getString(R.string.erroRegister));
+                });
     }
 
     public static boolean isLogedIn() {
