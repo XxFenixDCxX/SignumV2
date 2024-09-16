@@ -13,18 +13,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
-import com.fenixdc.signum.activitys.DictionaryActivity;
 import com.fenixdc.signum.utils.DialogUtils;
 import com.fenixdc.signum.utils.GeneralUtils;
 import com.fenixdc.signum.utils.UserUtils;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     TextView login;
