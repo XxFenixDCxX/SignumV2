@@ -12,7 +12,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.DictionaryActivity;
 import com.fenixdc.signum.utils.GeneralUtils;
-import com.google.firebase.auth.FirebaseAuth;
+import com.fenixdc.signum.utils.UserUtils;
 
 public class MainActivity extends AppCompatActivity {
     Button login, register;
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+        if (UserUtils.isLogedIn()) {
             GeneralUtils.openActivity(this, DictionaryActivity.class, true);
         }
 

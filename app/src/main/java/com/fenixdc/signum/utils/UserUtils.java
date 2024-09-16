@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.DictionaryActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,5 +30,9 @@ public class UserUtils {
         document.set(data)
                 .addOnSuccessListener(aVoid -> openActivity(context, DictionaryActivity.class, true))
                 .addOnFailureListener(e -> DialogUtils.showErrorDialog((AppCompatActivity)context, context.getString(R.string.error), context.getString(R.string.erroRegister)));
+    }
+
+    public static boolean isLogedIn() {
+        return FirebaseAuth.getInstance().getCurrentUser() != null;
     }
 }
