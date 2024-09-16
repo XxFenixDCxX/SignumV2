@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,16 @@ public class LoadingDialogFragment extends DialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         Dialog dialog = super.onCreateDialog(savedInstanceState);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setBackgroundDrawableResource(android.R.color.transparent);
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.dimAmount = 0f;
+            params.flags |= WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
+            params.flags |= WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+            window.setAttributes(params);
+        }
         return dialog;
     }
 }
