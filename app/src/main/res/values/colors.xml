@@ -9,4 +9,5 @@
     <color name="colorNeutral">#b8b6b0</color>
     <color name="colorWarning">#FFA500</color>
     <color name="colorError">#FF0000</color>
+    <color name="colorBlue">#4D8EB2</color>
 </resources>

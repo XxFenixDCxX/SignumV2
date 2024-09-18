@@ -33,4 +33,7 @@
     <string name="errorEmailEmpty">El correo electronico no puede estar vacio</string>
     <string name="successResetEmail">Se ha enviado un correo electronico para restablecer la contraseña</string>
     <string name="errorResetEmail">Error al enviar el correo electronico para restablecer la contraseña</string>
+    <string name="profile">Perfil</string>
+    <string name="dictionary">Diccionario</string>
+    <string name="learn">Aprende</string>
 </resources>
