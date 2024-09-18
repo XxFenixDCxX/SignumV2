@@ -36,4 +36,6 @@
     <string name="profile">Perfil</string>
     <string name="dictionary">Diccionario</string>
     <string name="learn">Aprende</string>
+    <string name="explore">Explorar</string>
+    <string name="placehoalderExplore">Introduce una palabra para buscar…</string>
 </resources>

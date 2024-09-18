@@ -10,4 +10,5 @@
     <color name="colorWarning">#FFA500</color>
     <color name="colorError">#FF0000</color>
     <color name="colorBlue">#4D8EB2</color>
+    <color name="placehoalderColor">#99FFFFFF</color>
 </resources>
