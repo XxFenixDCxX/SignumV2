@@ -10,7 +10,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.activitys.DictionaryActivity;
 import com.fenixdc.signum.utils.GeneralUtils;
+import com.fenixdc.signum.utils.UserUtils;
 
 public class MainActivity extends AppCompatActivity {
     Button login, register;
@@ -25,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        if(UserUtils.isLogedIn()){
+            GeneralUtils.openActivity(this, DictionaryActivity.class, true);
+        }
 
         setUpElements();
         setUpListeners();
