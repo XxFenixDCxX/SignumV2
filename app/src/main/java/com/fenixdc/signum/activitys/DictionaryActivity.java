@@ -21,6 +21,7 @@ import java.util.ArrayList;
 
 public class DictionaryActivity extends AppCompatActivity {
     ArrayList<Categories> listCategories = new ArrayList<>();
+    ArrayList<Categories> listCategoriesShow = new ArrayList<>();
     RecyclerView rvDictionary;
     RecyclerDictionaryAdapter dictionaryAdapter;
 
@@ -50,6 +51,9 @@ public class DictionaryActivity extends AppCompatActivity {
                             for (QueryDocumentSnapshot document : querySnapshot) {
                                 Categories category = document.toObject(Categories.class);
                                 listCategories.add(category);
+                                if(!category.isSubCategory()){
+                                    listCategoriesShow.add(category);
+                                }
                             }
                             setUpElements();
                         }
@@ -60,7 +64,7 @@ public class DictionaryActivity extends AppCompatActivity {
     private void setUpElements(){
         rvDictionary = findViewById(R.id.rvDictionary);
         rvDictionary.setLayoutManager(new GridLayoutManager(this,2));
-        dictionaryAdapter = new RecyclerDictionaryAdapter(listCategories);
+        dictionaryAdapter = new RecyclerDictionaryAdapter(listCategoriesShow);
         rvDictionary.setAdapter(dictionaryAdapter);
     }
 }

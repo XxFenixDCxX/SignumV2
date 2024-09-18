@@ -1,10 +1,13 @@
 package com.fenixdc.signum.entities;
 
+import com.google.firebase.firestore.PropertyName;
+
 public class Categories {
     private int id;
     private String imageUrl;
     private String name;
-    private boolean hasSubcategories;
+    private Boolean hasSubcategories;
+    private Boolean isSubCategory;
 
     public Categories(){}
 
@@ -27,8 +30,14 @@ public class Categories {
         return name;
     }
 
-    public boolean isHasSubcategories() {
-        return hasSubcategories;
+    @PropertyName("hasSubcategories")
+    public boolean hasSubcategories() {
+        return hasSubcategories != null && hasSubcategories;
+    }
+
+    @PropertyName("isSubCategory")
+    public boolean isSubCategory() {
+        return isSubCategory != null && isSubCategory;
     }
 
     public void setId(int id) {
@@ -43,7 +52,13 @@ public class Categories {
         this.name = name;
     }
 
-    public void setHasSubcategories(boolean hasSubcategories) {
-        this.hasSubcategories = hasSubcategories;
+    @PropertyName("hasSubcategories")
+    public void setHasSubcategories(Boolean hasSubcategories) {
+        this.hasSubcategories = hasSubcategories != null ? hasSubcategories : false;
+    }
+
+    @PropertyName("isSubCategory")
+    public void setIsSubCategory(Boolean isSubCategory) {
+        this.isSubCategory = isSubCategory != null ? isSubCategory : false;
     }
 }
