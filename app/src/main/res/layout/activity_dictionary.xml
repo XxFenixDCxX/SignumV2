@@ -58,6 +58,7 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
         android:background="@color/colorBlue"
         app:itemIconSize="35dp"
         app:itemIconTint="@color/black"

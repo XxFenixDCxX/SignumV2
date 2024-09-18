@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.entities.Categories;
 import com.fenixdc.signum.recyclerview.RecyclerDictionaryAdapter;
+import com.fenixdc.signum.utils.GeneralUtils;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -36,6 +37,7 @@ public class DictionaryActivity extends AppCompatActivity {
             return insets;
         });
 
+        GeneralUtils.showLoadingDialog(this);
         loadData();
     }
 
@@ -66,5 +68,6 @@ public class DictionaryActivity extends AppCompatActivity {
         rvDictionary.setLayoutManager(new GridLayoutManager(this,2));
         dictionaryAdapter = new RecyclerDictionaryAdapter(listCategoriesShow);
         rvDictionary.setAdapter(dictionaryAdapter);
+        GeneralUtils.hideLoadingDialog(this);
     }
 }
