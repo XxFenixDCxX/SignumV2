@@ -148,7 +148,7 @@
         android:layout_height="0dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="1dp"
+        android:layout_marginEnd="28dp"
         app:layout_constraintBottom_toTopOf="@+id/bttomNavCategori"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
