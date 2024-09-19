@@ -55,15 +55,21 @@
         app:srcCompat="@drawable/dictionary" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigationView"
+        android:id="@+id/bttomNavDictionari"
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="70dp"
         android:animateLayoutChanges="true"
         android:background="@color/colorBlue"
-        app:itemIconSize="24dp"
+        android:minHeight="0dp"
+        app:itemIconSize="35dp"
         app:itemIconTint="@color/black"
+        app:itemPaddingBottom="0dp"
+        app:itemPaddingTop="6dp"
+        app:itemTextAppearanceActiveBoldEnabled="false"
+        app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu"
         tools:ignore="VisualLintBottomNav" />
@@ -132,7 +138,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintBottom_toTopOf="@+id/bttomNavDictionari"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />

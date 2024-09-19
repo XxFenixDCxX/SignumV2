@@ -1,14 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/home"
+        android:id="@+id/navProfile"
         android:icon="@drawable/userimage"
         android:title="@string/profile" />
     <item
-        android:id="@+id/search"
+        android:id="@+id/navDictionari"
         android:icon="@drawable/dictionary"
         android:title="@string/dictionary" />
     <item
-        android:id="@+id/profile"
+        android:id="@+id/navLearn"
         android:icon="@drawable/learnimage"
         android:title="@string/learn" />
 </menu>

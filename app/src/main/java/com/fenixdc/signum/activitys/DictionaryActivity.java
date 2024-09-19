@@ -18,6 +18,7 @@ import com.fenixdc.signum.R;
 import com.fenixdc.signum.entities.Categories;
 import com.fenixdc.signum.recyclerview.RecyclerDictionaryAdapter;
 import com.fenixdc.signum.utils.GeneralUtils;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -32,12 +33,15 @@ public class DictionaryActivity extends AppCompatActivity {
     RecyclerView rvDictionary;
     RecyclerDictionaryAdapter dictionaryAdapter;
     boolean isSubCategory = false;
+    BottomNavigationView menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dictionary);
+        menu = findViewById(R.id.bttomNavDictionari);
+        menu.setSelectedItemId(R.id.navDictionari);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
