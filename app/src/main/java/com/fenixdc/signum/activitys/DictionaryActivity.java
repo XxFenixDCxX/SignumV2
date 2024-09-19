@@ -2,6 +2,9 @@ package com.fenixdc.signum.activitys;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +28,7 @@ import java.util.ArrayList;
 public class DictionaryActivity extends AppCompatActivity {
     ArrayList<Categories> listCategories = new ArrayList<>();
     ArrayList<Categories> listCategoriesShow = new ArrayList<>();
+    EditText txtSearch;
     RecyclerView rvDictionary;
     RecyclerDictionaryAdapter dictionaryAdapter;
     boolean isSubCategory = false;
@@ -88,7 +92,37 @@ public class DictionaryActivity extends AppCompatActivity {
             }
         });
         rvDictionary.setAdapter(dictionaryAdapter);
+        txtSearch = findViewById(R.id.txtExplorar);
+        txtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                search();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(txtSearch.getText().toString().isEmpty()){
+                    listCategoriesShow.clear();
+                    loadData(false);
+                }
+            }
+        });
         GeneralUtils.hideLoadingDialog(this);
+    }
+
+    private void search(){
+        listCategoriesShow.clear();
+        for (Categories category: listCategories) {
+            if(category.getName().toLowerCase().contains(txtSearch.getText().toString().toLowerCase())){
+                listCategoriesShow.add(category);
+            }
+        }
+        dictionaryAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -101,5 +135,4 @@ public class DictionaryActivity extends AppCompatActivity {
         }
         super.onBackPressed();
     }
-
 }
