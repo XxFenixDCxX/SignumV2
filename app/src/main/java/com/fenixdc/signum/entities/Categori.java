@@ -2,7 +2,7 @@ package com.fenixdc.signum.entities;
 
 import com.google.firebase.firestore.PropertyName;
 
-public class Categories {
+public class Categori {
     private int id;
     private String imageUrl;
     private String name;
@@ -10,7 +10,7 @@ public class Categories {
     private Boolean isSubCategory;
     private Integer categoriDadId;
 
-    public Categories(){}
+    public Categori(){}
 
     public int getId() {
         return id;

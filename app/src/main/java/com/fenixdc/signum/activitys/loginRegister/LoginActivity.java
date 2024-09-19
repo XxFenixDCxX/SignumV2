@@ -15,7 +15,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
-import com.fenixdc.signum.activitys.DictionaryActivity;
+import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.utils.DialogUtils;
 import com.fenixdc.signum.utils.GeneralUtils;
 import com.fenixdc.signum.utils.UserUtils;

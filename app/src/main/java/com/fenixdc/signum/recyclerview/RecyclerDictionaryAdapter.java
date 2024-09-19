@@ -12,15 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.fenixdc.signum.R;
-import com.fenixdc.signum.entities.Categories;
+import com.fenixdc.signum.entities.Categori;
 
 import java.util.ArrayList;
 
 public class RecyclerDictionaryAdapter extends RecyclerView.Adapter<RecyclerDictionaryAdapter.RecyclerDictionaryHolder> {
-    private final ArrayList<Categories> listCategories;
+    private final ArrayList<Categori> listCategories;
     private final OnItemClikListener listener;
 
-    public RecyclerDictionaryAdapter(ArrayList<Categories> listCategories, OnItemClikListener listener) {
+    public RecyclerDictionaryAdapter(ArrayList<Categori> listCategories, OnItemClikListener listener) {
         this.listCategories = listCategories;
         this.listener = listener;
     }
@@ -28,7 +28,7 @@ public class RecyclerDictionaryAdapter extends RecyclerView.Adapter<RecyclerDict
     @NonNull
     @Override
     public RecyclerDictionaryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dictionary_item, parent, false);
         return new RecyclerDictionaryHolder(view);
     }
 
@@ -38,7 +38,7 @@ public class RecyclerDictionaryAdapter extends RecyclerView.Adapter<RecyclerDict
     }
 
     public interface OnItemClikListener{
-        void onItemClick(Categories category);
+        void onItemClick(Categori category);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class RecyclerDictionaryAdapter extends RecyclerView.Adapter<RecyclerDict
             imgCategory = itemView.findViewById(R.id.imgItemCategory);
         }
 
-        public void asignData(Categories category, final OnItemClikListener listener){
+        public void asignData(Categori category, final OnItemClikListener listener){
             txtCategoryName.setText(category.getName());
             Glide.with(itemView.getContext())
                     .load(category.getImageUrl())

@@ -5,7 +5,7 @@ import static com.fenixdc.signum.utils.GeneralUtils.openActivity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fenixdc.signum.R;
-import com.fenixdc.signum.activitys.DictionaryActivity;
+import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;

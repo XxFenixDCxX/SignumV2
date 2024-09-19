@@ -1,4 +1,4 @@
-package com.fenixdc.signum.activitys;
+package com.fenixdc.signum.activitys.dictionary;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fenixdc.signum.R;
-import com.fenixdc.signum.entities.Categories;
+import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.recyclerview.RecyclerDictionaryAdapter;
 import com.fenixdc.signum.utils.GeneralUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,8 +27,8 @@ import java.util.ArrayList;
 
 @SuppressLint("NotifyDataSetChanged")
 public class DictionaryActivity extends AppCompatActivity {
-    ArrayList<Categories> listCategories = new ArrayList<>();
-    ArrayList<Categories> listCategoriesShow = new ArrayList<>();
+    ArrayList<Categori> listCategories = new ArrayList<>();
+    ArrayList<Categori> listCategoriesShow = new ArrayList<>();
     EditText txtSearch;
     RecyclerView rvDictionary;
     RecyclerDictionaryAdapter dictionaryAdapter;
@@ -62,7 +62,7 @@ public class DictionaryActivity extends AppCompatActivity {
 
                         if (querySnapshot != null) {
                             for (QueryDocumentSnapshot document : querySnapshot) {
-                                Categories category = document.toObject(Categories.class);
+                                Categori category = document.toObject(Categori.class);
                                 category.setHasSubcategories(document.getBoolean("hasSubcategories"));
                                 listCategories.add(category);
                                 if(!category.isSubCategory()){
@@ -79,7 +79,7 @@ public class DictionaryActivity extends AppCompatActivity {
     private void reloadData(int idCategory){
         listCategoriesShow.clear();
         isSubCategory = true;
-        for (Categories category: listCategories) {
+        for (Categori category: listCategories) {
             if(category.getCategoriDadId() != null && category.getCategoriDadId() == idCategory){
                 listCategoriesShow.add(category);
             }
@@ -121,7 +121,7 @@ public class DictionaryActivity extends AppCompatActivity {
 
     private void search(){
         listCategoriesShow.clear();
-        for (Categories category: listCategories) {
+        for (Categori category: listCategories) {
             if(category.getName().toLowerCase().contains(txtSearch.getText().toString().toLowerCase())){
                 listCategoriesShow.add(category);
             }

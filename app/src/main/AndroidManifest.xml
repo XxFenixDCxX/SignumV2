@@ -14,7 +14,7 @@
         android:theme="@style/Theme.Signum"
         tools:targetApi="31">
         <activity
-            android:name=".activitys.DictionaryActivity"
+            android:name=".activitys.dictionary.DictionaryActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
@@ -23,12 +23,12 @@
             android:name=".activitys.loginRegister.RegisterActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity"/>
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
         <activity
             android:name=".activitys.loginRegister.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            tools:ignore="DiscouragedApi,LockedOrientationActivity"/>
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
         <activity
             android:name=".activitys.loginRegister.MainActivity"
             android:exported="true"
