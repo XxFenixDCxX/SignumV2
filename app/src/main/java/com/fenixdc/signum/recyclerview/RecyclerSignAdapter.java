@@ -7,12 +7,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.entities.Sign;
+import com.fenixdc.signum.utils.DialogUtils;
+
 import java.util.ArrayList;
 
 public class RecyclerSignAdapter extends RecyclerView.Adapter<RecyclerSignAdapter.RecyclerSignHolder>{
@@ -56,6 +59,10 @@ public class RecyclerSignAdapter extends RecyclerView.Adapter<RecyclerSignAdapte
                     .load(sign.getImageUrl())
                     .apply(new RequestOptions().placeholder(R.drawable.imaguser))
                     .into(imgSign);
+            imgSign.setOnClickListener(v -> DialogUtils.showImageDialog(
+                    ((AppCompatActivity) itemView.getContext()).getSupportFragmentManager(),
+                    sign.getImageUrl()
+            ));
         }
     }
 }

@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.FragmentManager;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.entities.ImageDialogFragment;
 
 public class DialogUtils {
 
@@ -76,6 +78,11 @@ public class DialogUtils {
             alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(0));
         }
         alertDialog.show();
+    }
+
+    public static void showImageDialog(FragmentManager fragmentManager, String imageUrl) {
+        ImageDialogFragment.newInstance(imageUrl)
+                .show(fragmentManager, "image_dialog");
     }
 
 }
