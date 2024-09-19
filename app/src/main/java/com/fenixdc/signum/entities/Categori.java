@@ -2,7 +2,9 @@ package com.fenixdc.signum.entities;
 
 import com.google.firebase.firestore.PropertyName;
 
-public class Categori {
+import java.io.Serializable;
+
+public class Categori implements Serializable {
     private int id;
     private String imageUrl;
     private String name;

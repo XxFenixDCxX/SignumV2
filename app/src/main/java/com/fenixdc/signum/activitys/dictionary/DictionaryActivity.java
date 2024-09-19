@@ -1,6 +1,7 @@
 package com.fenixdc.signum.activitys.dictionary;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -93,6 +94,10 @@ public class DictionaryActivity extends AppCompatActivity {
             if(category.hasSubcategories()){
                 reloadData(category.getId());
                 dictionaryAdapter.notifyDataSetChanged();
+            } else {
+                Intent intent = new Intent(this, CategoriActivity.class);
+                intent.putExtra("category", category);
+                startActivity(intent);
             }
         });
         rvDictionary.setAdapter(dictionaryAdapter);
