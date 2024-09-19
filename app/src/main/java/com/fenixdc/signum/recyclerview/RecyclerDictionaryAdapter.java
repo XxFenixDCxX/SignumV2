@@ -28,7 +28,7 @@ public class RecyclerDictionaryAdapter extends RecyclerView.Adapter<RecyclerDict
     @NonNull
     @Override
     public RecyclerDictionaryHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.dictionary_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.categori_item, parent, false);
         return new RecyclerDictionaryHolder(view);
     }
 
