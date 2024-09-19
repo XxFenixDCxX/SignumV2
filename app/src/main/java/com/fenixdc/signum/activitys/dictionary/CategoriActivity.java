@@ -2,6 +2,9 @@ package com.fenixdc.signum.activitys.dictionary;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -31,6 +34,7 @@ public class CategoriActivity extends AppCompatActivity {
     Categori categori;
     TextView title;
     ImageView categoriImage, btnBack;
+    EditText txtSearch;
     ArrayList<Sign> listSigns = new ArrayList<>();
     ArrayList<Sign> listSignsShow = new ArrayList<>();
     RecyclerView rvSigns;
@@ -65,11 +69,34 @@ public class CategoriActivity extends AppCompatActivity {
         signAdapter = new RecyclerSignAdapter(listSignsShow);
         rvSigns.setAdapter(signAdapter);
         rvSigns.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        txtSearch = findViewById(R.id.txtExplorerCategori);
         GeneralUtils.hideLoadingDialog(this);
+
+        setUpListeners();
     }
 
     private void setUpListeners() {
         btnBack.setOnClickListener(v -> onBackPressed());
+        txtSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                search();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(txtSearch.getText().toString().isEmpty()){
+                    listSignsShow.clear();
+                    listSignsShow.addAll(listSigns);
+                    signAdapter.notifyDataSetChanged();
+                }
+            }
+        });
     }
 
     private void loadData(){
@@ -93,5 +120,15 @@ public class CategoriActivity extends AppCompatActivity {
                         setUpElements();
                     }
                 });
+    }
+
+    private void search(){
+        listSignsShow.clear();
+        for (Sign sign: listSigns) {
+            if(sign.getName().toLowerCase().contains(txtSearch.getText().toString().toLowerCase())){
+                listSignsShow.add(sign);
+            }
+        }
+        signAdapter.notifyDataSetChanged();
     }
 }
