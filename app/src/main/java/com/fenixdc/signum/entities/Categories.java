@@ -8,14 +8,15 @@ public class Categories {
     private String name;
     private Boolean hasSubcategories;
     private Boolean isSubCategory;
+    private Integer categoriDadId;
 
-    public Categories(){}
-
-    public Categories(int id, String imageUrl, String name, boolean hasSubcategories) {
+    public Categories(int id, String imageUrl, String name, Boolean hasSubcategories, Boolean isSubCategory, Integer categoriDadId) {
         this.id = id;
         this.imageUrl = imageUrl;
         this.name = name;
         this.hasSubcategories = hasSubcategories;
+        this.isSubCategory = isSubCategory;
+        this.categoriDadId = categoriDadId;
     }
 
     public int getId() {
@@ -40,6 +41,10 @@ public class Categories {
         return isSubCategory != null && isSubCategory;
     }
 
+    public Integer getCategoriDadId() {
+        return categoriDadId;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -60,5 +65,9 @@ public class Categories {
     @PropertyName("isSubCategory")
     public void setIsSubCategory(Boolean isSubCategory) {
         this.isSubCategory = isSubCategory != null ? isSubCategory : false;
+    }
+
+    public void setCategoriDadId(Integer categoriDadId) {
+        this.categoriDadId = categoriDadId;
     }
 }

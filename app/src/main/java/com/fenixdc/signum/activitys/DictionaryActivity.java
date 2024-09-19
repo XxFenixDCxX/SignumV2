@@ -1,5 +1,6 @@
 package com.fenixdc.signum.activitys;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
@@ -20,11 +21,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+@SuppressLint("NotifyDataSetChanged")
 public class DictionaryActivity extends AppCompatActivity {
     ArrayList<Categories> listCategories = new ArrayList<>();
     ArrayList<Categories> listCategoriesShow = new ArrayList<>();
     RecyclerView rvDictionary;
     RecyclerDictionaryAdapter dictionaryAdapter;
+    boolean isSubCategory = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +41,10 @@ public class DictionaryActivity extends AppCompatActivity {
         });
 
         GeneralUtils.showLoadingDialog(this);
-        loadData();
+        loadData(true);
     }
 
-    private void loadData() {
+    private void loadData(boolean setUpElements) {
         FirebaseFirestore.getInstance().collection("categories")
                 .get()
                 .addOnCompleteListener(task -> {
@@ -52,22 +55,51 @@ public class DictionaryActivity extends AppCompatActivity {
                         if (querySnapshot != null) {
                             for (QueryDocumentSnapshot document : querySnapshot) {
                                 Categories category = document.toObject(Categories.class);
+                                category.setHasSubcategories(document.getBoolean("hasSubcategories"));
                                 listCategories.add(category);
                                 if(!category.isSubCategory()){
                                     listCategoriesShow.add(category);
                                 }
                             }
-                            setUpElements();
+                            if(setUpElements) setUpElements();
+                            dictionaryAdapter.notifyDataSetChanged();
                         }
                     }
                 });
     }
 
+    private void reloadData(int idCategory){
+        listCategoriesShow.clear();
+        isSubCategory = true;
+        for (Categories category: listCategories) {
+            if(category.getCategoriDadId() != null && category.getCategoriDadId() == idCategory){
+                listCategoriesShow.add(category);
+            }
+        }
+    }
+
     private void setUpElements(){
         rvDictionary = findViewById(R.id.rvDictionary);
         rvDictionary.setLayoutManager(new GridLayoutManager(this,2));
-        dictionaryAdapter = new RecyclerDictionaryAdapter(listCategoriesShow);
+        dictionaryAdapter = new RecyclerDictionaryAdapter(listCategoriesShow, category -> {
+            if(category.hasSubcategories()){
+                reloadData(category.getId());
+                dictionaryAdapter.notifyDataSetChanged();
+            }
+        });
         rvDictionary.setAdapter(dictionaryAdapter);
         GeneralUtils.hideLoadingDialog(this);
     }
+
+    @Override
+    public void onBackPressed() {
+        if(isSubCategory){
+            listCategoriesShow.clear();
+            loadData(false);
+            isSubCategory = false;
+            return;
+        }
+        super.onBackPressed();
+    }
+
 }

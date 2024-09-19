@@ -17,10 +17,12 @@ import com.fenixdc.signum.entities.Categories;
 import java.util.ArrayList;
 
 public class RecyclerDictionaryAdapter extends RecyclerView.Adapter<RecyclerDictionaryAdapter.RecyclerDictionaryHolder> {
-    ArrayList<Categories> listCategories;
+    private final ArrayList<Categories> listCategories;
+    private final OnItemClikListener listener;
 
-    public RecyclerDictionaryAdapter(ArrayList<Categories> listCategories) {
+    public RecyclerDictionaryAdapter(ArrayList<Categories> listCategories, OnItemClikListener listener) {
         this.listCategories = listCategories;
+        this.listener = listener;
     }
 
     @NonNull
@@ -32,7 +34,11 @@ public class RecyclerDictionaryAdapter extends RecyclerView.Adapter<RecyclerDict
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerDictionaryHolder holder, int position) {
-        holder.asignData(listCategories.get(position));
+        holder.asignData(listCategories.get(position), listener);
+    }
+
+    public interface OnItemClikListener{
+        void onItemClick(Categories category);
     }
 
     @Override
@@ -49,12 +55,13 @@ public class RecyclerDictionaryAdapter extends RecyclerView.Adapter<RecyclerDict
             imgCategory = itemView.findViewById(R.id.imgItemCategory);
         }
 
-        public void asignData(Categories category){
+        public void asignData(Categories category, final OnItemClikListener listener){
             txtCategoryName.setText(category.getName());
             Glide.with(itemView.getContext())
                     .load(category.getImageUrl())
                     .apply(new RequestOptions().placeholder(R.drawable.imaguser))
                     .into(imgCategory);
+            itemView.setOnClickListener(v -> listener.onItemClick(category));
         }
     }
 }
