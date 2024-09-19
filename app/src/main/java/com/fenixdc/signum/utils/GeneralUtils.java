@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.fenixdc.signum.fragment.LoadingDialogFragment;
 
+import java.io.Serializable;
+
 public class GeneralUtils {
     private static LoadingDialogFragment loadingDialogFragment;
 
@@ -23,6 +25,12 @@ public class GeneralUtils {
 
     public static void openActivity(Context context, Class<?> cls) {
         openActivity(context, cls, false);
+    }
+
+    public static void openActivityAndSendElement(Context context, Class<?> cls, String key, Object element) {
+        Intent intent = new Intent(context, cls);
+        intent.putExtra(key, (Serializable) element);
+        context.startActivity(intent);
     }
 
     public static void showLoadingDialog(Context context) {

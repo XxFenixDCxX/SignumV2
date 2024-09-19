@@ -143,7 +143,7 @@
         app:srcCompat="@drawable/backbutton" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvCategori"
+        android:id="@+id/rvSigns"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="28dp"

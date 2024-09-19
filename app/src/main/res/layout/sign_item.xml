@@ -20,8 +20,8 @@
 
     <ImageView
         android:id="@+id/imgSign"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="134dp"
+        android:layout_height="134dp"
         android:contentDescription="@string/imageDescription"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

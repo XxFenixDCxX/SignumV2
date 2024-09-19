@@ -1,7 +1,6 @@
 package com.fenixdc.signum.activitys.dictionary;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -50,16 +49,17 @@ public class DictionaryActivity extends AppCompatActivity {
         });
 
         GeneralUtils.showLoadingDialog(this);
-        loadData(true);
+        loadData();
     }
 
-    private void loadData(boolean setUpElements) {
+    private void loadData() {
         FirebaseFirestore.getInstance().collection("categories")
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         QuerySnapshot querySnapshot = task.getResult();
                         listCategories.clear();
+                        listCategoriesShow.clear();
 
                         if (querySnapshot != null) {
                             for (QueryDocumentSnapshot document : querySnapshot) {
@@ -70,11 +70,22 @@ public class DictionaryActivity extends AppCompatActivity {
                                     listCategoriesShow.add(category);
                                 }
                             }
-                            if(setUpElements) setUpElements();
+                           setUpElements();
                             dictionaryAdapter.notifyDataSetChanged();
                         }
                     }
                 });
+    }
+
+    private void loadOriginalData(){
+        listCategoriesShow.clear();
+        isSubCategory = false;
+        for (Categori category: listCategories) {
+            if(!category.isSubCategory()){
+                listCategoriesShow.add(category);
+            }
+        }
+        dictionaryAdapter.notifyDataSetChanged();
     }
 
     private void reloadData(int idCategory){
@@ -95,9 +106,7 @@ public class DictionaryActivity extends AppCompatActivity {
                 reloadData(category.getId());
                 dictionaryAdapter.notifyDataSetChanged();
             } else {
-                Intent intent = new Intent(this, CategoriActivity.class);
-                intent.putExtra("category", category);
-                startActivity(intent);
+                GeneralUtils.openActivityAndSendElement(this, CategoriActivity.class, "category", category);
             }
         });
         rvDictionary.setAdapter(dictionaryAdapter);
@@ -117,7 +126,7 @@ public class DictionaryActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if(txtSearch.getText().toString().isEmpty()){
                     listCategoriesShow.clear();
-                    loadData(false);
+                    loadOriginalData();
                 }
             }
         });
@@ -138,7 +147,7 @@ public class DictionaryActivity extends AppCompatActivity {
     public void onBackPressed() {
         if(isSubCategory){
             listCategoriesShow.clear();
-            loadData(false);
+            loadOriginalData();
             isSubCategory = false;
             return;
         }
