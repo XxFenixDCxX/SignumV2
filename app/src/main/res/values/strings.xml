@@ -41,4 +41,11 @@
     <string name="exampleText">Ejemplo de texto</string>
     <string name="categori">Categori</string>
     <string name="longTextExample">En un día soleado, decidí salir a caminar y disfrutar del aire fresco y la naturaleza.</string>
+    <string name="emailExample">email@gmail.com</string>
+    <string name="exampleName">Name</string>
+    <string name="personalDetails">Datos personales</string>
+    <string name="certificates">Certificados</string>
+    <string name="ranking">Ranking</string>
+    <string name="changeAccount">Cambiar de cuenta</string>
+    <string name="closeSession">Cerrar sesion</string>
 </resources>
