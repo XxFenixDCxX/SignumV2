@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.activitys.profile.ProfileActivity;
 import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.recyclerview.RecyclerDictionaryAdapter;
 import com.fenixdc.signum.utils.GeneralUtils;
@@ -98,6 +99,7 @@ public class DictionaryActivity extends AppCompatActivity {
         }
     }
 
+    @SuppressLint("NonConstantResourceId")
     private void setUpElements(){
         rvDictionary = findViewById(R.id.rvDictionary);
         rvDictionary.setLayoutManager(new GridLayoutManager(this,2));
@@ -129,6 +131,18 @@ public class DictionaryActivity extends AppCompatActivity {
                     loadOriginalData();
                 }
             }
+        });
+
+        menu.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navProfile) {
+                GeneralUtils.openActivity(this, ProfileActivity.class);
+            } else if (itemId == R.id.navLearn) {
+                //toDo definir actividad de lear cuando se cree
+                GeneralUtils.openActivity(this, ProfileActivity.class);
+            }
+
+            return true;
         });
         GeneralUtils.hideLoadingDialog(this);
     }

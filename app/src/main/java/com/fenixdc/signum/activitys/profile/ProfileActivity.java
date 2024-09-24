@@ -10,13 +10,16 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.activitys.loginRegister.LoginActivity;
 import com.fenixdc.signum.activitys.loginRegister.MainActivity;
 import com.fenixdc.signum.utils.GeneralUtils;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileActivity extends AppCompatActivity {
     LinearLayout personalDetails, certificate, ranking, changeAccount, logout;
+    BottomNavigationView menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class ProfileActivity extends AppCompatActivity {
         ranking = findViewById(R.id.llRanking);
         changeAccount = findViewById(R.id.llChangeAcount);
         logout = findViewById(R.id.llCloseSesion);
+        menu = findViewById(R.id.bttomNavProfile);
     }
 
     private void setUpListeners(){
@@ -50,6 +54,18 @@ public class ProfileActivity extends AppCompatActivity {
         logout.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             GeneralUtils.openActivity(this, MainActivity.class, true);
+        });
+
+        menu.setOnNavigationItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.navDictionari) {
+                GeneralUtils.openActivity(this, DictionaryActivity.class);
+            } else if (itemId == R.id.navLearn) {
+                //toDo definir actividad de lear cuando se cree
+                GeneralUtils.openActivity(this, ProfileActivity.class);
+            }
+
+            return true;
         });
     }
 }
