@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.widget.ImageView;
 
@@ -12,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.fenixdc.signum.R;
 import com.fenixdc.signum.fragment.LoadingDialogFragment;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
@@ -72,7 +72,7 @@ public class GeneralUtils {
         }
     }
 
-    public static void uploadProfileImageToFirebase(Context context, FirebaseUser user, OnImageUploadListener listener) {
+    public static void uploadProfileImageToFirebase(FirebaseUser user, OnImageUploadListener listener) {
         Uri photoUrl = user.getPhotoUrl();
         if (photoUrl == null) {
             listener.onFailure("No se encontró URL de imagen de perfil.");
@@ -96,11 +96,7 @@ public class GeneralUtils {
                         .child("profileImages/" + user.getUid() + ".jpg");
                 UploadTask uploadTask = storageReference.putBytes(data);
                 uploadTask.addOnFailureListener(e -> listener.onFailure(e.getMessage()))
-                        .addOnSuccessListener(taskSnapshot -> {
-                            storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
-                                listener.onSuccess(uri.toString());
-                            }).addOnFailureListener(e -> listener.onFailure(e.getMessage()));
-                        });
+                        .addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl().addOnSuccessListener(uri -> listener.onSuccess(uri.toString())).addOnFailureListener(e -> listener.onFailure(e.getMessage())));
 
             } catch (Exception e) {
                 listener.onFailure("Error al descargar la imagen: " + e.getMessage());
@@ -111,5 +107,18 @@ public class GeneralUtils {
     public interface OnImageUploadListener {
         void onSuccess(String downloadUrl);
         void onFailure(String errorMessage);
+    }
+
+    public static void loadImageFromUrl(String imageUrl, ImageView imageView) {
+        if (imageUrl == null || imageUrl.isEmpty()) {
+            imageView.setImageResource(R.drawable.defaultuserimage);
+            return;
+        }
+
+        Picasso.get()
+                .load(imageUrl)
+                .placeholder(R.drawable.defaultuserimage)
+                .error(R.drawable.defaultuserimage)
+                .into(imageView);
     }
 }

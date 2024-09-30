@@ -162,7 +162,7 @@ public class LoginActivity extends AppCompatActivity {
                             DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
                             return;
                         }
-                        GeneralUtils.uploadProfileImageToFirebase(this, user, new GeneralUtils.OnImageUploadListener() {
+                        GeneralUtils.uploadProfileImageToFirebase(user, new GeneralUtils.OnImageUploadListener() {
                             @Override
                             public void onSuccess(String downloadUrl) {
                                 UserUtils.registerUser(

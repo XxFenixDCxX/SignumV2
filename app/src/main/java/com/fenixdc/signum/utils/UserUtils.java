@@ -6,13 +6,17 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
+import com.fenixdc.signum.entities.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class UserUtils {
 
@@ -45,5 +49,34 @@ public class UserUtils {
 
     public static boolean isLogedIn() {
         return FirebaseAuth.getInstance().getCurrentUser() != null;
+    }
+
+    public interface OnUserFetchListener {
+        void onSuccess(User user);
+        void onFailure(String errorMessage);
+    }
+
+    public static void getUserWithEmail(String email, OnUserFetchListener listener) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        db.collection("users")
+                .whereEqualTo("email", email)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        if (!querySnapshot.isEmpty()) {
+                            for (QueryDocumentSnapshot document : querySnapshot) {
+                                User user = document.toObject(User.class);
+                                listener.onSuccess(user);
+                                return;
+                            }
+                        } else {
+                            listener.onFailure("No se encontró un usuario con ese correo electrónico.");
+                        }
+                    } else {
+                        listener.onFailure("Error al buscar el usuario: " + Objects.requireNonNull(task.getException()).getMessage());
+                    }
+                });
     }
 }
