@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:text="@string/emailExample"
         android:textColor="@color/white"
-        android:textSize="15sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -113,7 +113,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="52dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="52dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/bttomNavProfile"
@@ -129,8 +129,8 @@
 
             <ImageView
                 android:id="@+id/imageView18"
-                android:layout_width="40sp"
-                android:layout_height="30sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
                 android:layout_weight="0.05"
                 android:contentDescription="@string/imageDescription"
                 android:scaleType="fitStart"
@@ -144,7 +144,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/personalDetails"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/imageView19"
@@ -166,8 +166,8 @@
 
             <ImageView
                 android:id="@+id/imageView22"
-                android:layout_width="40sp"
-                android:layout_height="30sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
                 android:layout_weight="0.05"
                 android:contentDescription="@string/imageDescription"
                 android:scaleType="fitStart"
@@ -182,7 +182,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/certificates"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/imageView23"
@@ -204,8 +204,8 @@
 
             <ImageView
                 android:id="@+id/imageView24"
-                android:layout_width="40sp"
-                android:layout_height="30sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
                 android:layout_weight="0.05"
                 android:contentDescription="@string/imageDescription"
                 android:scaleType="fitStart"
@@ -219,7 +219,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/ranking"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/imageView25"
@@ -242,8 +242,8 @@
 
             <ImageView
                 android:id="@+id/imageView26"
-                android:layout_width="40sp"
-                android:layout_height="30sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
                 android:layout_weight="0.05"
                 android:contentDescription="@string/imageDescription"
                 android:scaleType="fitStart"
@@ -257,7 +257,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/changeAccount"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/imageView27"
@@ -280,8 +280,8 @@
 
             <ImageView
                 android:id="@+id/imageView28"
-                android:layout_width="40sp"
-                android:layout_height="30sp"
+                android:layout_width="50sp"
+                android:layout_height="40sp"
                 android:layout_weight="0.05"
                 android:contentDescription="@string/imageDescription"
                 android:scaleType="fitStart"
@@ -295,7 +295,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/closeSession"
                 android:textColor="@color/white"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
 
             <ImageView
                 android:id="@+id/imageView29"
