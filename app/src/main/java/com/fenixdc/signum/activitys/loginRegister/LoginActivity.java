@@ -35,7 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView register, forgotPassword;
     Button login;
     EditText email, password;
-    ImageView google, facebook, twitter;
+    ImageView google;
     FirebaseAuth mAuth;
     GoogleSignInClient mGoogleSignInClient;
 
@@ -162,6 +162,22 @@ public class LoginActivity extends AppCompatActivity {
                             DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.erroLogin));
                             return;
                         }
+                        GeneralUtils.uploadProfileImageToFirebase(this, user, new GeneralUtils.OnImageUploadListener() {
+                            @Override
+                            public void onSuccess(String downloadUrl) {
+                                UserUtils.registerUser(
+                                        LoginActivity.this,
+                                        user.getDisplayName(),
+                                        user.getEmail(),
+                                        downloadUrl
+                                );
+                            }
+
+                            @Override
+                            public void onFailure(String errorMessage) {
+                                UserUtils.registerUser(LoginActivity.this, user.getDisplayName(), user.getEmail());
+                            }
+                        });
                         UserUtils.registerUser(this, user.getDisplayName(), user.getEmail());
                     } else {
                         GeneralUtils.hideLoadingDialog(this);

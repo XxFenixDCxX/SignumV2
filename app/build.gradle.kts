@@ -41,6 +41,8 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.play.services.auth)
     implementation(libs.glide)
+    implementation(libs.picasso)
+    implementation(libs.firebase.storage)
     annotationProcessor(libs.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
