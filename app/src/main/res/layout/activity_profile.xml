@@ -76,9 +76,10 @@
 
     <ImageView
         android:id="@+id/imgProfile"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="130dp"
         android:contentDescription="@string/imageDescription"
+        android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView14"
@@ -86,7 +87,7 @@
         tools:ignore="ImageContrastCheck" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/txtUsernameProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -99,7 +100,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imgProfile" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/txtEmailProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/emailExample"
@@ -107,7 +108,7 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUsernameProfile" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -119,7 +120,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bttomNavProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12">
+        app:layout_constraintTop_toBottomOf="@+id/txtEmailProfile">
 
         <LinearLayout
             android:id="@+id/llPersonalDetails"

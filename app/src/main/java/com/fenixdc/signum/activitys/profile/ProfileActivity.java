@@ -1,7 +1,9 @@
 package com.fenixdc.signum.activitys.profile;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +15,20 @@ import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.activitys.loginRegister.LoginActivity;
 import com.fenixdc.signum.activitys.loginRegister.MainActivity;
+import com.fenixdc.signum.entities.User;
+import com.fenixdc.signum.utils.DialogUtils;
 import com.fenixdc.signum.utils.GeneralUtils;
+import com.fenixdc.signum.utils.UserUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class ProfileActivity extends AppCompatActivity {
     LinearLayout personalDetails, certificate, ranking, changeAccount, logout;
     BottomNavigationView menu;
+    TextView email, username;
+    ImageView profileImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         setUpElements();
         setUpListeners();
+        loadData();
     }
 
     private void setUpElements(){
@@ -43,6 +53,9 @@ public class ProfileActivity extends AppCompatActivity {
         changeAccount = findViewById(R.id.llChangeAcount);
         logout = findViewById(R.id.llCloseSesion);
         menu = findViewById(R.id.bttomNavProfile);
+        email = findViewById(R.id.txtEmailProfile);
+        username = findViewById(R.id.txtUsernameProfile);
+        profileImage = findViewById(R.id.imgProfile);
     }
 
     private void setUpListeners(){
@@ -67,5 +80,30 @@ public class ProfileActivity extends AppCompatActivity {
 
             return true;
         });
+    }
+
+    private void loadData() {
+        String currentUserEmail = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
+        if (currentUserEmail != null) {
+            UserUtils.getUserWithEmail(currentUserEmail, new UserUtils.OnUserFetchListener() {
+                @Override
+                public void onSuccess(User user) {
+                    displayUserData(user);
+                }
+
+                @Override
+                public void onFailure(String errorMessage) {
+                    DialogUtils.showErrorDialog(ProfileActivity.this, getString(R.string.error), errorMessage);
+                }
+            });
+        } else {
+            DialogUtils.showErrorDialog(this, getString(R.string.error),"No se encontró el correo electrónico del usuario.");
+        }
+    }
+
+    private void displayUserData(User user) {
+        username.setText(user.getUsername());
+        email.setText(user.getEmail());
+        GeneralUtils.loadImageFromUrl(user.getImageUrl(), profileImage);
     }
 }
