@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,7 @@ public class DictionaryActivity extends AppCompatActivity {
     RecyclerDictionaryAdapter dictionaryAdapter;
     boolean isSubCategory = false;
     BottomNavigationView menu;
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +94,7 @@ public class DictionaryActivity extends AppCompatActivity {
     private void reloadData(int idCategory){
         listCategoriesShow.clear();
         isSubCategory = true;
+        back.setImageResource(R.drawable.backbutton);
         for (Categori category: listCategories) {
             if(category.getCategoriDadId() != null && category.getCategoriDadId() == idCategory){
                 listCategoriesShow.add(category);
@@ -102,6 +105,7 @@ public class DictionaryActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     private void setUpElements(){
         rvDictionary = findViewById(R.id.rvDictionary);
+        back = findViewById(R.id.btnBackDictionary);
         rvDictionary.setLayoutManager(new GridLayoutManager(this,2));
         dictionaryAdapter = new RecyclerDictionaryAdapter(listCategoriesShow, category -> {
             if(category.hasSubcategories()){
@@ -144,6 +148,9 @@ public class DictionaryActivity extends AppCompatActivity {
 
             return true;
         });
+        back.setOnClickListener(v ->
+            onBackPressed()
+        );
         GeneralUtils.hideLoadingDialog(this);
     }
 
@@ -162,6 +169,7 @@ public class DictionaryActivity extends AppCompatActivity {
         if(isSubCategory){
             listCategoriesShow.clear();
             loadOriginalData();
+            back.setImageResource(0);
             isSubCategory = false;
             return;
         }
