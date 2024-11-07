@@ -23,6 +23,7 @@ import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.entities.Sign;
 import com.fenixdc.signum.recyclerview.RecyclerSignAdapter;
 import com.fenixdc.signum.utils.GeneralUtils;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -39,6 +40,7 @@ public class CategoriActivity extends AppCompatActivity {
     ArrayList<Sign> listSignsShow = new ArrayList<>();
     RecyclerView rvSigns;
     RecyclerSignAdapter signAdapter;
+    BottomNavigationView menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,8 @@ public class CategoriActivity extends AppCompatActivity {
         });
 
         GeneralUtils.showLoadingDialog(this);
+        menu = findViewById(R.id.bttomNavCategori);
+        menu.setSelectedItemId(R.id.navDictionari);
         categori = (Categori) getIntent().getSerializableExtra("category");
         loadData();
     }

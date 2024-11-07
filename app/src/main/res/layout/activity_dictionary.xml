@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".activitys.dictionary.DictionaryActivity">
@@ -66,23 +66,19 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bttomNavDictionari"
-        android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:animateLayoutChanges="true"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
         android:background="@color/colorBlue"
-        android:minHeight="0dp"
-        app:itemIconSize="35dp"
+        app:elevation="0dp"
+        app:itemIconSize="30dp"
         app:itemIconTint="@color/black"
         app:itemPaddingBottom="0dp"
-        app:itemPaddingTop="6dp"
-        app:itemTextAppearanceActiveBoldEnabled="false"
+        app:itemPaddingTop="0dp"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu"
-        tools:ignore="VisualLintBottomNav" />
+        app:menu="@menu/bottom_nav_menu" />
 
     <TextView
         android:id="@+id/textView9"
