@@ -43,6 +43,7 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.picasso)
     implementation(libs.firebase.storage)
+    implementation(libs.picasso.transformations)
     annotationProcessor(libs.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

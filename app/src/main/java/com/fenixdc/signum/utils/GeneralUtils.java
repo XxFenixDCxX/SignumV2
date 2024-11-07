@@ -25,6 +25,8 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import jp.wasabeef.picasso.transformations.CropCircleTransformation;
+
 public class GeneralUtils {
     private static LoadingDialogFragment loadingDialogFragment;
 
@@ -119,6 +121,7 @@ public class GeneralUtils {
                 .load(imageUrl)
                 .placeholder(R.drawable.defaultuserimage)
                 .error(R.drawable.defaultuserimage)
+                .transform(new CropCircleTransformation())
                 .into(imageView);
     }
 }
