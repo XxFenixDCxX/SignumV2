@@ -8,6 +8,199 @@
     android:background="@color/black"
     tools:context=".activitys.profile.PersonalDetailsActivity">
 
+    <Button
+        android:id="@+id/btnShadowSavePersonalDetails"
+        android:layout_width="0dp"
+        android:layout_height="55dp"
+        android:backgroundTint="#66FFFFFF"
+        android:text="@string/empty"
+        app:layout_constraintEnd_toEndOf="@+id/btnSavePersonalDetails"
+        app:layout_constraintStart_toStartOf="@+id/btnSavePersonalDetails"
+        app:layout_constraintTop_toTopOf="@+id/btnSavePersonalDetails"
+        tools:ignore="SpeakableTextPresentCheck,VisualLintButtonSize,VisualLintOverlap" />
+
+    <Button
+        android:id="@+id/btnSavePersonalDetails"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/primaryButton"
+        android:shadowColor="@color/black"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="40"
+        android:text="@string/save"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/BottomNavPersonalDetails"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize,VisualLintOverlap,DuplicateSpeakableTextCheck" />
+
+    <View
+        android:id="@+id/view9"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/eTxtEmailPersonalDetails"
+        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/eTxtEmailPersonalDetails" />
+
+    <View
+        android:id="@+id/view10"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/eTxtDatePersonalDetails"
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toBottomOf="@+id/eTxtDatePersonalDetails" />
+
+    <EditText
+        android:id="@+id/eTxtEmailPersonalDetails"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="@string/emailSuggestion"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="bottom"
+        android:hint="@string/emailSuggestion"
+        android:inputType="text|textEmailAddress"
+        android:textColor="@color/suggestionColor"
+        android:textColorHint="@color/suggestionColor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView32"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView32"
+        app:layout_constraintTop_toTopOf="@+id/imageView32"
+        tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+    <ImageView
+        android:id="@+id/imageView32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintStart_toStartOf="@+id/textView23"
+        app:layout_constraintTop_toBottomOf="@+id/textView23"
+        app:srcCompat="@drawable/imgemail"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintStart_toStartOf="@+id/textView24"
+        app:layout_constraintTop_toBottomOf="@+id/textView24"
+        app:srcCompat="@drawable/birthdate"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/email"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+    <TextView
+        android:id="@+id/textView24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="35dp"
+        android:text="@string/birthDate"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+    <View
+        android:id="@+id/view8"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/eTxtUsernamePersonalProfile"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/eTxtUsernamePersonalProfile" />
+
+    <ImageView
+        android:id="@+id/imageView31"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintStart_toStartOf="@+id/textView22"
+        app:layout_constraintTop_toBottomOf="@+id/textView22"
+        app:srcCompat="@drawable/imaguser"
+        tools:ignore="ImageContrastCheck" />
+
+    <EditText
+        android:id="@+id/eTxtUsernamePersonalProfile"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="@string/emailSuggestion"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="bottom"
+        android:hint="@string/usernameSuggestion"
+        android:inputType="text"
+        android:textColor="@color/suggestionColor"
+        android:textColorHint="@color/suggestionColor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView31"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toEndOf="@+id/imageView31"
+        app:layout_constraintTop_toTopOf="@+id/imageView31"
+        tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="49dp"
+        android:text="@string/username"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <ImageView
+        android:id="@+id/imgProfilePersonalDetails"
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:contentDescription="@string/imageDescription"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView20"
+        app:srcCompat="@drawable/defaultuserimage"
+        tools:ignore="ImageContrastCheck" />
+
     <ImageView
         android:id="@+id/imageView20"
         android:layout_width="0dp"
@@ -109,4 +302,35 @@
             tools:ignore="ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/personalDetailsImageDescription"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgProfilePersonalDetails" />
+
+    <EditText
+        android:id="@+id/eTxtDatePersonalDetails"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:autofillHints="@string/birthDateSuggestion"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="bottom"
+        android:hint="@string/birthDateSuggestion"
+        android:inputType="date"
+        android:textColor="@color/suggestionColor"
+        android:textColorHint="@color/suggestionColor"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView33"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView32"
+        app:layout_constraintTop_toTopOf="@+id/imageView33"
+        tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
 </androidx.constraintlayout.widget.ConstraintLayout>

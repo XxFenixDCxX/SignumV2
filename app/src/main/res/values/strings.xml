@@ -48,4 +48,8 @@
     <string name="ranking">Ranking</string>
     <string name="changeAccount">Cambiar de cuenta</string>
     <string name="closeSession">Cerrar sesion</string>
+    <string name="personalDetailsImageDescription">Haz click en la imagen para cambiarla</string>
+    <string name="birthDate">Fecha de nacimiento</string>
+    <string name="birthDateSuggestion">Selecciona tu fecha de nacimiento…</string>
+    <string name="save">Guardar</string>
 </resources>

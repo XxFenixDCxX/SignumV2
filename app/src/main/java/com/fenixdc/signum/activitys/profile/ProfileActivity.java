@@ -27,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
     LinearLayout personalDetails, certificate, ranking, changeAccount, logout;
     TextView email, username;
     ImageView profileImage, btmDictionary, btmLearn;
+    User loggedUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
         btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
         btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
-        personalDetails.setOnClickListener(v -> GeneralUtils.openActivity(this, PersonalDetailsActivity.class));
+        personalDetails.setOnClickListener(v -> GeneralUtils.openActivityAndSendElement(this, PersonalDetailsActivity.class, "user", loggedUser));
     }
 
     private void loadData() {
@@ -79,7 +80,8 @@ public class ProfileActivity extends AppCompatActivity {
             UserUtils.getUserWithEmail(currentUserEmail, new UserUtils.OnUserFetchListener() {
                 @Override
                 public void onSuccess(User user) {
-                    displayUserData(user);
+                    loggedUser = user;
+                    displayUserData();
                 }
 
                 @Override
@@ -92,10 +94,10 @@ public class ProfileActivity extends AppCompatActivity {
         }
     }
 
-    private void displayUserData(User user) {
-        username.setText(user.getUsername());
-        email.setText(user.getEmail());
-        GeneralUtils.loadImageFromUrl(user.getImageUrl(), profileImage);
+    private void displayUserData() {
+        username.setText(loggedUser.getUsername());
+        email.setText(loggedUser.getEmail());
+        GeneralUtils.loadImageFromUrl(loggedUser.getImageUrl(), profileImage);
         GeneralUtils.hideLoadingDialog(this);
     }
 }
