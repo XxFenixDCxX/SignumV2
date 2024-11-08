@@ -82,8 +82,9 @@ public class CategoriActivity extends AppCompatActivity {
 
     private void setUpListeners() {
         btnBack.setOnClickListener(v -> onBackPressed());
-        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class));
-        btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class, true));
+        btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class, true));
+        btmUser.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class, true));
         txtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
