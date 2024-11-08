@@ -55,4 +55,7 @@
     <string name="successUpdate">Actualizado correctamente</string>
     <string name="selectImage">Selecciona una imagen</string>
     <string name="errorLogImage">Error al cargar la imagen</string>
+    <string name="exampleNumber">5</string>
+    <string name="name">Nombre</string>
+    <string name="examplePoints">19</string>
 </resources>

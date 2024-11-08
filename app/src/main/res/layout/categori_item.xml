@@ -6,7 +6,7 @@
     android:layout_height="60dp"
     android:layout_marginEnd="27dp"
     android:layout_marginBottom="22dp"
-    android:background="@drawable/rounded_border">
+    android:background="@drawable/categori_background">
 
     <TextView
         android:id="@+id/txtItemCategory"
