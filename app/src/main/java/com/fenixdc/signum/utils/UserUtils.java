@@ -14,7 +14,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -78,6 +80,31 @@ public class UserUtils {
                         }
                     } else {
                         listener.onFailure("Error al buscar el usuario: " + Objects.requireNonNull(task.getException()).getMessage());
+                    }
+                });
+    }
+
+    public interface OnTopUsersFetchListener {
+        void onSuccess(List<User> topUsers);
+        void onFailure(String errorMessage);
+    }
+
+    public static void getTopUsers(OnTopUsersFetchListener listener) {
+        usersCollection
+                .orderBy("points", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .limit(10)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task.getResult();
+                        List<User> topUsers = new ArrayList<>();
+                        for (QueryDocumentSnapshot document : querySnapshot) {
+                            User user = document.toObject(User.class);
+                            topUsers.add(user);
+                        }
+                        listener.onSuccess(topUsers);
+                    } else {
+                        listener.onFailure("Error al obtener los usuarios: " + Objects.requireNonNull(task.getException()).getMessage());
                     }
                 });
     }
