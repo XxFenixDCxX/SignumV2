@@ -39,6 +39,7 @@ public class ProfileActivity extends AppCompatActivity {
             return insets;
         });
 
+        GeneralUtils.showLoadingDialog(this);
         setUpElements();
         setUpListeners();
         loadData();
@@ -69,6 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
         btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
         btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
+        personalDetails.setOnClickListener(v -> GeneralUtils.openActivity(this, PersonalDetailsActivity.class));
     }
 
     private void loadData() {
@@ -94,5 +96,6 @@ public class ProfileActivity extends AppCompatActivity {
         username.setText(user.getUsername());
         email.setText(user.getEmail());
         GeneralUtils.loadImageFromUrl(user.getImageUrl(), profileImage);
+        GeneralUtils.hideLoadingDialog(this);
     }
 }
