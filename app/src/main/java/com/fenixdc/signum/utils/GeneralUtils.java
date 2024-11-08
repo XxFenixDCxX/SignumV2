@@ -15,6 +15,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.fragment.LoadingDialogFragment;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -26,6 +29,7 @@ import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Map;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
@@ -46,8 +50,16 @@ public class GeneralUtils {
     }
 
     public static void openActivityAndSendElement(Context context, Class<?> cls, String key, Object element) {
+        openActivityAndSendElement(context, cls, key, element, false);
+    }
+
+    public static void openActivityAndSendElement(Context context, Class<?> cls, String key, Object element, boolean finish) {
         Intent intent = new Intent(context, cls);
         intent.putExtra(key, (Serializable) element);
+        if (finish && context instanceof AppCompatActivity) {
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            ((AppCompatActivity) context).finish();
+        }
         context.startActivity(intent);
     }
 
@@ -137,5 +149,21 @@ public class GeneralUtils {
                 .error(R.drawable.defaultuserimage)
                 .transform(new CropCircleTransformation())
                 .into(imageView);
+    }
+
+    public static void updateItemDatabase(AppCompatActivity activity, Map<String, Object> data, String collectionName, String documentName){
+        GeneralUtils.showLoadingDialog(activity);
+        CollectionReference collectionReference = FirebaseFirestore.getInstance().collection(collectionName);
+        DocumentReference document = collectionReference.document(documentName);
+
+        document.set(data)
+                .addOnSuccessListener(aVoid -> {
+                    GeneralUtils.hideLoadingDialog(activity);
+                    DialogUtils.showSuccessDialog(activity, activity.getString(R.string.success), activity.getString(R.string.successUpdate));
+                })
+                .addOnFailureListener(e -> {
+                    GeneralUtils.hideLoadingDialog(activity);
+                    DialogUtils.showErrorDialog(activity, activity.getString(R.string.error), activity.getString(R.string.erroRegister));
+                });
     }
 }

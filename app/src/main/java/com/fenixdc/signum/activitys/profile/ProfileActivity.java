@@ -71,7 +71,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
         btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
         btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
-        personalDetails.setOnClickListener(v -> GeneralUtils.openActivityAndSendElement(this, PersonalDetailsActivity.class, "user", loggedUser));
+        personalDetails.setOnClickListener(v -> GeneralUtils.openActivityAndSendElement(this, PersonalDetailsActivity.class, "user", loggedUser, true));
     }
 
     private void loadData() {
