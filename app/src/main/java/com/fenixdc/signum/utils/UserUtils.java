@@ -31,6 +31,7 @@ public class UserUtils {
         data.put("email", email);
         data.put("imageUrl", imageUrl);
         data.put("birthDate", "");
+        data.put("points", 0);
 
         document.set(data)
                 .addOnSuccessListener(aVoid -> {

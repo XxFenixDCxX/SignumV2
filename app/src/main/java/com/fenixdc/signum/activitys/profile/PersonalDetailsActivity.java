@@ -145,6 +145,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         data.put("email", loggedUser.getEmail());
         data.put("imageUrl", loggedUser.getImageUrl());
         data.put("birthDate", loggedUser.getBirthDate());
+        data.put("points", loggedUser.getPoints());
         GeneralUtils.updateItemDatabase(this, data, "users", loggedUser.getEmail());
         GeneralUtils.loadImageFromUrl(loggedUser.getImageUrl(), imgPersonalDetails);
         GeneralUtils.hideLoadingDialog(this);
