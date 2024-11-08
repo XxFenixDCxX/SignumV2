@@ -30,6 +30,7 @@ public class UserUtils {
         data.put("username", username);
         data.put("email", email);
         data.put("imageUrl", imageUrl);
+        data.put("birthDate", "");
 
         document.set(data)
                 .addOnSuccessListener(aVoid -> {

@@ -1,13 +1,16 @@
 package com.fenixdc.signum.entities;
 
-public class User {
-    private String username, email, imageUrl;
+import java.io.Serializable;
+
+public class User implements Serializable {
+    private String username, email, imageUrl, birthDate;
 
     public User() {}
-    public User(String username, String email, String imageUrl) {
+    public User(String username, String email, String imageUrl, String birthDate) {
         this.username = username;
         this.email = email;
         this.imageUrl = imageUrl;
+        this.birthDate = birthDate;
     }
 
     public String getUsername() {
@@ -32,5 +35,13 @@ public class User {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
     }
 }

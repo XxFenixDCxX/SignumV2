@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -24,6 +25,7 @@ import java.io.InputStream;
 import java.io.Serializable;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
@@ -50,27 +52,39 @@ public class GeneralUtils {
     }
 
     public static void showLoadingDialog(Context context) {
-        if (loadingDialogFragment == null) {
+        if (context instanceof AppCompatActivity) {
+            AppCompatActivity activity = (AppCompatActivity) context;
+            FragmentManager fragmentManager = activity.getSupportFragmentManager();
+
+            if (loadingDialogFragment != null && loadingDialogFragment.isAdded()) {
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.remove(loadingDialogFragment);
+                transaction.commitNowAllowingStateLoss();
+            }
+
             loadingDialogFragment = new LoadingDialogFragment();
-        }
-        if (!loadingDialogFragment.isAdded()) {
-            FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
             FragmentTransaction transaction = fragmentManager.beginTransaction();
             transaction.add(loadingDialogFragment, "loading_dialog");
-            transaction.commitAllowingStateLoss();
+
+            transaction.commitNowAllowingStateLoss();
         }
     }
 
     public static void hideLoadingDialog(Context context) {
         if (context instanceof AppCompatActivity) {
             AppCompatActivity activity = (AppCompatActivity) context;
-            if (loadingDialogFragment != null && loadingDialogFragment.isAdded()) {
-                FragmentManager fragmentManager = activity.getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.remove(loadingDialogFragment);
-                transaction.commit();
-                loadingDialogFragment = null;
+            FragmentManager fragmentManager = activity.getSupportFragmentManager();
+
+            List<Fragment> fragments = fragmentManager.getFragments();
+            for (Fragment fragment : fragments) {
+                if (fragment instanceof LoadingDialogFragment) {
+                    FragmentTransaction transaction = fragmentManager.beginTransaction();
+                    transaction.remove(fragment);
+                    transaction.commitNowAllowingStateLoss();
+                }
             }
+
+            loadingDialogFragment = null;
         }
     }
 
