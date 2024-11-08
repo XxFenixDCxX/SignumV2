@@ -19,16 +19,14 @@ import com.fenixdc.signum.entities.User;
 import com.fenixdc.signum.utils.DialogUtils;
 import com.fenixdc.signum.utils.GeneralUtils;
 import com.fenixdc.signum.utils.UserUtils;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
 public class ProfileActivity extends AppCompatActivity {
     LinearLayout personalDetails, certificate, ranking, changeAccount, logout;
-    BottomNavigationView menu;
     TextView email, username;
-    ImageView profileImage;
+    ImageView profileImage, btmDictionary, btmLearn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +50,11 @@ public class ProfileActivity extends AppCompatActivity {
         ranking = findViewById(R.id.llRanking);
         changeAccount = findViewById(R.id.llChangeAcount);
         logout = findViewById(R.id.llCloseSesion);
-        menu = findViewById(R.id.bttomNavProfile);
         email = findViewById(R.id.txtEmailProfile);
         username = findViewById(R.id.txtUsernameProfile);
         profileImage = findViewById(R.id.imgProfile);
+        btmDictionary = findViewById(R.id.btmProfileDictionary);
+        btmLearn = findViewById(R.id.btmProfileLearn);
     }
 
     private void setUpListeners(){
@@ -68,18 +67,8 @@ public class ProfileActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             GeneralUtils.openActivity(this, MainActivity.class, true);
         });
-
-        menu.setOnNavigationItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.navDictionari) {
-                GeneralUtils.openActivity(this, DictionaryActivity.class);
-            } else if (itemId == R.id.navLearn) {
-                //toDo definir actividad de lear cuando se cree
-                GeneralUtils.openActivity(this, ProfileActivity.class);
-            }
-
-            return true;
-        });
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
+        btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
     }
 
     private void loadData() {

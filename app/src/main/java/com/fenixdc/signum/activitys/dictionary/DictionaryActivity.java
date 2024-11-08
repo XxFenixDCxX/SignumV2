@@ -20,7 +20,6 @@ import com.fenixdc.signum.activitys.profile.ProfileActivity;
 import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.recyclerview.RecyclerDictionaryAdapter;
 import com.fenixdc.signum.utils.GeneralUtils;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -35,16 +34,13 @@ public class DictionaryActivity extends AppCompatActivity {
     RecyclerView rvDictionary;
     RecyclerDictionaryAdapter dictionaryAdapter;
     boolean isSubCategory = false;
-    BottomNavigationView menu;
-    ImageView back;
+    ImageView back, btmUser, btmLearn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dictionary);
-        menu = findViewById(R.id.bttomNavDictionari);
-        menu.setSelectedItemId(R.id.navDictionari);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -105,6 +101,8 @@ public class DictionaryActivity extends AppCompatActivity {
     @SuppressLint("NonConstantResourceId")
     private void setUpElements(){
         rvDictionary = findViewById(R.id.rvDictionary);
+        btmUser = findViewById(R.id.btmDictionaryUser);
+        btmLearn = findViewById(R.id.btmDictionaryLearn);
         back = findViewById(R.id.btnBackDictionary);
         rvDictionary.setLayoutManager(new GridLayoutManager(this,2));
         dictionaryAdapter = new RecyclerDictionaryAdapter(listCategoriesShow, category -> {
@@ -136,18 +134,8 @@ public class DictionaryActivity extends AppCompatActivity {
                 }
             }
         });
-
-        menu.setOnNavigationItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            if (itemId == R.id.navProfile) {
-                GeneralUtils.openActivity(this, ProfileActivity.class);
-            } else if (itemId == R.id.navLearn) {
-                //toDo definir actividad de lear cuando se cree
-                GeneralUtils.openActivity(this, ProfileActivity.class);
-            }
-
-            return true;
-        });
+        btmUser.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class));
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class));
         back.setOnClickListener(v ->
             onBackPressed()
         );

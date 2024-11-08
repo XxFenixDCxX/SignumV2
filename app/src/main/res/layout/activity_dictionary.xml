@@ -64,22 +64,6 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/dictionary" />
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bttomNavDictionari"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:background="@color/colorBlue"
-        app:elevation="0dp"
-        app:itemIconSize="30dp"
-        app:itemIconTint="@color/black"
-        app:itemPaddingBottom="0dp"
-        app:itemPaddingTop="0dp"
-        app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
@@ -137,6 +121,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtExplorar" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/BottomNav"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/colorBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/btmDictionaryUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btmDictionaryDictionary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/userimage" />
+
+        <ImageView
+            android:id="@+id/btmDictionaryDictionary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dictionary"
+            app:tint="@color/white" />
+
+        <ImageView
+            android:id="@+id/btmDictionaryLearn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btmDictionaryDictionary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/learnimage"
+            tools:ignore="ImageContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvDictionary"
         android:layout_width="0dp"
@@ -144,7 +174,8 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toTopOf="@+id/bttomNavDictionari"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/BottomNav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view" />

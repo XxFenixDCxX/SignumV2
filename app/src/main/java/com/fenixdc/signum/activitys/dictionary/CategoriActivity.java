@@ -19,11 +19,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.activitys.profile.ProfileActivity;
 import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.entities.Sign;
 import com.fenixdc.signum.recyclerview.RecyclerSignAdapter;
 import com.fenixdc.signum.utils.GeneralUtils;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -40,7 +40,7 @@ public class CategoriActivity extends AppCompatActivity {
     ArrayList<Sign> listSignsShow = new ArrayList<>();
     RecyclerView rvSigns;
     RecyclerSignAdapter signAdapter;
-    BottomNavigationView menu;
+    ImageView btmDictionary, btmUser, btmLearn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,6 @@ public class CategoriActivity extends AppCompatActivity {
         });
 
         GeneralUtils.showLoadingDialog(this);
-        menu = findViewById(R.id.bttomNavCategori);
-        menu.setSelectedItemId(R.id.navDictionari);
         categori = (Categori) getIntent().getSerializableExtra("category");
         loadData();
     }
@@ -74,6 +72,9 @@ public class CategoriActivity extends AppCompatActivity {
         rvSigns.setAdapter(signAdapter);
         rvSigns.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
         txtSearch = findViewById(R.id.txtExplorerCategori);
+        btmDictionary = findViewById(R.id.btmCategoriDictionary);
+        btmUser = findViewById(R.id.btmCategoriUser);
+        btmLearn = findViewById(R.id.btmCategoriLearn);
         GeneralUtils.hideLoadingDialog(this);
 
         setUpListeners();
@@ -81,6 +82,8 @@ public class CategoriActivity extends AppCompatActivity {
 
     private void setUpListeners() {
         btnBack.setOnClickListener(v -> onBackPressed());
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class));
+        btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
         txtSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
