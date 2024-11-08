@@ -171,7 +171,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/personalDetails"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/imageView19"
@@ -209,7 +209,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/certificates"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/imageView23"
@@ -246,7 +246,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/ranking"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/imageView25"
@@ -284,7 +284,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/changeAccount"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/imageView27"
@@ -322,7 +322,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/closeSession"
                 android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:id="@+id/imageView29"
