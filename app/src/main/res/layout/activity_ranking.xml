@@ -8,4 +8,418 @@
     android:background="@color/black"
     tools:context=".activitys.profile.RankingActivity">
 
+    <ImageView
+        android:id="@+id/imageView16"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="591dp"
+        android:contentDescription="@string/imageDescription"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/banner" />
+
+    <ImageView
+        android:id="@+id/btnBackRanking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="14dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backbutton" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:shadowColor="@color/black"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="8"
+        android:text="@string/ranking"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/btnBackRanking"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView35"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="64dp"
+        android:contentDescription="@string/imageDescription"
+        android:scaleType="fitEnd"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/personaldetails" />
+
+    <ImageView
+        android:id="@+id/imageView36"
+        android:layout_width="126dp"
+        android:layout_height="126dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16"
+        app:srcCompat="@drawable/defaultuserimage" />
+
+    <ImageView
+        android:id="@+id/imageView37"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
+        app:layout_constraintEnd_toEndOf="@+id/imageView36"
+        app:layout_constraintStart_toStartOf="@+id/imageView36"
+        app:layout_constraintTop_toTopOf="@+id/imageView36"
+        app:srcCompat="@drawable/elipseoro" />
+
+    <ImageView
+        android:id="@+id/imageView38"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="112dp"
+        android:contentDescription="@string/imageDescription"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@+id/imageView36"
+        app:layout_constraintStart_toStartOf="@+id/imageView36"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16"
+        app:srcCompat="@drawable/oronumber" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number1"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView38"
+        app:layout_constraintEnd_toEndOf="@+id/imageView38"
+        app:layout_constraintStart_toStartOf="@+id/imageView38"
+        app:layout_constraintTop_toTopOf="@+id/imageView38" />
+
+    <ImageView
+        android:id="@+id/imageView39"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="105dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
+        app:layout_constraintEnd_toEndOf="@+id/imageView36"
+        app:layout_constraintStart_toStartOf="@+id/imageView36"
+        app:srcCompat="@drawable/corona" />
+
+    <ImageView
+        android:id="@+id/imageView40"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
+        app:layout_constraintEnd_toStartOf="@+id/imageView36"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/defaultuserimage" />
+
+    <ImageView
+        android:id="@+id/imageView41"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView36"
+        app:layout_constraintTop_toBottomOf="@+id/imageView16"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/defaultuserimage" />
+
+    <ImageView
+        android:id="@+id/imageView42"
+        android:layout_width="105dp"
+        android:layout_height="105dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView41"
+        app:layout_constraintEnd_toEndOf="@+id/imageView41"
+        app:layout_constraintStart_toStartOf="@+id/imageView41"
+        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:srcCompat="@drawable/elipseplata" />
+
+    <ImageView
+        android:id="@+id/imageView45"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView40"
+        app:layout_constraintEnd_toEndOf="@+id/imageView40"
+        app:layout_constraintStart_toStartOf="@+id/imageView40"
+        app:layout_constraintTop_toTopOf="@+id/imageView40"
+        app:srcCompat="@drawable/elipsebronce" />
+
+    <ImageView
+        android:id="@+id/imageView46"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="91dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintEnd_toEndOf="@+id/imageView41"
+        app:layout_constraintStart_toStartOf="@+id/imageView41"
+        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:srcCompat="@drawable/platanombre" />
+
+    <ImageView
+        android:id="@+id/imageView47"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginTop="91dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintEnd_toEndOf="@+id/imageView40"
+        app:layout_constraintStart_toStartOf="@+id/imageView40"
+        app:layout_constraintTop_toTopOf="@+id/imageView40"
+        app:srcCompat="@drawable/broncenumber" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/number2"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView46"
+        app:layout_constraintEnd_toEndOf="@+id/imageView46"
+        app:layout_constraintStart_toStartOf="@+id/imageView46"
+        app:layout_constraintTop_toTopOf="@+id/imageView46" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/imageDescription"
+        android:text="@string/number3"
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView47"
+        app:layout_constraintEnd_toEndOf="@+id/imageView47"
+        app:layout_constraintStart_toStartOf="@+id/imageView47"
+        app:layout_constraintTop_toTopOf="@+id/imageView47"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView52"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintEnd_toEndOf="@+id/txtRankingName3"
+        app:layout_constraintStart_toStartOf="@+id/txtRankingName3"
+        app:layout_constraintTop_toBottomOf="@+id/txtRankingName3"
+        app:srcCompat="@drawable/pointsbronce"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView48"
+        android:layout_width="67dp"
+        android:layout_height="26dp"
+        android:layout_marginTop="6dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintEnd_toEndOf="@+id/txtRankingName1"
+        app:layout_constraintStart_toStartOf="@+id/txtRankingName1"
+        app:layout_constraintTop_toBottomOf="@+id/txtRankingName1"
+        app:srcCompat="@drawable/pointsoro" />
+
+    <TextView
+        android:id="@+id/txtRankingName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/name"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView36"
+        app:layout_constraintStart_toStartOf="@+id/imageView36"
+        app:layout_constraintTop_toBottomOf="@+id/imageView38" />
+
+    <TextView
+        android:id="@+id/txtRankingName3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/name"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView40"
+        app:layout_constraintStart_toStartOf="@+id/imageView40"
+        app:layout_constraintTop_toBottomOf="@+id/imageView47" />
+
+    <TextView
+        android:id="@+id/txtRankingName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="@string/name"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/imageView41"
+        app:layout_constraintStart_toStartOf="@+id/imageView41"
+        app:layout_constraintTop_toBottomOf="@+id/imageView46" />
+
+    <ImageView
+        android:id="@+id/imageView49"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="11dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView48"
+        app:layout_constraintStart_toStartOf="@+id/imageView48"
+        app:layout_constraintTop_toTopOf="@+id/imageView48"
+        app:srcCompat="@drawable/puntos"
+        tools:ignore="ImageContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView53"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="11dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView52"
+        app:layout_constraintStart_toStartOf="@+id/imageView52"
+        app:layout_constraintTop_toTopOf="@+id/imageView52"
+        app:srcCompat="@drawable/puntos"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/txtRankingPoints1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:text="@string/examplePoints"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView49"
+        app:layout_constraintStart_toEndOf="@+id/imageView49"
+        app:layout_constraintTop_toTopOf="@+id/imageView49" />
+
+    <TextView
+        android:id="@+id/txtRankingPoints3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:text="@string/examplePoints"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView52"
+        app:layout_constraintStart_toEndOf="@+id/imageView53"
+        app:layout_constraintTop_toTopOf="@+id/imageView52" />
+
+    <ImageView
+        android:id="@+id/imageView50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintEnd_toEndOf="@+id/txtRankingName2"
+        app:layout_constraintStart_toStartOf="@+id/txtRankingName2"
+        app:layout_constraintTop_toBottomOf="@+id/txtRankingName2"
+        app:srcCompat="@drawable/pointsplata" />
+
+    <ImageView
+        android:id="@+id/imageView51"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="11dp"
+        android:contentDescription="@string/imageDescription"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView50"
+        app:layout_constraintStart_toStartOf="@+id/imageView50"
+        app:layout_constraintTop_toTopOf="@+id/imageView50"
+        app:srcCompat="@drawable/puntos"
+        tools:ignore="ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/txtRankingPoints2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="7dp"
+        android:text="@string/examplePoints"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView51"
+        app:layout_constraintStart_toEndOf="@+id/imageView51"
+        app:layout_constraintTop_toTopOf="@+id/imageView51" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/BottomNavRanking"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/colorBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/btmRankingUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btmRankingDictionary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/userimage" />
+
+        <ImageView
+            android:id="@+id/btmRankingDictionary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dictionary" />
+
+        <ImageView
+            android:id="@+id/btmRankingLearn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btmRankingDictionary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/learnimage"
+            tools:ignore="ImageContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRanking"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintBottom_toTopOf="@+id/BottomNavRanking"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView48" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

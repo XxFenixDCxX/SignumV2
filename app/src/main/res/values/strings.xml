@@ -58,4 +58,7 @@
     <string name="exampleNumber">5</string>
     <string name="name">Nombre</string>
     <string name="examplePoints">19</string>
+    <string name="number1">1</string>
+    <string name="number2">2</string>
+    <string name="number3">3</string>
 </resources>

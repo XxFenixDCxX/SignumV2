@@ -30,6 +30,11 @@ public class RecyclerRankingAdapter extends RecyclerView.Adapter<RecyclerRanking
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onSuccess(List<User> topUsers) {
+                if (topUsers.size() > 3) {
+                    topUsers = topUsers.subList(3, topUsers.size());
+                } else {
+                    topUsers.clear();
+                }
                 listUsers.clear();
                 listUsers.addAll(topUsers);
                 notifyDataSetChanged();
@@ -51,7 +56,7 @@ public class RecyclerRankingAdapter extends RecyclerView.Adapter<RecyclerRanking
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerRankingAdapter.RecyclerRankingHolder holder, int position) {
-        holder.asignData(listUsers.get(position), position + 1);
+        holder.asignData(listUsers.get(position), position + 4);
     }
 
     @Override
