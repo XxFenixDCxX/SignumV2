@@ -53,4 +53,6 @@
     <string name="birthDateSuggestion">Selecciona tu fecha de nacimiento…</string>
     <string name="save">Guardar</string>
     <string name="successUpdate">Actualizado correctamente</string>
+    <string name="selectImage">Selecciona una imagen</string>
+    <string name="errorLogImage">Error al cargar la imagen</string>
 </resources>

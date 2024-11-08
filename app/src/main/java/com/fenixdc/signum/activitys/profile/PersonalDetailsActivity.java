@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -22,13 +23,17 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.entities.User;
+import com.fenixdc.signum.utils.DialogUtils;
 import com.fenixdc.signum.utils.GeneralUtils;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 public class PersonalDetailsActivity extends AppCompatActivity {
+    final int PICK_IMAGE_REQUEST = 1;
     BroadcastReceiver userUpdateReceiver;
     ImageView btmUser, btmDictionary, btmLearn, btnBack, imgPersonalDetails;
     User loggedUser;
@@ -104,6 +109,12 @@ public class PersonalDetailsActivity extends AppCompatActivity {
             data.put("birthDate", eTxtBirthDate.getText().toString());
             GeneralUtils.updateItemDatabase(this, data, "users", loggedUser.getEmail());
         });
+        imgPersonalDetails.setOnClickListener(v -> {
+            Intent intent = new Intent();
+            intent.setType("image/*");
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            startActivityForResult(Intent.createChooser(intent, getString(R.string.selectImage)), PICK_IMAGE_REQUEST);
+        });
     }
 
     private void loadData() {
@@ -119,9 +130,39 @@ public class PersonalDetailsActivity extends AppCompatActivity {
         GeneralUtils.hideLoadingDialog(this);
     }
 
+    private void uploadImageToFirebaseStorage(Uri imageUri) {
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("profile_images/").child(loggedUser.getUsername() + ".jpg");
+
+        storageReference.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> storageReference.getDownloadUrl().addOnSuccessListener(this::updateProfileImage))
+                .addOnFailureListener(e -> DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorLogImage)));
+    }
+
+    private void updateProfileImage(Uri imageUrl) {
+        loggedUser.setImageUrl(imageUrl.toString());
+        Map<String, Object> data = new HashMap<>();
+        data.put("username", loggedUser.getUsername());
+        data.put("email", loggedUser.getEmail());
+        data.put("imageUrl", loggedUser.getImageUrl());
+        data.put("birthDate", loggedUser.getBirthDate());
+        GeneralUtils.updateItemDatabase(this, data, "users", loggedUser.getEmail());
+        GeneralUtils.loadImageFromUrl(loggedUser.getImageUrl(), imgPersonalDetails);
+        GeneralUtils.hideLoadingDialog(this);
+    }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();
         GeneralUtils.openActivity(this, ProfileActivity.class, true);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        GeneralUtils.showLoadingDialog(this);
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            Uri selectedImageUri = data.getData();
+            uploadImageToFirebaseStorage(selectedImageUri);
+        }
     }
 }
