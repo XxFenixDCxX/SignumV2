@@ -58,7 +58,7 @@ public class RecyclerCertificateAdapter extends RecyclerView.Adapter<RecyclerCer
         public void asignData(String certificate, User user, Context context){
             String certificateText = context.getString(R.string.certificateText2) + " " + certificate;
             userName.setText(user.getUsername());
-            txtCertificate.setText(certificateText);
+            txtCertificate.setText(certificateText.toUpperCase());
         }
     }
 }
