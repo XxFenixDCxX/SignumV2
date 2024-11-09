@@ -8,15 +8,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.entities.User;
+import com.fenixdc.signum.recyclerview.RecyclerCertificateAdapter;
 import com.fenixdc.signum.utils.GeneralUtils;
 
 public class CertificatesActivity extends AppCompatActivity {
     User loggedUser;
     ImageView btnBack, btmDictionary, btmLearn, btmProfile;
+    RecyclerView rvCertificates;
+    RecyclerCertificateAdapter certificateAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,10 @@ public class CertificatesActivity extends AppCompatActivity {
         btmProfile = findViewById(R.id.btmCertificatesUser);
         btmDictionary = findViewById(R.id.btmCertificatesDictionary);
         btmLearn = findViewById(R.id.btmCertificatesLearn);
+        rvCertificates = findViewById(R.id.rvCertificates);
+        certificateAdapter = new RecyclerCertificateAdapter(loggedUser, this);
+        rvCertificates.setAdapter(certificateAdapter);
+        rvCertificates.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
     }
 
     private void setUpListeners(){

@@ -48,10 +48,13 @@
 
     <TextView
         android:id="@+id/textView28"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="22dp"
         android:text="@string/certificateText1"
+        android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="9sp"
@@ -62,11 +65,14 @@
 
     <TextView
         android:id="@+id/txtUsernameCertificate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="22dp"
         android:fontFamily="@font/inspiration"
         android:text="@string/name"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,11 +81,14 @@
 
     <TextView
         android:id="@+id/txtCertificateText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="22dp"
         android:layout_marginBottom="14dp"
         android:text="@string/certificateText2"
+        android:textAlignment="center"
         android:textAllCaps="true"
         android:textColor="@color/black"
         android:textSize="9sp"

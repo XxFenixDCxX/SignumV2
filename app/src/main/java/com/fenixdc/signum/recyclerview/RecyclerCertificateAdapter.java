@@ -1,5 +1,6 @@
 package com.fenixdc.signum.recyclerview;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,10 +18,12 @@ import java.util.Arrays;
 public class RecyclerCertificateAdapter extends RecyclerView.Adapter<RecyclerCertificateAdapter.RecyclerCertificateHolder>{
     private final ArrayList<String> listCertificates;
     private final User currentUser;
+    private final Context context;
 
-    public RecyclerCertificateAdapter(User user) {
+    public RecyclerCertificateAdapter(User user, Context context) {
         this.listCertificates = new ArrayList<>(Arrays.asList(user.getCertificates().split(",")));
         this.currentUser = user;
+        this.context = context;
     }
 
     @NonNull
@@ -32,11 +35,14 @@ public class RecyclerCertificateAdapter extends RecyclerView.Adapter<RecyclerCer
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerCertificateAdapter.RecyclerCertificateHolder holder, int position) {
-        holder.asignData(listCertificates.get(position), currentUser);
+        holder.asignData(listCertificates.get(position), currentUser, context);
     }
 
     @Override
     public int getItemCount() {
+        if(!listCertificates.isEmpty() && listCertificates.get(0).isEmpty()){
+            return 0;
+        }
         return listCertificates.size();
     }
 
@@ -49,9 +55,10 @@ public class RecyclerCertificateAdapter extends RecyclerView.Adapter<RecyclerCer
             txtCertificate = itemView.findViewById(R.id.txtCertificateText);
         }
 
-        public void asignData(String certificate, User user){
+        public void asignData(String certificate, User user, Context context){
+            String certificateText = context.getString(R.string.certificateText2) + " " + certificate;
             userName.setText(user.getUsername());
-            txtCertificate.setText(certificate);
+            txtCertificate.setText(certificateText);
         }
     }
 }
