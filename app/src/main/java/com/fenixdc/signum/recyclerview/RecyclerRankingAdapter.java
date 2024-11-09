@@ -26,7 +26,7 @@ public class RecyclerRankingAdapter extends RecyclerView.Adapter<RecyclerRanking
     }
 
     private void fetchRankingUsers() {
-        UserUtils.getTopUsers(new UserUtils.OnTopUsersFetchListener() {
+        UserUtils.getTopUsers(10, new UserUtils.OnTopUsersFetchListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onSuccess(List<User> topUsers) {

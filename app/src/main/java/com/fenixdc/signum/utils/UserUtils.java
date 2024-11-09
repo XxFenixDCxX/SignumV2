@@ -89,10 +89,10 @@ public class UserUtils {
         void onFailure(String errorMessage);
     }
 
-    public static void getTopUsers(OnTopUsersFetchListener listener) {
+    public static void getTopUsers(int limit, OnTopUsersFetchListener listener) {
         usersCollection
                 .orderBy("points", com.google.firebase.firestore.Query.Direction.DESCENDING)
-                .limit(10)
+                .limit(limit)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {

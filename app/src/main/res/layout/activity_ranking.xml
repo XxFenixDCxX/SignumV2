@@ -12,10 +12,8 @@
         android:id="@+id/imageView16"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="591dp"
         android:contentDescription="@string/imageDescription"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,10 +24,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="16dp"
         android:contentDescription="@string/imageDescription"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView16"
         app:srcCompat="@drawable/backbutton" />
 
     <TextView
@@ -48,13 +46,12 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@+id/btnBackRanking"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imageView16" />
 
     <ImageView
         android:id="@+id/imageView35"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="64dp"
         android:contentDescription="@string/imageDescription"
@@ -63,11 +60,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView11"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView16"
         app:srcCompat="@drawable/personaldetails" />
 
     <ImageView
-        android:id="@+id/imageView36"
+        android:id="@+id/imgUser1Ranking"
         android:layout_width="126dp"
         android:layout_height="126dp"
         android:contentDescription="@string/imageDescription"
@@ -81,10 +78,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/imageDescription"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-        app:layout_constraintEnd_toEndOf="@+id/imageView36"
-        app:layout_constraintStart_toStartOf="@+id/imageView36"
-        app:layout_constraintTop_toTopOf="@+id/imageView36"
+        app:layout_constraintBottom_toBottomOf="@+id/imgUser1Ranking"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser1Ranking"
+        app:layout_constraintStart_toStartOf="@+id/imgUser1Ranking"
+        app:layout_constraintTop_toTopOf="@+id/imgUser1Ranking"
         app:srcCompat="@drawable/elipseoro" />
 
     <ImageView
@@ -94,8 +91,8 @@
         android:layout_marginTop="112dp"
         android:contentDescription="@string/imageDescription"
         android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="@+id/imageView36"
-        app:layout_constraintStart_toStartOf="@+id/imageView36"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser1Ranking"
+        app:layout_constraintStart_toStartOf="@+id/imgUser1Ranking"
         app:layout_constraintTop_toBottomOf="@+id/imageView16"
         app:srcCompat="@drawable/oronumber" />
 
@@ -118,31 +115,31 @@
         android:layout_height="55dp"
         android:layout_marginBottom="105dp"
         android:contentDescription="@string/imageDescription"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-        app:layout_constraintEnd_toEndOf="@+id/imageView36"
-        app:layout_constraintStart_toStartOf="@+id/imageView36"
+        app:layout_constraintBottom_toBottomOf="@+id/imgUser1Ranking"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser1Ranking"
+        app:layout_constraintStart_toStartOf="@+id/imgUser1Ranking"
         app:srcCompat="@drawable/corona" />
 
     <ImageView
-        android:id="@+id/imageView40"
+        android:id="@+id/imgUser3Ranking"
         android:layout_width="105dp"
         android:layout_height="105dp"
         android:contentDescription="@string/imageDescription"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-        app:layout_constraintEnd_toStartOf="@+id/imageView36"
+        app:layout_constraintBottom_toBottomOf="@+id/imgUser1Ranking"
+        app:layout_constraintEnd_toStartOf="@+id/imgUser1Ranking"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView16"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/defaultuserimage" />
 
     <ImageView
-        android:id="@+id/imageView41"
+        android:id="@+id/imgUser2Ranking"
         android:layout_width="105dp"
         android:layout_height="105dp"
         android:contentDescription="@string/imageDescription"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
+        app:layout_constraintBottom_toBottomOf="@+id/imgUser1Ranking"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView36"
+        app:layout_constraintStart_toEndOf="@+id/imgUser1Ranking"
         app:layout_constraintTop_toBottomOf="@+id/imageView16"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/defaultuserimage" />
@@ -152,10 +149,10 @@
         android:layout_width="105dp"
         android:layout_height="105dp"
         android:contentDescription="@string/imageDescription"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView41"
-        app:layout_constraintEnd_toEndOf="@+id/imageView41"
-        app:layout_constraintStart_toStartOf="@+id/imageView41"
-        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:layout_constraintBottom_toBottomOf="@+id/imgUser2Ranking"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser2Ranking"
+        app:layout_constraintStart_toStartOf="@+id/imgUser2Ranking"
+        app:layout_constraintTop_toTopOf="@+id/imgUser2Ranking"
         app:srcCompat="@drawable/elipseplata" />
 
     <ImageView
@@ -163,10 +160,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/imageDescription"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView40"
-        app:layout_constraintEnd_toEndOf="@+id/imageView40"
-        app:layout_constraintStart_toStartOf="@+id/imageView40"
-        app:layout_constraintTop_toTopOf="@+id/imageView40"
+        app:layout_constraintBottom_toBottomOf="@+id/imgUser3Ranking"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser3Ranking"
+        app:layout_constraintStart_toStartOf="@+id/imgUser3Ranking"
+        app:layout_constraintTop_toTopOf="@+id/imgUser3Ranking"
         app:srcCompat="@drawable/elipsebronce" />
 
     <ImageView
@@ -175,9 +172,9 @@
         android:layout_height="18dp"
         android:layout_marginTop="91dp"
         android:contentDescription="@string/imageDescription"
-        app:layout_constraintEnd_toEndOf="@+id/imageView41"
-        app:layout_constraintStart_toStartOf="@+id/imageView41"
-        app:layout_constraintTop_toTopOf="@+id/imageView41"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser2Ranking"
+        app:layout_constraintStart_toStartOf="@+id/imgUser2Ranking"
+        app:layout_constraintTop_toTopOf="@+id/imgUser2Ranking"
         app:srcCompat="@drawable/platanombre" />
 
     <ImageView
@@ -186,9 +183,9 @@
         android:layout_height="18dp"
         android:layout_marginTop="91dp"
         android:contentDescription="@string/imageDescription"
-        app:layout_constraintEnd_toEndOf="@+id/imageView40"
-        app:layout_constraintStart_toStartOf="@+id/imageView40"
-        app:layout_constraintTop_toTopOf="@+id/imageView40"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser3Ranking"
+        app:layout_constraintStart_toStartOf="@+id/imgUser3Ranking"
+        app:layout_constraintTop_toTopOf="@+id/imgUser3Ranking"
         app:srcCompat="@drawable/broncenumber" />
 
     <TextView
@@ -251,8 +248,8 @@
         android:textColor="@color/white"
         android:textSize="13sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView36"
-        app:layout_constraintStart_toStartOf="@+id/imageView36"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser1Ranking"
+        app:layout_constraintStart_toStartOf="@+id/imgUser1Ranking"
         app:layout_constraintTop_toBottomOf="@+id/imageView38" />
 
     <TextView
@@ -264,8 +261,8 @@
         android:textColor="@color/white"
         android:textSize="13sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView40"
-        app:layout_constraintStart_toStartOf="@+id/imageView40"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser3Ranking"
+        app:layout_constraintStart_toStartOf="@+id/imgUser3Ranking"
         app:layout_constraintTop_toBottomOf="@+id/imageView47" />
 
     <TextView
@@ -277,8 +274,8 @@
         android:textColor="@color/white"
         android:textSize="13sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView41"
-        app:layout_constraintStart_toStartOf="@+id/imageView41"
+        app:layout_constraintEnd_toEndOf="@+id/imgUser2Ranking"
+        app:layout_constraintStart_toStartOf="@+id/imgUser2Ranking"
         app:layout_constraintTop_toBottomOf="@+id/imageView46" />
 
     <ImageView
@@ -416,7 +413,7 @@
         android:id="@+id/rvRanking"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="42dp"
         app:layout_constraintBottom_toTopOf="@+id/BottomNavRanking"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
