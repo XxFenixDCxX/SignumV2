@@ -3,16 +3,17 @@ package com.fenixdc.signum.entities;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private String username, email, imageUrl, birthDate;
+    private String username, email, imageUrl, birthDate, certificates;
     private int points;
 
     public User() {}
-    public User(String username, String email, String imageUrl, String birthDate, int points) {
+    public User(String username, String email, String imageUrl, String birthDate, int points, String certificates) {
         this.username = username;
         this.email = email;
         this.imageUrl = imageUrl;
         this.birthDate = birthDate;
         this.points = points;
+        this.certificates = certificates;
     }
 
     public String getUsername() {
@@ -53,5 +54,13 @@ public class User implements Serializable {
 
     public void setPoints(int points){
         this.points = points;
+    }
+
+    public void setCertificates(String certificates) {
+        this.certificates = certificates;
+    }
+
+    public String getCertificates() {
+        return certificates;
     }
 }

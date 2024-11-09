@@ -34,6 +34,7 @@ public class UserUtils {
         data.put("imageUrl", imageUrl);
         data.put("birthDate", "");
         data.put("points", 0);
+        data.put("certificates", "");
 
         document.set(data)
                 .addOnSuccessListener(aVoid -> {
