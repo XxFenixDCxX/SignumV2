@@ -1,6 +1,7 @@
 package com.fenixdc.signum.activitys.profile;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,8 +10,13 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
+import com.fenixdc.signum.entities.User;
+import com.fenixdc.signum.utils.GeneralUtils;
 
 public class CertificatesActivity extends AppCompatActivity {
+    User loggedUser;
+    ImageView btnBack, btmDictionary, btmLearn, btmProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,5 +28,31 @@ public class CertificatesActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        GeneralUtils.showLoadingDialog(this);
+        setUpElements();
+        setUpListeners();
+    }
+
+    private void setUpElements(){
+        loggedUser = (User) getIntent().getSerializableExtra("user");
+        btnBack = findViewById(R.id.btnBackCertificates);
+        btmProfile = findViewById(R.id.btmCertificatesUser);
+        btmDictionary = findViewById(R.id.btmCertificatesDictionary);
+        btmLearn = findViewById(R.id.btmCertificatesLearn);
+    }
+
+    private void setUpListeners(){
+        btnBack.setOnClickListener(v -> onBackPressed());
+        btmProfile.setOnClickListener(v -> onBackPressed());
+        btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class, true));
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class, true));
+        GeneralUtils.hideLoadingDialog(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        GeneralUtils.openActivity(this, ProfileActivity.class, true);
     }
 }

@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/banner" />
 
     <ImageView
-        android:id="@+id/btnBackCategori2"
+        android:id="@+id/btnBackCertificates"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -62,7 +62,7 @@
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@+id/btnBackCategori2"
+        app:layout_constraintStart_toEndOf="@+id/btnBackCertificates"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -71,8 +71,54 @@
         android:layout_height="0dp"
         android:layout_marginStart="38dp"
         android:layout_marginEnd="38dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/BottomNavCertificates"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgBannerCategori2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/BottomNavCertificates"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/colorBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/btmCertificatesUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btmCertificatesDictionary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/userimage" />
+
+        <ImageView
+            android:id="@+id/btmCertificatesDictionary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dictionary"
+            app:tint="@color/black" />
+
+        <ImageView
+            android:id="@+id/btmCertificatesLearn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btmCertificatesDictionary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/learnimage"
+            tools:ignore="ImageContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
