@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.utils.GeneralUtils;
 
 public class RankingActivity extends AppCompatActivity {
 
@@ -22,5 +23,11 @@ public class RankingActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        GeneralUtils.openActivity(this, ProfileActivity.class, true);
     }
 }
