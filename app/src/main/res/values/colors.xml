@@ -13,4 +13,5 @@
     <color name="placehoalderColor">#99FFFFFF</color>
     <color name="colorTransparent">#00000000</color>
     <color name="rankingColor">#D9D9D9</color>
+    <color name="certificateTitle">#847D4B</color>
 </resources>

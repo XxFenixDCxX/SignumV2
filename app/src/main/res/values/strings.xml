@@ -61,4 +61,8 @@
     <string name="number1">1</string>
     <string name="number2">2</string>
     <string name="number3">3</string>
+    <string name="certificate">Certificado</string>
+    <string name="certificaDescription">De superacion de aptitud</string>
+    <string name="certificateText1">Tenemos el honor de extender este certificado a</string>
+    <string name="certificateText2">por concluir satisfactoriamente el curso de signum de </string>
 </resources>
