@@ -91,7 +91,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
 
     @SuppressLint("ClickableViewAccessibility")
     private void setUpListeners(){
-        btmUser.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class, true));
+        btmUser.setOnClickListener(v -> onBackPressed());
         btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class, true));
         btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class, true));
         btnBack.setOnClickListener(v -> onBackPressed());

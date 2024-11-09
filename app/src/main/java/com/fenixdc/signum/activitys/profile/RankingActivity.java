@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.entities.User;
 import com.fenixdc.signum.recyclerview.RecyclerRankingAdapter;
 import com.fenixdc.signum.utils.DialogUtils;
@@ -28,6 +29,7 @@ public class RankingActivity extends AppCompatActivity {
     List<TextView> txtUserPoints = new ArrayList<>();
     RecyclerView rvRanking;
     RecyclerRankingAdapter rankingAdapter;
+    ImageView btnBack, btmUser, btmDictionary, btmLearn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class RankingActivity extends AppCompatActivity {
 
         GeneralUtils.showLoadingDialog(this);
         setUpElements();
+        setUpListeners();
         loadData();
     }
 
@@ -59,6 +62,17 @@ public class RankingActivity extends AppCompatActivity {
         rankingAdapter = new RecyclerRankingAdapter();
         rvRanking.setAdapter(rankingAdapter);
         rvRanking.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        btnBack = findViewById(R.id.btnBackRanking);
+        btmUser = findViewById(R.id.btmRankingUser);
+        btmDictionary = findViewById(R.id.btmRankingDictionary);
+        btmLearn = findViewById(R.id.btmRankingLearn);
+    }
+
+    public void setUpListeners(){
+        btnBack.setOnClickListener(v -> onBackPressed());
+        btmUser.setOnClickListener(v -> onBackPressed());
+        btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class, true));
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class, true));
     }
 
     private void loadData(){
