@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageView36"
+        android:id="@+id/imgLearnCategorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/imageDescription"
@@ -28,13 +28,13 @@
         android:progressDrawable="@drawable/circular_progress"
         android:rotation="90"
         android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView36"
-        app:layout_constraintEnd_toEndOf="@+id/imageView36"
-        app:layout_constraintStart_toStartOf="@+id/imageView36"
-        app:layout_constraintTop_toTopOf="@+id/imageView36" />
+        app:layout_constraintBottom_toBottomOf="@+id/imgLearnCategorie"
+        app:layout_constraintEnd_toEndOf="@+id/imgLearnCategorie"
+        app:layout_constraintStart_toStartOf="@+id/imgLearnCategorie"
+        app:layout_constraintTop_toTopOf="@+id/imgLearnCategorie" />
 
     <TextView
-        android:id="@+id/textView29"
+        android:id="@+id/txtLearnCategori"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -42,7 +42,7 @@
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView36"
-        app:layout_constraintStart_toStartOf="@+id/imageView36"
-        app:layout_constraintTop_toBottomOf="@+id/imageView36" />
+        app:layout_constraintEnd_toEndOf="@+id/imgLearnCategorie"
+        app:layout_constraintStart_toStartOf="@+id/imgLearnCategorie"
+        app:layout_constraintTop_toBottomOf="@+id/imgLearnCategorie" />
 </androidx.constraintlayout.widget.ConstraintLayout>
