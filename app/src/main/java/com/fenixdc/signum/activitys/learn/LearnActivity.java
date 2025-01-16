@@ -10,22 +10,19 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fenixdc.signum.R;
-import com.fenixdc.signum.entities.Categori;
+import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.entities.Learn;
-import com.fenixdc.signum.recyclerview.RecyclerDictionaryAdapter;
 import com.fenixdc.signum.recyclerview.RecyclerGameAdapter;
+import com.fenixdc.signum.utils.DialogUtils;
 import com.fenixdc.signum.utils.GeneralUtils;
+import com.fenixdc.signum.utils.UserUtils;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 
 public class LearnActivity extends AppCompatActivity {
+    String currentUserEmail = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
     RecyclerGameAdapter gameAdapter;
     RecyclerView rvLearn;
     ArrayList<Learn> listLearn = new ArrayList<>();
@@ -45,7 +42,19 @@ public class LearnActivity extends AppCompatActivity {
     }
 
     private void createGameData() {
+        UserUtils.checkGameData(currentUserEmail).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                boolean exists = task.getResult();
+                if (exists) {
 
+                } else {
+                    UserUtils.createGameData(this, currentUserEmail);
+                }
+            } else {
+                DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorDataLearn));
+                GeneralUtils.openActivity(this, DictionaryActivity.class);
+            }
+        });
     }
 
 //    private void loadData() {

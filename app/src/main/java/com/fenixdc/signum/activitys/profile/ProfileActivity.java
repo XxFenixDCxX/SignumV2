@@ -13,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
+import com.fenixdc.signum.activitys.learn.LearnActivity;
 import com.fenixdc.signum.activitys.loginRegister.LoginActivity;
 import com.fenixdc.signum.activitys.loginRegister.MainActivity;
 import com.fenixdc.signum.entities.User;
@@ -69,7 +70,7 @@ public class ProfileActivity extends AppCompatActivity {
             FirebaseAuth.getInstance().signOut();
             GeneralUtils.openActivity(this, MainActivity.class, true);
         });
-        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, LearnActivity.class));
         btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
         personalDetails.setOnClickListener(v -> GeneralUtils.openActivityAndSendElement(this, PersonalDetailsActivity.class, "user", loggedUser, true));
         ranking.setOnClickListener(v -> GeneralUtils.openActivity(this, RankingActivity.class, true));

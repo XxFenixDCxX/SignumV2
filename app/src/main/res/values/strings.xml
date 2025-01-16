@@ -65,4 +65,5 @@
     <string name="certificaDescription">De superacion de aptitud</string>
     <string name="certificateText1">Tenemos el honor de extender este certificado a</string>
     <string name="certificateText2">por concluir satisfactoriamente el curso de signum de </string>
+    <string name="errorDataLearn">Error en la creacion de datos de juego, intentelo mas tarde de nuevo</string>
 </resources>

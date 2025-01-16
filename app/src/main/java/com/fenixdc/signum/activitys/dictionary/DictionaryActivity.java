@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.activitys.learn.LearnActivity;
 import com.fenixdc.signum.activitys.profile.ProfileActivity;
 import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.recyclerview.RecyclerDictionaryAdapter;
@@ -135,7 +136,7 @@ public class DictionaryActivity extends AppCompatActivity {
             }
         });
         btmUser.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class));
-        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class));
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, LearnActivity.class));
         back.setOnClickListener(v ->
             onBackPressed()
         );

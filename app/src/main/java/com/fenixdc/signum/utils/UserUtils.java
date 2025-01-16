@@ -117,52 +117,61 @@ public class UserUtils {
 
     public static void createGameData(AppCompatActivity activity, String email) {
         GeneralUtils.showLoadingDialog(activity);
-        CollectionReference categoriesCollection = FirebaseFirestore.getInstance().collection("categories");
-        CollectionReference signsCollection = FirebaseFirestore.getInstance().collection("signs");
-        CollectionReference gameCollection = FirebaseFirestore.getInstance().collection("game");
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference categoriesCollection = db.collection("categories");
+        CollectionReference signsCollection = db.collection("signs");
+        CollectionReference gameCollection = db.collection("game");
 
-        categoriesCollection.orderBy("isSubCategory").get().addOnCompleteListener(task -> {
+        categoriesCollection.whereEqualTo("isSubCategory", false).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 QuerySnapshot querySnapshot = task.getResult();
                 for (QueryDocumentSnapshot document : querySnapshot) {
-                    String id = email + document.getId();
                     Categori categori = document.toObject(Categori.class);
+                    String id = email + document.getId();
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("progress", 0);
+                    data.put("idCategorie", document.getId());
 
-                    if (!categori.isSubCategory()){
-                        Map<String, Object> data = new HashMap<>();
-                        data.put("progress", 0);
-                        data.put("idCategorie", document.getId());
-
-                        signsCollection.whereEqualTo("idCategorie", document.getId()).get().addOnCompleteListener(task2 -> {
-                            if (task2.isSuccessful()) {
-                                data.put("signs", getSigns(task2.getResult()));
-                                gameCollection.document(id).set(data);
-                            }
-                        });
-                    } else {
-                        Map<String, Object> data = new HashMap<>();
-                        data.put("progress", 0);
-                        gameCollection.document(id).get().addOnCompleteListener(task2 -> {
-                            if (task2.isSuccessful()) {
-                                DocumentSnapshot document2 = task2.getResult();
-                                if (document2.exists()) {
-                                    signsCollection.whereEqualTo("idCategorie", document.getId()).get().addOnCompleteListener(task3 -> {
-                                        if (task3.isSuccessful()) {
-                                            data.put("signs", getSigns(task3.getResult()));
-                                            gameCollection.document(id).set(data);
-                                        }
-                                    });
-                                }
-                            }
-                        });
-
-                    }
+                    signsCollection.whereEqualTo("idCategorie", Integer.parseInt(document.getId())).get().addOnCompleteListener(task2 -> {
+                        if (task2.isSuccessful()) {
+                            data.put("signs", getSigns(task2.getResult(), ""));
+                            gameCollection.document(id).set(data);
+                        }
+                    });
                 }
+            }
+        }).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                categoriesCollection.whereEqualTo("isSubCategory", true).get().addOnCompleteListener(task2 -> {
+                    if (task2.isSuccessful()) {
+                        QuerySnapshot querySnapshot = task2.getResult();
+                        for (QueryDocumentSnapshot document : querySnapshot) {
+                            Categori categori = document.toObject(Categori.class);
+                            int idCategorie = Integer.parseInt(document.getId());
+                            String id = email + document.getLong("categoriDadId");
+                            Map<String, Object> data = new HashMap<>();
+                            data.put("progress", 0);
+                            gameCollection.document(id).get().addOnCompleteListener(task3 -> {
+                                if (task2.isSuccessful()) {
+                                    DocumentSnapshot document2 = task3.getResult();
+                                    if (document2.exists()) {
+                                        signsCollection.whereEqualTo("idCategorie", idCategorie).get().addOnCompleteListener(task4 -> {
+                                            if (task3.isSuccessful()) {
+                                                data.put("signs", getSigns(task4.getResult(), document2.getString("signs")));
+                                                gameCollection.document(id).set(data);
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
             }
         });
     }
 
-    public Task<Boolean> comprobarDatosJuegoPorEmail(String email) {
+    public static Task<Boolean> checkGameData(String email) {
         TaskCompletionSource<Boolean> taskCompletionSource = new TaskCompletionSource<>();
 
         CollectionReference gameCollection = FirebaseFirestore.getInstance().collection("game");
@@ -184,15 +193,14 @@ public class UserUtils {
         return taskCompletionSource.getTask();
     }
 
-    private static String getSigns(QuerySnapshot querySnapshot) {
-        String sings = "";
+    private static String getSigns(QuerySnapshot querySnapshot, String signs) {
         for (QueryDocumentSnapshot document : querySnapshot) {
-            sings += document.getId() + ",";
+            signs += document.getId() + ",";
         }
 
-        if (!sings.isEmpty()) {
-            sings = sings.substring(0, sings.length() - 1);
+        if (!signs.isEmpty()) {
+            signs = signs.substring(0, signs.length() - 1);
         }
-        return sings;
+        return signs;
     }
 }
