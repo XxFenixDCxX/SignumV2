@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.entities.Learn;
+import com.fenixdc.signum.entities.Sign;
 import com.fenixdc.signum.recyclerview.RecyclerGameAdapter;
 import com.fenixdc.signum.utils.DialogUtils;
 import com.fenixdc.signum.utils.GeneralUtils;
 import com.fenixdc.signum.utils.UserUtils;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -45,10 +48,10 @@ public class LearnActivity extends AppCompatActivity {
         UserUtils.checkGameData(currentUserEmail).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 boolean exists = task.getResult();
-                if (exists) {
-
+                if (!exists) {
+                    UserUtils.createGameData(this, currentUserEmail, this::loadData);
                 } else {
-                    UserUtils.createGameData(this, currentUserEmail);
+                    loadData();
                 }
             } else {
                 DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorDataLearn));
@@ -57,48 +60,36 @@ public class LearnActivity extends AppCompatActivity {
         });
     }
 
-//    private void loadData() {
-//        String currentUserEmail = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail();
-//        FirebaseFirestore.getInstance().collection("game")
-//                .get()
-//                .addOnCompleteListener(task -> {
-//                    if (task.isSuccessful()) {
-//                        QuerySnapshot querySnapshot = task.getResult();
-//                        listLearn.clear();
-//                        if (querySnapshot != null) {
-//                            for (QueryDocumentSnapshot document : querySnapshot) {
-//                                Learn learn = new Learn();
-//                                learn.setProgress(Integer.parseInt(document.getString("progress")));
-//                                learn.setIdCategorie(Integer.parseInt(document.getString("idCategorie")));
-//
-//                                FirebaseFirestore.getInstance().collection("categories")
-//                                        .document(learn.getIdCategorie() + "")
-//                                        .get()
-//                                        .addOnCompleteListener(task2 -> {
-//                                            if (task2.isSuccessful()) {
-//                                                QuerySnapshot document2 = task.getResult();
-//                                                if (document.exists()) {
-//                                                    Map<String, Object> data = document.getData();
-//                                                    System.out.println("Datos del documento: " + data);
-//                                                } else {
-//                                                    System.out.println("El documento no existe.");
-//                                                }
-//                                            } else {
-//                                                System.out.println("Error al obtener el documento: " + task.getException());
-//                                            }
-//                                        });
-//
-//                                Categori category = document.toObject(Categori.class);
-//                                category.setHasSubcategories(document.getBoolean("hasSubcategories"));
-//                                listCategories.add(category);
-//                                if(!category.isSubCategory()){
-//                                    listCategoriesShow.add(category);
-//                                }
-//                            }
-//                            setUpElements();
-//                            dictionaryAdapter.notifyDataSetChanged();
-//                        }
-//                    }
-//                });
-//    }
+    private void loadData() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        db.collection("game").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                listLearn.clear();
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Learn learn = new Learn();
+                    learn.setProgress(Objects.requireNonNull(document.getLong("progress")).intValue());
+                    learn.setIdCategorie(Integer.parseInt(document.getString("idCategorie")));
+
+                    db.collection("categories").document(String.valueOf(learn.getIdCategorie())).get().addOnCompleteListener(task1 -> {
+                        if (task1.isSuccessful()) {
+                            learn.setName(Objects.requireNonNull(task1.getResult()).getString("name"));
+                            learn.setImageUrl(Objects.requireNonNull(task1.getResult()).getString("imageUrl"));
+                        }
+                    }).addOnCompleteListener(t -> {
+                        db.collection("signs").whereEqualTo("idCategorie", learn.getIdCategorie()).get().addOnCompleteListener(task2 -> {
+                            if (task2.isSuccessful()) {
+                                for (QueryDocumentSnapshot document1 : task2.getResult()) {
+                                    learn.getSigns().add(document1.toObject(Sign.class));
+                                }
+                            }
+                        });
+                    });
+                }
+                GeneralUtils.hideLoadingDialog(this);
+            } else {
+                DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorDataLearn));
+                GeneralUtils.openActivity(this, DictionaryActivity.class, true);
+            }
+        });
+    }
 }

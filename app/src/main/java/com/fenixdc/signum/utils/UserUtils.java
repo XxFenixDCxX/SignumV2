@@ -115,7 +115,11 @@ public class UserUtils {
                 });
     }
 
-    public static void createGameData(AppCompatActivity activity, String email) {
+    public interface OnCreateGameDataFetchListener {
+        void onSuccess();
+    }
+
+    public static void createGameData(AppCompatActivity activity, String email, OnCreateGameDataFetchListener listener) {
         GeneralUtils.showLoadingDialog(activity);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         CollectionReference categoriesCollection = db.collection("categories");
@@ -151,12 +155,13 @@ public class UserUtils {
                             String id = email + document.getLong("categoriDadId");
                             Map<String, Object> data = new HashMap<>();
                             data.put("progress", 0);
+                            data.put("idCategorie", idCategorie);
                             gameCollection.document(id).get().addOnCompleteListener(task3 -> {
-                                if (task2.isSuccessful()) {
+                                if (task3.isSuccessful()) {
                                     DocumentSnapshot document2 = task3.getResult();
                                     if (document2.exists()) {
                                         signsCollection.whereEqualTo("idCategorie", idCategorie).get().addOnCompleteListener(task4 -> {
-                                            if (task3.isSuccessful()) {
+                                            if (task4.isSuccessful()) {
                                                 data.put("signs", getSigns(task4.getResult(), document2.getString("signs")));
                                                 gameCollection.document(id).set(data);
                                             }
@@ -165,6 +170,7 @@ public class UserUtils {
                                 }
                             });
                         }
+                        listener.onSuccess();
                     }
                 });
             }
