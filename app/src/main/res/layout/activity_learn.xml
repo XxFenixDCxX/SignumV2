@@ -73,8 +73,7 @@
             app:layout_constraintEnd_toStartOf="@+id/btmProfileDictionary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/userimage"
-            app:tint="@color/white" />
+            app:srcCompat="@drawable/userimage" />
 
         <ImageView
             android:id="@+id/btmProfileDictionary"
@@ -92,12 +91,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/imageDescription"
+            android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btmProfileDictionary"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/learnimage"
-            tools:ignore="ImageContrastCheck" />
+            tools:ignore="ImageContrastCheck,UseAppTint" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
