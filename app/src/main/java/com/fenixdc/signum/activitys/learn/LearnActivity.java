@@ -7,11 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
-import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.entities.Learn;
 import com.fenixdc.signum.entities.Sign;
 import com.fenixdc.signum.recyclerview.RecyclerGameAdapter;
@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class LearnActivity extends AppCompatActivity {
@@ -84,7 +85,7 @@ public class LearnActivity extends AppCompatActivity {
                         }
                     }).addOnCompleteListener(t -> {
                         ArrayList<Sign> signs = new ArrayList<>();
-                        String[] signIds = document.getString("signs").split(",");
+                        String[] signIds = Objects.requireNonNull(document.getString("signs")).split(",");
                         final int totalSigns = signIds.length;
                         final AtomicInteger completedTasks = new AtomicInteger(0);
 
@@ -102,7 +103,7 @@ public class LearnActivity extends AppCompatActivity {
                                     learn.setSigns(signs);
                                     listLearn.add(learn);
                                     if (listLearn.size() == task.getResult().size()) {
-                                        GeneralUtils.hideLoadingDialog(this);
+                                        setUpElements();
                                     }
                                 }
                             });
@@ -116,6 +117,14 @@ public class LearnActivity extends AppCompatActivity {
         });
     }
 
+    private void setUpElements() {
+        rvLearn = findViewById(R.id.rvLearn);
+        gameAdapter = new RecyclerGameAdapter(listLearn, t -> DialogUtils.showSuccessDialog(this, getString(R.string.success), "Click"));
+        rvLearn.setAdapter(gameAdapter);
+        rvLearn.setLayoutManager(new GridLayoutManager(this,2));
+        GeneralUtils.hideLoadingDialog(this);
+    }
+
     private void createGameData(AppCompatActivity activity, String email) {
         GeneralUtils.showLoadingDialog(activity);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -123,11 +132,21 @@ public class LearnActivity extends AppCompatActivity {
         CollectionReference signsCollection = db.collection("signs");
         CollectionReference gameCollection = db.collection("game");
 
+        AtomicBoolean mainCategoriesDone = new AtomicBoolean(false);
+        AtomicBoolean subCategoriesDone = new AtomicBoolean(false);
+
+        Runnable checkCompletion = () -> {
+            if (mainCategoriesDone.get() && subCategoriesDone.get()) {
+                loadData();
+            }
+        };
+
         categoriesCollection.whereEqualTo("isSubCategory", false).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 QuerySnapshot querySnapshot = task.getResult();
+                AtomicInteger pendingTasks = new AtomicInteger(querySnapshot.size());
+
                 for (QueryDocumentSnapshot document : querySnapshot) {
-                    Categori categori = document.toObject(Categori.class);
                     String id = email + document.getId();
                     Map<String, Object> data = new HashMap<>();
                     data.put("progress", 0);
@@ -136,40 +155,85 @@ public class LearnActivity extends AppCompatActivity {
                     signsCollection.whereEqualTo("idCategorie", Integer.parseInt(document.getId())).get().addOnCompleteListener(task2 -> {
                         if (task2.isSuccessful()) {
                             data.put("signs", getSigns(task2.getResult(), ""));
-                            gameCollection.document(id).set(data);
+                            gameCollection.document(id).set(data).addOnCompleteListener(task3 -> {
+                                if (pendingTasks.decrementAndGet() == 0) {
+                                    mainCategoriesDone.set(true);
+                                    checkCompletion.run();
+                                }
+                            });
+                        } else {
+                            if (pendingTasks.decrementAndGet() == 0) {
+                                mainCategoriesDone.set(true);
+                                checkCompletion.run();
+                            }
                         }
                     });
                 }
+
+                if (querySnapshot.isEmpty()) {
+                    mainCategoriesDone.set(true);
+                    checkCompletion.run();
+                }
+            } else {
+                mainCategoriesDone.set(true);
+                checkCompletion.run();
             }
-        }).addOnCompleteListener(task -> {
+        });
+
+        categoriesCollection.whereEqualTo("isSubCategory", true).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                categoriesCollection.whereEqualTo("isSubCategory", true).get().addOnCompleteListener(task2 -> {
-                    if (task2.isSuccessful()) {
-                        QuerySnapshot querySnapshot = task2.getResult();
-                        for (QueryDocumentSnapshot document : querySnapshot) {
-                            Categori categori = document.toObject(Categori.class);
-                            int idCategorie = Integer.parseInt(document.getId());
-                            String id = email + document.getLong("categoriDadId");
-                            Map<String, Object> data = new HashMap<>();
-                            data.put("progress", 0);
-                            data.put("idCategorie", idCategorie);
-                            gameCollection.document(id).get().addOnCompleteListener(task3 -> {
-                                if (task3.isSuccessful()) {
-                                    DocumentSnapshot document2 = task3.getResult();
-                                    if (document2.exists()) {
-                                        signsCollection.whereEqualTo("idCategorie", idCategorie).get().addOnCompleteListener(task4 -> {
-                                            if (task4.isSuccessful()) {
-                                                data.put("signs", getSigns(task4.getResult(), document2.getString("signs")));
-                                                gameCollection.document(id).set(data);
-                                                loadData();
+                QuerySnapshot querySnapshot = task.getResult();
+                AtomicInteger pendingTasks = new AtomicInteger(querySnapshot.size());
+
+                for (QueryDocumentSnapshot document : querySnapshot) {
+                    int idCategorie = Integer.parseInt(document.getId());
+                    String id = email + document.getLong("categoriDadId");
+                    Map<String, Object> data = new HashMap<>();
+                    data.put("progress", 0);
+
+                    gameCollection.document(id).get().addOnCompleteListener(task2 -> {
+                        if (task2.isSuccessful()) {
+                            DocumentSnapshot document2 = task2.getResult();
+                            if (document2.exists()) {
+                                data.put("idCategorie", Objects.requireNonNull(document2.getLong("idCategorie")).intValue());
+                                signsCollection.whereEqualTo("idCategorie", idCategorie).get().addOnCompleteListener(task3 -> {
+                                    if (task3.isSuccessful()) {
+                                        data.put("signs", getSigns(task3.getResult(), document2.getString("signs")));
+                                        gameCollection.document(id).set(data).addOnCompleteListener(task4 -> {
+                                            if (pendingTasks.decrementAndGet() == 0) {
+                                                subCategoriesDone.set(true);
+                                                checkCompletion.run();
                                             }
                                         });
+                                    } else {
+                                        if (pendingTasks.decrementAndGet() == 0) {
+                                            subCategoriesDone.set(true);
+                                            checkCompletion.run();
+                                        }
                                     }
+                                });
+                            } else {
+                                if (pendingTasks.decrementAndGet() == 0) {
+                                    subCategoriesDone.set(true);
+                                    checkCompletion.run();
                                 }
-                            });
+                            }
+                        } else {
+                            if (pendingTasks.decrementAndGet() == 0) {
+                                subCategoriesDone.set(true);
+                                checkCompletion.run();
+                            }
                         }
-                    }
-                });
+                    });
+                }
+
+                if (querySnapshot.isEmpty()) {
+                    subCategoriesDone.set(true);
+                    checkCompletion.run();
+                }
+            } else {
+                subCategoriesDone.set(true);
+                checkCompletion.run();
             }
         });
     }
