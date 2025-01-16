@@ -30,7 +30,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
@@ -41,8 +40,8 @@ dependencies {
     implementation(libs.firebase.firestore)
     implementation(libs.play.services.auth)
     implementation(libs.glide)
-    implementation(libs.picasso)
     implementation(libs.firebase.storage)
+    implementation(libs.picasso)
     implementation(libs.picasso.transformations)
     annotationProcessor(libs.compiler)
     testImplementation(libs.junit)

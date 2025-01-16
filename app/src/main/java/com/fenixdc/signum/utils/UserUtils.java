@@ -6,10 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
+import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.entities.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -108,5 +110,64 @@ public class UserUtils {
                         listener.onFailure("Error al obtener los usuarios: " + Objects.requireNonNull(task.getException()).getMessage());
                     }
                 });
+    }
+
+    public static void createGameData(AppCompatActivity activity, String email) {
+        GeneralUtils.showLoadingDialog(activity);
+        CollectionReference categoriesCollection = FirebaseFirestore.getInstance().collection("categories");
+        CollectionReference signsCollection = FirebaseFirestore.getInstance().collection("signs");
+        CollectionReference gameCollection = FirebaseFirestore.getInstance().collection("game");
+
+
+        categoriesCollection.orderBy("isSubCategory").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                QuerySnapshot querySnapshot = task.getResult();
+                for (QueryDocumentSnapshot document : querySnapshot) {
+                    String id = email + document.getId();
+                    Categori categori = document.toObject(Categori.class);
+
+                    if (!categori.isSubCategory()){
+                        Map<String, Object> data = new HashMap<>();
+                        data.put("progress", 0);
+
+                        signsCollection.whereEqualTo("idCategorie", document.getId()).get().addOnCompleteListener(task2 -> {
+                            if (task2.isSuccessful()) {
+                                data.put("signs", getSigns(task2.getResult()));
+                                gameCollection.document(id).set(data);
+                            }
+                        });
+                    } else {
+                        Map<String, Object> data = new HashMap<>();
+                        data.put("progress", 0);
+                        gameCollection.document(id).get().addOnCompleteListener(task2 -> {
+                            if (task2.isSuccessful()) {
+                                DocumentSnapshot document2 = task2.getResult();
+                                if (document2.exists()) {
+                                    signsCollection.whereEqualTo("idCategorie", document.getId()).get().addOnCompleteListener(task3 -> {
+                                        if (task3.isSuccessful()) {
+                                            data.put("signs", getSigns(task3.getResult()));
+                                            gameCollection.document(id).set(data);
+                                        }
+                                    });
+                                }
+                            }
+                        });
+
+                    }
+                }
+            }
+        });
+    }
+
+    private static String getSigns(QuerySnapshot querySnapshot) {
+        String sings = "";
+        for (QueryDocumentSnapshot document : querySnapshot) {
+            sings += document.getId() + ",";
+        }
+
+        if (!sings.isEmpty()) {
+            sings = sings.substring(0, sings.length() - 1);
+        }
+        return sings;
     }
 }
