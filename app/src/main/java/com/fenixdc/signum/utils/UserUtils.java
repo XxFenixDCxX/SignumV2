@@ -8,10 +8,13 @@ import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.entities.User;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldPath;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -118,7 +121,6 @@ public class UserUtils {
         CollectionReference signsCollection = FirebaseFirestore.getInstance().collection("signs");
         CollectionReference gameCollection = FirebaseFirestore.getInstance().collection("game");
 
-
         categoriesCollection.orderBy("isSubCategory").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 QuerySnapshot querySnapshot = task.getResult();
@@ -129,6 +131,7 @@ public class UserUtils {
                     if (!categori.isSubCategory()){
                         Map<String, Object> data = new HashMap<>();
                         data.put("progress", 0);
+                        data.put("idCategorie", document.getId());
 
                         signsCollection.whereEqualTo("idCategorie", document.getId()).get().addOnCompleteListener(task2 -> {
                             if (task2.isSuccessful()) {
@@ -157,6 +160,28 @@ public class UserUtils {
                 }
             }
         });
+    }
+
+    public Task<Boolean> comprobarDatosJuegoPorEmail(String email) {
+        TaskCompletionSource<Boolean> taskCompletionSource = new TaskCompletionSource<>();
+
+        CollectionReference gameCollection = FirebaseFirestore.getInstance().collection("game");
+
+        gameCollection
+                .whereGreaterThanOrEqualTo(FieldPath.documentId(), email)
+                .whereLessThan(FieldPath.documentId(), email + "\uf8ff")
+                .limit(1)
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        boolean existe = !task.getResult().isEmpty();
+                        taskCompletionSource.setResult(existe);
+                    } else {
+                        taskCompletionSource.setResult(false);
+                    }
+                });
+
+        return taskCompletionSource.getTask();
     }
 
     private static String getSigns(QuerySnapshot querySnapshot) {
