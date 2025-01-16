@@ -52,7 +52,7 @@ public class LearnActivity extends AppCompatActivity {
                 }
             } else {
                 DialogUtils.showErrorDialog(this, getString(R.string.error), getString(R.string.errorDataLearn));
-                GeneralUtils.openActivity(this, DictionaryActivity.class);
+                GeneralUtils.openActivity(this, DictionaryActivity.class, true);
             }
         });
     }
