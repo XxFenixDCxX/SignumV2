@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -49,11 +50,13 @@ public class RecyclerGameAdapter extends RecyclerView.Adapter<RecyclerGameAdapte
     public static class RecyclerGameyHolder extends RecyclerView.ViewHolder {
         TextView txtLearnCategorie;
         ImageView imgLearn;
+        ProgressBar progressBar;
 
         public RecyclerGameyHolder(@NonNull View itemView) {
             super(itemView);
             txtLearnCategorie = itemView.findViewById(R.id.txtLearnCategori);
             imgLearn = itemView.findViewById(R.id.imgLearnCategorie);
+            progressBar = itemView.findViewById(R.id.progressBar);
         }
 
         public void asignData(Learn learn, final OnItemClikListener listener){
@@ -62,6 +65,7 @@ public class RecyclerGameAdapter extends RecyclerView.Adapter<RecyclerGameAdapte
                     .load(learn.getImageUrl())
                     .apply(new RequestOptions().placeholder(R.drawable.imaguser))
                     .into(imgLearn);
+            progressBar.setProgress(learn.getProgress());
             itemView.setOnClickListener(v -> listener.onItemClick(learn));
         }
     }
