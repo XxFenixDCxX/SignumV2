@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/BottomNavProfile"
+        android:id="@+id/BottomNavLearn"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="@color/colorBlue"
@@ -65,18 +65,18 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
-            android:id="@+id/btmProfileUser"
+            android:id="@+id/btmLearnUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/imageDescription"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btmProfileDictionary"
+            app:layout_constraintEnd_toStartOf="@+id/btmLearnDictionary"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/userimage" />
 
         <ImageView
-            android:id="@+id/btmProfileDictionary"
+            android:id="@+id/btmLearnDictionary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/imageDescription"
@@ -87,14 +87,14 @@
             app:srcCompat="@drawable/dictionary" />
 
         <ImageView
-            android:id="@+id/btmProfileLearn"
+            android:id="@+id/btmLearnLearn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/imageDescription"
             android:tint="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/btmProfileDictionary"
+            app:layout_constraintStart_toEndOf="@+id/btmLearnDictionary"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/learnimage"
             tools:ignore="ImageContrastCheck,UseAppTint" />
@@ -108,7 +108,7 @@
         android:layout_marginStart="28dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
-        app:layout_constraintBottom_toTopOf="@+id/BottomNavProfile"
+        app:layout_constraintBottom_toTopOf="@+id/BottomNavLearn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView36" />

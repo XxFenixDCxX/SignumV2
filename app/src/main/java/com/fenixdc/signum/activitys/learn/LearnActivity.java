@@ -1,6 +1,7 @@
 package com.fenixdc.signum.activitys.learn;
 
 import android.os.Bundle;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
+import com.fenixdc.signum.activitys.profile.ProfileActivity;
 import com.fenixdc.signum.entities.Learn;
 import com.fenixdc.signum.entities.Sign;
 import com.fenixdc.signum.recyclerview.RecyclerGameAdapter;
@@ -38,6 +40,7 @@ public class LearnActivity extends AppCompatActivity {
     RecyclerGameAdapter gameAdapter;
     RecyclerView rvLearn;
     ArrayList<Learn> listLearn = new ArrayList<>();
+    ImageView btmUser, btmDictionary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +128,14 @@ public class LearnActivity extends AppCompatActivity {
         rvLearn.setAdapter(gameAdapter);
         rvLearn.setLayoutManager(new GridLayoutManager(this,2));
         GeneralUtils.hideLoadingDialog(this);
+        btmUser = findViewById(R.id.btmLearnUser);
+        btmDictionary = findViewById(R.id.btmLearnDictionary);
+        setUpListeners();
+    }
+
+    private void setUpListeners(){
+        btmUser.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class));
+        btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
     }
 
     private void createGameData(AppCompatActivity activity, String email) {
