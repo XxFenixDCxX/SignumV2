@@ -26,6 +26,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -119,6 +120,7 @@ public class LearnActivity extends AppCompatActivity {
 
     private void setUpElements() {
         rvLearn = findViewById(R.id.rvLearn);
+        listLearn.sort(Comparator.comparingInt(Learn::getProgress).reversed());
         gameAdapter = new RecyclerGameAdapter(listLearn, t -> DialogUtils.showSuccessDialog(this, getString(R.string.success), "Click"));
         rvLearn.setAdapter(gameAdapter);
         rvLearn.setLayoutManager(new GridLayoutManager(this,2));
