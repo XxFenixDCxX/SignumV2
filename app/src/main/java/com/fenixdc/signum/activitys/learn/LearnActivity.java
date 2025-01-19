@@ -125,7 +125,7 @@ public class LearnActivity extends AppCompatActivity {
     private void setUpElements() {
         rvLearn = findViewById(R.id.rvLearn);
         listLearn.sort(Comparator.comparingInt(Learn::getProgress).reversed());
-        gameAdapter = new RecyclerGameAdapter(listLearn, t -> DialogUtils.showSuccessDialog(this, getString(R.string.success), "Click"));
+        gameAdapter = new RecyclerGameAdapter(listLearn, learn -> GeneralUtils.openActivityAndSendElement(this, GameActivity.class, "learn", learn, true));
         rvLearn.setAdapter(gameAdapter);
         rvLearn.setLayoutManager(new GridLayoutManager(this,2));
         GeneralUtils.hideLoadingDialog(this);
