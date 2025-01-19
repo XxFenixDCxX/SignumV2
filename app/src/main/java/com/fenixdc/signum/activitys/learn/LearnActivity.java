@@ -150,7 +150,7 @@ public class LearnActivity extends AppCompatActivity {
         AtomicBoolean subCategoriesDone = new AtomicBoolean(false);
 
         Runnable checkCompletion = () -> {
-            if (mainCategoriesDone.get() && subCategoriesDone.get()) {
+            if (mainCategoriesDone.get()) {
                 loadData();
             }
         };
@@ -168,15 +168,28 @@ public class LearnActivity extends AppCompatActivity {
 
                     signsCollection.whereEqualTo("idCategorie", Integer.parseInt(document.getId())).get().addOnCompleteListener(task2 -> {
                         if (task2.isSuccessful()) {
-                            Map<String, Object> signsData = getSignsData(task2.getResult());
-                            data.put("signs", signsData.get("signs"));
-                            data.put("totalSigns", signsData.get("totalSigns"));
-                            gameCollection.document(id).set(data).addOnCompleteListener(task3 -> {
-                                if (pendingTasks.decrementAndGet() == 0) {
-                                    mainCategoriesDone.set(true);
-                                    checkCompletion.run();
-                                }
-                            });
+                            if (Boolean.TRUE.equals(document.getBoolean("hasSubcategories"))) {
+                                createSubCategoryData(categoriesCollection, signsCollection, Integer.parseInt(document.getId()), subSignsData -> {
+                                    data.put("signs", subSignsData.get("signs"));
+                                    data.put("totalSigns", subSignsData.get("totalSigns"));
+                                    gameCollection.document(id).set(data).addOnCompleteListener(task3 -> {
+                                        if (pendingTasks.decrementAndGet() == 0) {
+                                            mainCategoriesDone.set(true);
+                                            checkCompletion.run();
+                                        }
+                                    });
+                                });
+                            } else {
+                                Map<String, Object> signsData = getSignsData(task2.getResult());
+                                data.put("signs", signsData.get("signs"));
+                                data.put("totalSigns", signsData.get("totalSigns"));
+                                gameCollection.document(id).set(data).addOnCompleteListener(task3 -> {
+                                    if (pendingTasks.decrementAndGet() == 0) {
+                                        mainCategoriesDone.set(true);
+                                        checkCompletion.run();
+                                    }
+                                });
+                            }
                         } else {
                             if (pendingTasks.decrementAndGet() == 0) {
                                 mainCategoriesDone.set(true);
@@ -195,72 +208,35 @@ public class LearnActivity extends AppCompatActivity {
                 checkCompletion.run();
             }
         });
+    }
 
-        categoriesCollection.whereEqualTo("isSubCategory", true).get().addOnCompleteListener(task -> {
+    public interface SubCategoryDataCallback {
+        void onSubCategoryDataLoaded(Map<String, Object> subSignsData);
+    }
+
+    private void createSubCategoryData(CollectionReference categoriesCollection, CollectionReference signsCollection, int idCateogorie, SubCategoryDataCallback callback){
+        Map<String, Object> subSignsData = new HashMap<>();
+
+        categoriesCollection.whereEqualTo("categoriDadId", idCateogorie).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 QuerySnapshot querySnapshot = task.getResult();
-                AtomicInteger pendingTasks = new AtomicInteger(querySnapshot.size());
+                ArrayList<Integer> categoriIds = new ArrayList<>();
 
                 for (QueryDocumentSnapshot document : querySnapshot) {
-                    int idCategorie = Integer.parseInt(document.getId());
-                    String id = email + document.getLong("categoriDadId");
-                    Map<String, Object> data = new HashMap<>();
-                    data.put("progress", 0);
-
-                    gameCollection.document(id).get().addOnCompleteListener(task2 -> {
-                        if (task2.isSuccessful()) {
-                            DocumentSnapshot document2 = task2.getResult();
-                            if (document2.exists()) {
-                                data.put("idCategorie", Objects.requireNonNull(document2.getLong("idCategorie")).intValue());
-                                signsCollection.whereEqualTo("idCategorie", idCategorie).get().addOnCompleteListener(task3 -> {
-                                    if (task3.isSuccessful()) {
-                                        Map<String, Object> signsData = getSignsData(task3.getResult(), document2.getString("signs"), Objects.requireNonNull(document2.getLong("totalSigns")).intValue());
-                                        data.put("signs", signsData.get("signs"));
-                                        data.put("totalSigns", signsData.get("totalSigns"));
-                                        gameCollection.document(id).set(data).addOnCompleteListener(task4 -> {
-                                            if (pendingTasks.decrementAndGet() == 0) {
-                                                subCategoriesDone.set(true);
-                                                checkCompletion.run();
-                                            }
-                                        });
-                                    } else {
-                                        if (pendingTasks.decrementAndGet() == 0) {
-                                            subCategoriesDone.set(true);
-                                            checkCompletion.run();
-                                        }
-                                    }
-                                });
-                            } else {
-                                if (pendingTasks.decrementAndGet() == 0) {
-                                    subCategoriesDone.set(true);
-                                    checkCompletion.run();
-                                }
-                            }
-                        } else {
-                            if (pendingTasks.decrementAndGet() == 0) {
-                                subCategoriesDone.set(true);
-                                checkCompletion.run();
-                            }
-                        }
-                    });
+                    categoriIds.add(Integer.parseInt(document.getId()));
                 }
 
-                if (querySnapshot.isEmpty()) {
-                    subCategoriesDone.set(true);
-                    checkCompletion.run();
-                }
-            } else {
-                subCategoriesDone.set(true);
-                checkCompletion.run();
+                signsCollection.whereIn("idCategorie", categoriIds).get().addOnCompleteListener(task2 -> {
+                    if (task2.isSuccessful()) {
+                        callback.onSubCategoryDataLoaded(getSignsData(task2.getResult()));
+                    }
+                });
             }
         });
     }
 
     private Map<String, Object> getSignsData(QuerySnapshot querySnapshot) {
-        return getSignsData(querySnapshot, "", 0);
-    }
-
-    private Map<String, Object> getSignsData(QuerySnapshot querySnapshot, String signs, int totalSigns) {
+        String signs = "";
         for (QueryDocumentSnapshot document : querySnapshot) {
             signs += document.getId() + ",";
         }
@@ -270,9 +246,8 @@ public class LearnActivity extends AppCompatActivity {
         }
 
         Map<String, Object> signsData = new HashMap<>();
-        totalSigns = querySnapshot.size() + totalSigns;
         signsData.put("signs", signs);
-        signsData.put("totalSigns", totalSigns);
+        signsData.put("totalSigns", querySnapshot.size());
         return signsData;
     }
 }
