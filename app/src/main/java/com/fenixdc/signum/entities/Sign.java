@@ -1,6 +1,8 @@
 package com.fenixdc.signum.entities;
 
-public class Sign {
+import java.io.Serializable;
+
+public class Sign implements Serializable {
     private int id;
     private int idCategorie;
     private String name;
