@@ -22,6 +22,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
+import com.fenixdc.signum.activitys.learn.LearnActivity;
 import com.fenixdc.signum.entities.User;
 import com.fenixdc.signum.utils.DialogUtils;
 import com.fenixdc.signum.utils.GeneralUtils;
@@ -93,7 +94,7 @@ public class PersonalDetailsActivity extends AppCompatActivity {
     private void setUpListeners(){
         btmUser.setOnClickListener(v -> onBackPressed());
         btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class, true));
-        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class, true));
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, LearnActivity.class, true));
         btnBack.setOnClickListener(v -> onBackPressed());
         eTxtBirthDate.setOnTouchListener((v, event) -> {
             InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
+import com.fenixdc.signum.activitys.learn.LearnActivity;
 import com.fenixdc.signum.entities.User;
 import com.fenixdc.signum.recyclerview.RecyclerRankingAdapter;
 import com.fenixdc.signum.utils.DialogUtils;
@@ -72,7 +73,7 @@ public class RankingActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v -> onBackPressed());
         btmUser.setOnClickListener(v -> onBackPressed());
         btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class, true));
-        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class, true));
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, LearnActivity.class, true));
     }
 
     private void loadData(){

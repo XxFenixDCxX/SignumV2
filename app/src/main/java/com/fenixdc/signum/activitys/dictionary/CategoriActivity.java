@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.fenixdc.signum.R;
+import com.fenixdc.signum.activitys.learn.LearnActivity;
 import com.fenixdc.signum.activitys.profile.ProfileActivity;
 import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.entities.Sign;
@@ -82,7 +83,7 @@ public class CategoriActivity extends AppCompatActivity {
 
     private void setUpListeners() {
         btnBack.setOnClickListener(v -> onBackPressed());
-        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class, true));
+        btmLearn.setOnClickListener(v -> GeneralUtils.openActivity(this, LearnActivity.class, true));
         btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class, true));
         btmUser.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class, true));
         txtSearch.addTextChangedListener(new TextWatcher() {
