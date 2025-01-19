@@ -16,6 +16,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
+import com.fenixdc.signum.activitys.profile.ProfileActivity;
 import com.fenixdc.signum.entities.Learn;
 import com.fenixdc.signum.entities.Sign;
 import com.fenixdc.signum.entities.User;
@@ -34,7 +35,7 @@ public class GameActivity extends AppCompatActivity {
     Sign actualSign;
     User loggedUser;
     TextView title, signs, progress, points;
-    ImageView categori, sign, btnBack;
+    ImageView categori, sign, btnBack, btmUser, btmDictionary;
     Button option1, option2, option3, option4;
 
     @Override
@@ -66,12 +67,16 @@ public class GameActivity extends AppCompatActivity {
         option2 = findViewById(R.id.btnOption2);
         option3 = findViewById(R.id.btnOption3);
         option4 = findViewById(R.id.btnOption4);
+        btmUser = findViewById(R.id.btmGameUser);
+        btmDictionary = findViewById(R.id.btmGameDictionary);
     }
 
     private void setUpListeners() {
         btnBack.setOnClickListener(v ->
                 onBackPressed()
         );
+        btmUser.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class));
+        btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
         GeneralUtils.hideLoadingDialog(this);
     }
 

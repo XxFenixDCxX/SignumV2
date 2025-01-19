@@ -8,6 +8,52 @@
     android:background="#040404"
     tools:context=".activitys.learn.GameActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/BottomNavLearn"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="@color/colorBlue"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/btmGameUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btmGameDictionary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/userimage" />
+
+        <ImageView
+            android:id="@+id/btmGameDictionary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/dictionary" />
+
+        <ImageView
+            android:id="@+id/btmGameLearn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/imageDescription"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btmGameDictionary"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/learnimage"
+            tools:ignore="ImageContrastCheck,UseAppTint" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <Button
         android:id="@+id/btnOption3"
         android:layout_width="130dp"
