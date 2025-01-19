@@ -39,22 +39,6 @@
         app:layout_constraintStart_toEndOf="@+id/btnOption3"
         app:layout_constraintTop_toBottomOf="@+id/btnOption2" />
 
-    <Button
-        android:id="@+id/btnSkip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/certificateTitle"
-        android:text="@string/skip"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:cornerRadius="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnOption4"
-        app:layout_constraintVertical_bias="1.0" />
-
     <ImageView
         android:id="@+id/imgBannerGame"
         android:layout_width="0dp"
@@ -217,7 +201,7 @@
         android:id="@+id/imageView55"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:contentDescription="@string/imageDescription"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
@@ -231,7 +215,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:backgroundTint="@color/colorBlue"
         android:text="@string/optionExample"
         android:textColor="@color/black"
@@ -245,7 +229,7 @@
         android:id="@+id/btnOption2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="48dp"
         android:backgroundTint="@color/colorBlue"
         android:text="@string/optionExample"
