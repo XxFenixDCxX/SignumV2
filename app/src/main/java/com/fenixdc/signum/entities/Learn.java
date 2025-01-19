@@ -6,6 +6,7 @@ import java.util.List;
 public class Learn implements Serializable {
     private int id;
     private int progress;
+    private int totalSigns;
     private int idCategorie;
     private List<Sign> signs;
     private String name;
@@ -31,6 +32,14 @@ public class Learn implements Serializable {
 
     public int getProgress() {
         return progress;
+    }
+
+    public int getTotalSigns() {
+        return totalSigns;
+    }
+
+    public void setTotalSigns(int totalSigns) {
+        this.totalSigns = totalSigns;
     }
 
     public void setProgress(int progress) {

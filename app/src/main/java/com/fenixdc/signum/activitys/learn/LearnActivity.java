@@ -81,6 +81,7 @@ public class LearnActivity extends AppCompatActivity {
                     Learn learn = new Learn();
                     learn.setProgress(Objects.requireNonNull(document.getLong("progress")).intValue());
                     learn.setIdCategorie(Objects.requireNonNull(document.getLong("idCategorie")).intValue());
+                    learn.setTotalSigns(Objects.requireNonNull(document.getLong("totalSigns")).intValue());
 
                     db.collection("categories").document(learn.getIdCategorie() + "").get().addOnCompleteListener(task1 -> {
                         if (task1.isSuccessful()) {
@@ -167,7 +168,9 @@ public class LearnActivity extends AppCompatActivity {
 
                     signsCollection.whereEqualTo("idCategorie", Integer.parseInt(document.getId())).get().addOnCompleteListener(task2 -> {
                         if (task2.isSuccessful()) {
-                            data.put("signs", getSigns(task2.getResult(), ""));
+                            Map<String, Object> signsData = getSignsData(task2.getResult());
+                            data.put("signs", signsData.get("signs"));
+                            data.put("totalSigns", signsData.get("totalSigns"));
                             gameCollection.document(id).set(data).addOnCompleteListener(task3 -> {
                                 if (pendingTasks.decrementAndGet() == 0) {
                                     mainCategoriesDone.set(true);
@@ -211,7 +214,9 @@ public class LearnActivity extends AppCompatActivity {
                                 data.put("idCategorie", Objects.requireNonNull(document2.getLong("idCategorie")).intValue());
                                 signsCollection.whereEqualTo("idCategorie", idCategorie).get().addOnCompleteListener(task3 -> {
                                     if (task3.isSuccessful()) {
-                                        data.put("signs", getSigns(task3.getResult(), document2.getString("signs")));
+                                        Map<String, Object> signsData = getSignsData(task3.getResult(), document2.getString("signs"), Objects.requireNonNull(document2.getLong("totalSigns")).intValue());
+                                        data.put("signs", signsData.get("signs"));
+                                        data.put("totalSigns", signsData.get("totalSigns"));
                                         gameCollection.document(id).set(data).addOnCompleteListener(task4 -> {
                                             if (pendingTasks.decrementAndGet() == 0) {
                                                 subCategoriesDone.set(true);
@@ -251,7 +256,11 @@ public class LearnActivity extends AppCompatActivity {
         });
     }
 
-    private String getSigns(QuerySnapshot querySnapshot, String signs) {
+    private Map<String, Object> getSignsData(QuerySnapshot querySnapshot) {
+        return getSignsData(querySnapshot, "", 0);
+    }
+
+    private Map<String, Object> getSignsData(QuerySnapshot querySnapshot, String signs, int totalSigns) {
         for (QueryDocumentSnapshot document : querySnapshot) {
             signs += document.getId() + ",";
         }
@@ -259,6 +268,11 @@ public class LearnActivity extends AppCompatActivity {
         if (!signs.isEmpty()) {
             signs = signs.substring(0, signs.length() - 1);
         }
-        return signs;
+
+        Map<String, Object> signsData = new HashMap<>();
+        totalSigns = querySnapshot.size() + totalSigns;
+        signsData.put("signs", signs);
+        signsData.put("totalSigns", totalSigns);
+        return signsData;
     }
 }
