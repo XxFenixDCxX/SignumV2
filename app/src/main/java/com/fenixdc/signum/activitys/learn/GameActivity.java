@@ -66,6 +66,7 @@ public class GameActivity extends AppCompatActivity {
         btnBack.setOnClickListener(v ->
                 onBackPressed()
         );
+        GeneralUtils.hideLoadingDialog(this);
     }
 
     private void loadData() {
