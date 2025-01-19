@@ -1,19 +1,25 @@
 package com.fenixdc.signum.activitys.learn;
 
 import android.annotation.SuppressLint;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.activitys.profile.ProfileActivity;
@@ -77,7 +83,6 @@ public class GameActivity extends AppCompatActivity {
         );
         btmUser.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class));
         btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
-        GeneralUtils.hideLoadingDialog(this);
     }
 
     private void loadData() {
@@ -95,6 +100,18 @@ public class GameActivity extends AppCompatActivity {
                 Glide.with(GameActivity.this)
                         .load(actualSign.getImageUrl())
                         .apply(new RequestOptions().placeholder(R.drawable.imaguser))
+                        .listener(new RequestListener<Drawable>() {
+                            @Override
+                            public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+                                GeneralUtils.hideLoadingDialog(GameActivity.this);
+                                return false;
+                            }
+                        })
                         .into(sign);
                 List<Sign> options = getRandomOptions(actualSign);
                 option1.setText(options.get(0).getName());
@@ -122,6 +139,7 @@ public class GameActivity extends AppCompatActivity {
         otherSigns.remove(correctSign);
 
         if (otherSigns.size() < 3) {
+            //todo: mirar como hacer la logica para cuando hay menos de 3 signos menos de 2 y asi, probablemente cuando sea menos de 3 hay que pillarlos por base de datos
             throw new IllegalArgumentException("No hay suficientes signos para generar opciones.");
         }
 
