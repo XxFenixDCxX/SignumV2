@@ -14,6 +14,11 @@
         android:theme="@style/Theme.Signum"
         tools:targetApi="31">
         <activity
+            android:name=".activitys.learn.GameActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="DiscouragedApi,LockedOrientationActivity" />
+        <activity
             android:name=".activitys.learn.LearnActivity"
             android:exported="false"
             android:screenOrientation="portrait"
