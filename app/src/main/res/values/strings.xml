@@ -66,4 +66,10 @@
     <string name="certificateText1">Tenemos el honor de extender este certificado a</string>
     <string name="certificateText2">por concluir satisfactoriamente el curso de signum de </string>
     <string name="errorDataLearn">Error en la creacion de datos de juego, intentelo mas tarde de nuevo</string>
+    <string name="signs">Signos acertados</string>
+    <string name="progress">Progreso</string>
+    <string name="points">Puntos acumulados</string>
+    <string name="exampleProgress">5%</string>
+    <string name="optionExample">Dactitologia</string>
+    <string name="skip">Saltar</string>
 </resources>
