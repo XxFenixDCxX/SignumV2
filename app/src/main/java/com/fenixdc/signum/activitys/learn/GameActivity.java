@@ -12,6 +12,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.fenixdc.signum.R;
 import com.fenixdc.signum.activitys.dictionary.DictionaryActivity;
 import com.fenixdc.signum.entities.Learn;
@@ -22,10 +24,14 @@ import com.fenixdc.signum.utils.GeneralUtils;
 import com.fenixdc.signum.utils.UserUtils;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public class GameActivity extends AppCompatActivity {
     Learn learn;
+    Sign actualSign;
     User loggedUser;
     TextView title, signs, progress, points;
     ImageView categori, sign, btnBack;
@@ -71,7 +77,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void loadData() {
         learn = (Learn) getIntent().getSerializableExtra("learn");
-        Sign signRandom = getRandomSign();
+        actualSign = getRandomSign();
         UserUtils.getUserWithEmail(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail(), new UserUtils.OnUserFetchListener() {
             @SuppressLint("SetTextI18n")
             @Override
@@ -81,11 +87,15 @@ public class GameActivity extends AppCompatActivity {
                 progress.setText(learn.getProgress() + "%");
                 points.setText(user.getPoints() + "");
                 GeneralUtils.loadImageFromUrl(learn.getImageUrl(), categori);
-                GeneralUtils.loadImageFromUrl(signRandom.getImageUrl(), sign);
-                option1.setText(signRandom.getName());
-                option2.setText(getRandomSign(signRandom).getName());
-                option3.setText(getRandomSign(signRandom).getName());
-                option4.setText(getRandomSign(signRandom).getName());
+                Glide.with(GameActivity.this)
+                        .load(actualSign.getImageUrl())
+                        .apply(new RequestOptions().placeholder(R.drawable.imaguser))
+                        .into(sign);
+                List<Sign> options = getRandomOptions(actualSign);
+                option1.setText(options.get(0).getName());
+                option2.setText(options.get(1).getName());
+                option3.setText(options.get(2).getName());
+                option4.setText(options.get(3).getName());
             }
 
             @Override
@@ -100,11 +110,24 @@ public class GameActivity extends AppCompatActivity {
         return learn.getSigns().get((int) (Math.random() * learn.getSigns().size()));
     }
 
-    private Sign getRandomSign(Sign sign) {
-        Sign randomSign = getRandomSign();
-        while (randomSign.equals(sign)) {
-            randomSign = getRandomSign();
+    private List<Sign> getRandomOptions(Sign correctSign) {
+        List<Sign> options = new ArrayList<>();
+
+        List<Sign> otherSigns = new ArrayList<>(learn.getSigns());
+        otherSigns.remove(correctSign);
+
+        if (otherSigns.size() < 3) {
+            throw new IllegalArgumentException("No hay suficientes signos para generar opciones.");
         }
-        return randomSign;
+
+        Collections.shuffle(otherSigns);
+        options.addAll(otherSigns.subList(0, 3));
+
+        options.add(correctSign);
+
+        Collections.shuffle(options);
+
+        return options;
     }
+
 }
