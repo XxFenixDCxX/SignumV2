@@ -30,6 +30,8 @@ import com.fenixdc.signum.utils.DialogUtils;
 import com.fenixdc.signum.utils.GeneralUtils;
 import com.fenixdc.signum.utils.UserUtils;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -139,8 +141,13 @@ public class GameActivity extends AppCompatActivity {
         otherSigns.remove(correctSign);
 
         if (otherSigns.size() < 3) {
-            //todo: mirar como hacer la logica para cuando hay menos de 3 signos menos de 2 y asi, probablemente cuando sea menos de 3 hay que pillarlos por base de datos
-            throw new IllegalArgumentException("No hay suficientes signos para generar opciones.");
+            CollectionReference signsCollection = FirebaseFirestore.getInstance().collection("signs");
+            signsCollection.whereNotEqualTo("name", correctSign.getName()).get().addOnSuccessListener(queryDocumentSnapshots -> {
+                for (int i = 0; i < 3 - otherSigns.size(); i++) {
+                    Sign sign = queryDocumentSnapshots.toObjects(Sign.class).get(i);
+                    otherSigns.add(sign);
+                }
+            });
         }
 
         Collections.shuffle(otherSigns);
