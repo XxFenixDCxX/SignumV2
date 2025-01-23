@@ -57,6 +57,18 @@ public class GameActivity extends AppCompatActivity {
             return insets;
         });
 
+        UserUtils.getUserWithEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail(), new UserUtils.OnUserFetchListener() {
+            @Override
+            public void onSuccess(User user) {
+                loggedUser = user;
+            }
+
+            @Override
+            public void onFailure(String errorMessage) {
+                DialogUtils.showErrorDialog(GameActivity.this, getString(R.string.error), errorMessage);
+                GeneralUtils.openActivity(GameActivity.this, DictionaryActivity.class, true);
+            }
+        });
         GeneralUtils.showLoadingDialog(this);
         setUpElements();
         loadData();
@@ -85,6 +97,10 @@ public class GameActivity extends AppCompatActivity {
         );
         btmUser.setOnClickListener(v -> GeneralUtils.openActivity(this, ProfileActivity.class));
         btmDictionary.setOnClickListener(v -> GeneralUtils.openActivity(this, DictionaryActivity.class));
+        option1.setOnClickListener(v -> game(option1));
+        option2.setOnClickListener(v -> game(option2));
+        option3.setOnClickListener(v -> game(option3));
+        option4.setOnClickListener(v -> game(option4));
     }
 
     private void loadData() {
@@ -169,5 +185,67 @@ public class GameActivity extends AppCompatActivity {
 
     public interface OptionsCallback {
         void onOptionsReady(List<Sign> options);
+    }
+
+    private void game(Button option) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference game = db.collection("game");
+        CollectionReference users = db.collection("users");
+
+        if (option.getText().equals(actualSign.getName())){
+            boolean completedGame = false;
+            learn.getSigns().remove(actualSign);
+            learn.setProgress(calculateProgress(learn.getTotalSigns(), learn.getSigns()));
+
+            if(learn.getProgress() >= 100){
+                DialogUtils.showSuccessDialog(this, getString(R.string.correct), getString(R.string.congratulations_message));
+                completedGame = true;
+            } else {
+                DialogUtils.showSuccessDialog(this, getString(R.string.correct), getString(R.string.correct_answer));
+            }
+
+            game.document(loggedUser.getEmail() + learn.getIdCategorie()).update("signs", learn.SignsToString());
+            game.document(loggedUser.getEmail() + learn.getIdCategorie()).update("progress", learn.getProgress());
+            loggedUser.setPoints(loggedUser.getPoints() + 10);
+            users.document(loggedUser.getEmail()).update("points", loggedUser.getPoints());
+            option1.setVisibility(Button.VISIBLE);
+            option2.setVisibility(Button.VISIBLE);
+            option3.setVisibility(Button.VISIBLE);
+            option4.setVisibility(Button.VISIBLE);
+
+            if (completedGame){
+                users.document(loggedUser.getEmail()).update("certificates", learn.getName()).addOnSuccessListener(aVoid -> GeneralUtils.openActivity(this, LearnActivity.class, true));
+                return;
+            }
+
+            loadData();
+            return;
+        }
+
+        option.setVisibility(Button.INVISIBLE);
+
+        int puntos = 0;
+
+        if (loggedUser.getPoints() > 5){
+            loggedUser.setPoints(loggedUser.getPoints() - 5);
+        }
+
+        users.document(loggedUser.getEmail()).update("points", loggedUser.getPoints());
+        DialogUtils.showErrorDialog(this, getString(R.string.incorrect), getString(R.string.incorrect_answer));
+    }
+
+    private int calculateProgress(int total, List<Sign> remainingSigns) {
+        if (remainingSigns == null || remainingSigns.isEmpty()) {
+            return 100;
+        }
+
+        int remaining = remainingSigns.size();
+
+        if (remaining > total) {
+            throw new IllegalArgumentException("La lista de signos restantes no puede exceder el total de signos.");
+        }
+
+        int guessed = total - remaining;
+        return (int) ((guessed / (double) total) * 100);
     }
 }

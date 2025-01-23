@@ -74,7 +74,7 @@ public class LearnActivity extends AppCompatActivity {
 
     private void loadData() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("game").get().addOnCompleteListener(task -> {
+        db.collection("game").whereNotEqualTo("progress", 100).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 listLearn.clear();
                 for (QueryDocumentSnapshot document : task.getResult()) {

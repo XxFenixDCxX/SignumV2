@@ -72,4 +72,9 @@
     <string name="exampleProgress">5%</string>
     <string name="optionExample">Dactitologia</string>
     <string name="skip">Saltar</string>
+    <string name="correct">Correcto</string>
+    <string name="incorrect">Incorrecto</string>
+    <string name="correct_answer">Respuesta correcta, se han sumado 10 puntos a tu usuario</string>
+    <string name="incorrect_answer">Respuesta incorrecta, se han restado 5 puntos a tu usuario</string>
+    <string name="congratulations_message">¡Felicidades! Has completado el juego</string>
 </resources>
