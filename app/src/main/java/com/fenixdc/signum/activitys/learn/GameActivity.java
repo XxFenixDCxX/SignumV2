@@ -115,11 +115,12 @@ public class GameActivity extends AppCompatActivity {
                             }
                         })
                         .into(sign);
-                List<Sign> options = getRandomOptions(actualSign);
-                option1.setText(options.get(0).getName());
-                option2.setText(options.get(1).getName());
-                option3.setText(options.get(2).getName());
-                option4.setText(options.get(3).getName());
+                getRandomOptions(actualSign, options -> {
+                    option1.setText(options.get(0).getName());
+                    option2.setText(options.get(1).getName());
+                    option3.setText(options.get(2).getName());
+                    option4.setText(options.get(3).getName());
+                });
             }
 
             @Override
@@ -134,30 +135,39 @@ public class GameActivity extends AppCompatActivity {
         return learn.getSigns().get((int) (Math.random() * learn.getSigns().size()));
     }
 
-    private List<Sign> getRandomOptions(Sign correctSign) {
+    private void getRandomOptions(Sign correctSign, OptionsCallback callback) {
         List<Sign> options = new ArrayList<>();
 
         List<Sign> otherSigns = new ArrayList<>(learn.getSigns());
         otherSigns.remove(correctSign);
 
         if (otherSigns.size() < 3) {
+            int missingCount = 3 - otherSigns.size();
             CollectionReference signsCollection = FirebaseFirestore.getInstance().collection("signs");
-            signsCollection.whereNotEqualTo("name", correctSign.getName()).get().addOnSuccessListener(queryDocumentSnapshots -> {
-                for (int i = 0; i < 3 - otherSigns.size(); i++) {
-                    Sign sign = queryDocumentSnapshots.toObjects(Sign.class).get(i);
-                    otherSigns.add(sign);
-                }
-            });
+            signsCollection.whereNotEqualTo("name", correctSign.getName()).get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        List<Sign> fetchedSigns = queryDocumentSnapshots.toObjects(Sign.class);
+                        otherSigns.addAll(fetchedSigns.subList(0, Math.min(missingCount, fetchedSigns.size())));
+
+                        completeOptions(options, otherSigns, correctSign, callback);
+                    })
+                    .addOnFailureListener(e -> callback.onOptionsReady(new ArrayList<>()));
+        } else {
+            completeOptions(options, otherSigns, correctSign, callback);
         }
-
-        Collections.shuffle(otherSigns);
-        options.addAll(otherSigns.subList(0, 3));
-
-        options.add(correctSign);
-
-        Collections.shuffle(options);
-
-        return options;
     }
 
+    private void completeOptions(List<Sign> options, List<Sign> otherSigns, Sign correctSign, OptionsCallback callback) {
+        Collections.shuffle(otherSigns);
+        options.addAll(otherSigns.subList(0, Math.min(3, otherSigns.size())));
+
+        options.add(correctSign);
+        Collections.shuffle(options);
+
+        callback.onOptionsReady(options);
+    }
+
+    public interface OptionsCallback {
+        void onOptionsReady(List<Sign> options);
+    }
 }
