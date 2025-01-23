@@ -69,4 +69,17 @@ public class Learn implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String SignsToString(){
+        String signsString = "";
+        for (Sign sign : signs) {
+            signsString += sign.getId() + ",";
+        }
+
+        if (!signsString.isEmpty()) {
+            signsString = signsString.substring(0, signsString.length() - 1);
+        }
+
+        return signsString;
+    }
 }
