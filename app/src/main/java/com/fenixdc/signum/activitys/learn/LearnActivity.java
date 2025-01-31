@@ -74,12 +74,14 @@ public class LearnActivity extends AppCompatActivity {
 
     private void loadData() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("game").whereNotEqualTo("progress", 100).get().addOnCompleteListener(task -> {
+        db.collection("game").whereEqualTo("email", currentUserEmail).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 listLearn.clear();
                 for (QueryDocumentSnapshot document : task.getResult()) {
                     Learn learn = new Learn();
+
                     learn.setProgress(Objects.requireNonNull(document.getLong("progress")).intValue());
+                    if (learn.getProgress() == 100) continue;
                     learn.setIdCategorie(Objects.requireNonNull(document.getLong("idCategorie")).intValue());
                     learn.setTotalSigns(Objects.requireNonNull(document.getLong("totalSigns")).intValue());
 
@@ -165,6 +167,7 @@ public class LearnActivity extends AppCompatActivity {
                     Map<String, Object> data = new HashMap<>();
                     data.put("progress", 0);
                     data.put("idCategorie", Integer.parseInt(document.getId()));
+                    data.put("email", currentUserEmail);
 
                     signsCollection.whereEqualTo("idCategorie", Integer.parseInt(document.getId())).get().addOnCompleteListener(task2 -> {
                         if (task2.isSuccessful()) {

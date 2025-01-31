@@ -22,6 +22,7 @@ import com.fenixdc.signum.entities.Categori;
 import com.fenixdc.signum.recyclerview.RecyclerDictionaryAdapter;
 import com.fenixdc.signum.utils.GeneralUtils;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -54,6 +55,7 @@ public class DictionaryActivity extends AppCompatActivity {
 
     private void loadData() {
         FirebaseFirestore.getInstance().collection("categories")
+                .orderBy("name", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
